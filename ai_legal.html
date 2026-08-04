@@ -1,0 +1,1761 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Legal Assistant | Moumita Majumder</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    ink: "#2B2138",
+                    aubergine: "#3D2948",
+                    plum: "#5B3B62",
+                    violet: "#7652A8",
+                    lavender: "#E8DDF3",
+                    terracotta: "#C96F5B",
+                    coral: "#E38B73",
+                    saffron: "#D9A441",
+                    parchment: "#F4EBDD",
+                    cream: "#FAF7F1",
+                    paper: "#FFFDF9",
+                    sage: "#7C8B78",
+                    mist: "#E7DDD2"
+                },
+                boxShadow: {
+                    soft: "0 18px 50px rgba(43, 33, 56, 0.08)",
+                    card: "0 12px 34px rgba(43, 33, 56, 0.09)",
+                    lift: "0 24px 60px rgba(43, 33, 56, 0.14)"
+                }
+            }
+        }
+    };
+</script>
+
+<style>
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        margin: 0;
+        overflow-x: hidden;
+        font-family:
+            Inter,
+            ui-sans-serif,
+            system-ui,
+            -apple-system,
+            BlinkMacSystemFont,
+            "Segoe UI",
+            sans-serif;
+        background: #FAF7F1;
+        color: #2B2138;
+    }
+
+    .display-font {
+        font-family: Georgia, "Times New Roman", serif;
+    }
+
+    .hero-grid {
+        background-image:
+            linear-gradient(rgba(43, 33, 56, 0.035) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(43, 33, 56, 0.035) 1px, transparent 1px);
+        background-size: 48px 48px;
+    }
+
+    .reveal {
+        opacity: 0;
+        transform: translateY(22px);
+        transition:
+            opacity 0.7s ease,
+            transform 0.7s ease;
+    }
+
+    .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .nav-shadow {
+        box-shadow: 0 10px 30px rgba(43, 33, 56, 0.08);
+    }
+
+    .screen-card {
+        transition:
+            transform 0.35s ease,
+            box-shadow 0.35s ease,
+            border-color 0.35s ease;
+    }
+
+    .screen-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 24px 55px rgba(43, 33, 56, 0.14);
+        border-color: rgba(118, 82, 168, 0.35);
+    }
+
+    .image-frame {
+        overflow: hidden;
+        background:
+            linear-gradient(
+                135deg,
+                rgba(118, 82, 168, 0.13),
+                rgba(255, 253, 249, 0.98),
+                rgba(201, 111, 91, 0.1)
+            );
+    }
+
+    .image-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.55s ease;
+    }
+
+    .screen-card:hover img {
+        transform: scale(1.02);
+    }
+
+    .progress-line {
+        background:
+            linear-gradient(
+                90deg,
+                #C96F5B,
+                #7652A8,
+                #D9A441
+            );
+    }
+
+    .number-circle {
+        background:
+            linear-gradient(
+                145deg,
+                #7652A8,
+                #3D2948
+            );
+    }
+
+    .quote-mark {
+        font-family: Georgia, serif;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        html {
+            scroll-behavior: auto;
+        }
+
+        .reveal,
+        .screen-card,
+        .image-frame img {
+            transition: none;
+        }
+    }
+</style>
+
+</head>
+
+<body>
+
+<header
+    id="navbar"
+    class="fixed inset-x-0 top-0 z-50 border-b border-transparent bg-cream/90 backdrop-blur-xl transition-all duration-300"
+>
+    <div class="mx-auto max-w-[1260px] px-5">
+        <div class="flex h-16 items-center justify-between">
+        <a href="index.html" class="flex items-center gap-3">
+            <div
+                class="flex h-9 w-9 items-center justify-center rounded-xl bg-aubergine text-xs font-semibold text-saffron"
+            >
+                MM
+            </div>
+
+            <div>
+                <p class="text-sm font-semibold text-ink">
+                    Moumita Majumder
+                </p>
+
+                <p class="text-[11px] text-ink/45">
+                    Product Designer
+                </p>
+            </div>
+        </a>
+
+        <nav class="hidden items-center gap-7 text-sm text-ink/60 md:flex">
+            <a href="#challenge" class="transition-colors hover:text-violet">
+                Challenge
+            </a>
+
+            <a href="#research" class="transition-colors hover:text-violet">
+                Research
+            </a>
+
+            <a href="#design" class="transition-colors hover:text-violet">
+                Design
+            </a>
+
+            <a href="#impact" class="transition-colors hover:text-violet">
+                Impact
+            </a>
+        </nav>
+
+        <a
+            href="index.html"
+            class="rounded-full border border-aubergine/10 bg-paper px-4 py-2 text-xs font-medium text-ink transition hover:border-violet/30 hover:text-violet"
+        >
+            All projects
+        </a>
+
+    </div>
+</div>
+
+</header>
+
+<main>
+
+<section class="relative min-h-screen overflow-hidden pt-16">
+<div class="hero-grid absolute inset-0"></div>
+
+<div
+    class="absolute right-[-170px] top-24 h-[500px] w-[500px] rounded-full bg-lavender/75 blur-3xl"
+></div>
+
+<div
+    class="absolute bottom-[-190px] left-[-130px] h-[460px] w-[460px] rounded-full bg-terracotta/10 blur-3xl"
+></div>
+
+<div
+    class="relative mx-auto flex min-h-[calc(100vh-64px)] max-w-[1260px] items-center px-5 py-16"
+>
+
+    <div class="grid w-full items-center gap-12 lg:grid-cols-12">
+
+        <div class="lg:col-span-7">
+
+            <div
+                class="reveal inline-flex items-center gap-3 rounded-full border border-aubergine/10 bg-paper/90 px-4 py-2 shadow-sm"
+            >
+                <span class="h-2 w-2 rounded-full bg-violet"></span>
+
+                <span class="text-xs font-semibold uppercase tracking-[0.15em] text-ink/55">
+                    AI · Enterprise software · Legal workflows
+                </span>
+            </div>
+
+            <p
+                class="reveal mt-8 text-sm font-semibold uppercase tracking-[0.18em] text-terracotta"
+            >
+                BT · AI Legal Assistant
+            </p>
+
+            <h1
+                class="display-font reveal mt-4 max-w-4xl text-5xl leading-[0.98] tracking-[-0.045em] sm:text-6xl lg:text-7xl"
+            >
+                Making contract review feel
+
+                <span class="text-violet">
+                    faster, clearer, and easier to trust.
+                </span>
+            </h1>
+
+            <p
+                class="reveal mt-7 max-w-2xl text-lg leading-relaxed text-ink/60 sm:text-xl"
+            >
+                Legal teams were spending too much time searching through
+                contracts, checking details, and comparing information.
+                We designed an AI-assisted workflow that brought the right
+                context together while keeping people in control of every
+                important decision.
+            </p>
+
+            <div class="reveal mt-9 flex flex-wrap gap-4">
+
+                <a
+                    href="#challenge"
+                    class="inline-flex items-center gap-3 rounded-full bg-aubergine px-6 py-3.5 text-sm font-medium text-paper transition hover:-translate-y-1 hover:bg-violet"
+                >
+                    Read the case study
+
+                    <span class="text-lg">
+                        ↓
+                    </span>
+                </a>
+
+                <a
+                    href="#design"
+                    class="inline-flex items-center gap-3 rounded-full border border-aubergine/10 bg-paper px-6 py-3.5 text-sm font-medium text-ink transition hover:border-violet/30 hover:text-violet"
+                >
+                    Jump to the design
+
+                    <span>
+                        →
+                    </span>
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="reveal lg:col-span-5">
+
+            <div
+                class="relative overflow-hidden rounded-[30px] border border-aubergine/10 bg-paper p-6 shadow-soft"
+            >
+
+                <div
+                    class="absolute right-[-50px] top-[-50px] h-44 w-44 rounded-full bg-lavender blur-3xl"
+                ></div>
+
+                <p class="relative text-xs uppercase tracking-[0.16em] text-ink/40">
+                    Project snapshot
+                </p>
+
+                <div class="relative mt-6 grid grid-cols-2 gap-6">
+
+                    <div>
+                        <p class="text-xs text-ink/45">
+                            Role
+                        </p>
+
+                        <p class="mt-2 text-base font-semibold">
+                            Lead Product Designer
+                        </p>
+                    </div>
+
+                    <div>
+                        <p class="text-xs text-ink/45">
+                            Product
+                        </p>
+
+                        <p class="mt-2 text-base font-semibold">
+                            AI Legal Assistant
+                        </p>
+                    </div>
+
+                    <div>
+                        <p class="text-xs text-ink/45">
+                            Team
+                        </p>
+
+                        <p class="mt-2 text-base font-semibold">
+                            PM · Engineers · Legal SME
+                        </p>
+                    </div>
+
+                    <div>
+                        <p class="text-xs text-ink/45">
+                            Focus
+                        </p>
+
+                        <p class="mt-2 text-base font-semibold">
+                            Review confidence
+                        </p>
+                    </div>
+
+                </div>
+
+                <div
+                    class="relative mt-7 rounded-2xl border border-violet/10 bg-lavender/40 p-5"
+                >
+                    <p class="text-xs font-semibold uppercase tracking-[0.14em] text-violet">
+                        The key shift
+                    </p>
+
+                    <p class="mt-2 text-sm font-medium leading-relaxed text-ink">
+                        We started by trying to speed up drafting. Research
+                        showed that the bigger opportunity was helping
+                        people review information with confidence.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+<section class="border-y border-aubergine/10 bg-paper py-7">
+<div class="mx-auto max-w-[1260px] px-5">
+
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+
+        <div>
+            <p class="text-xs uppercase tracking-[0.15em] text-ink/40">
+                My role
+            </p>
+
+            <p class="mt-2 font-semibold">
+                Product strategy · UX · UI
+            </p>
+        </div>
+
+        <div>
+            <p class="text-xs uppercase tracking-[0.15em] text-ink/40">
+                Research
+            </p>
+
+            <p class="mt-2 font-semibold">
+                24 user conversations
+            </p>
+        </div>
+
+        <div>
+            <p class="text-xs uppercase tracking-[0.15em] text-ink/40">
+                Core challenge
+            </p>
+
+            <p class="mt-2 font-semibold">
+                Trust in AI-assisted review
+            </p>
+        </div>
+
+        <div>
+            <p class="text-xs uppercase tracking-[0.15em] text-ink/40">
+                Outcome
+            </p>
+
+            <p class="mt-2 font-semibold">
+                Faster review, human control
+            </p>
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+<section id="challenge" class="bg-cream py-20 lg:py-28">
+<div class="mx-auto max-w-[1100px] px-5">
+
+    <div class="reveal max-w-3xl">
+
+        <p class="text-sm font-semibold text-terracotta">
+            The challenge
+        </p>
+
+        <h2
+            class="display-font mt-4 text-4xl leading-tight sm:text-5xl"
+        >
+            The work was not difficult because legal teams lacked expertise.
+
+            <span class="text-violet">
+                It was difficult because the information was scattered.
+            </span>
+        </h2>
+
+        <p class="mt-6 text-lg leading-relaxed text-ink/60">
+            As contract volumes grew, people had to move between documents,
+            folders, emails, notes, and previous versions before they could
+            even begin reviewing. The actual legal decision often took less
+            time than finding and verifying the information behind it.
+        </p>
+
+    </div>
+
+    <div class="mt-12 grid gap-5 md:grid-cols-2">
+
+        <article
+            class="reveal rounded-[25px] border border-aubergine/10 bg-paper p-6 shadow-card"
+        >
+            <span
+                class="flex h-11 w-11 items-center justify-center rounded-2xl bg-lavender text-lg text-violet"
+            >
+                01
+            </span>
+
+            <h3 class="mt-5 text-xl font-semibold">
+                Information lived in too many places
+            </h3>
+
+            <p class="mt-3 leading-relaxed text-ink/55">
+                Reviewers had to piece together the full story from
+                contracts, emails, folders, notes, and earlier versions.
+            </p>
+        </article>
+
+        <article
+            class="reveal rounded-[25px] border border-aubergine/10 bg-paper p-6 shadow-card"
+        >
+            <span
+                class="flex h-11 w-11 items-center justify-center rounded-2xl bg-lavender text-lg text-violet"
+            >
+                02
+            </span>
+
+            <h3 class="mt-5 text-xl font-semibold">
+                Finding the right clause took too long
+            </h3>
+
+            <p class="mt-3 leading-relaxed text-ink/55">
+                A large part of the work was spent searching for the right
+                clause, note, or contract version before review could begin.
+            </p>
+        </article>
+
+        <article
+            class="reveal rounded-[25px] border border-aubergine/10 bg-paper p-6 shadow-card"
+        >
+            <span
+                class="flex h-11 w-11 items-center justify-center rounded-2xl bg-lavender text-lg text-violet"
+            >
+                03
+            </span>
+
+            <h3 class="mt-5 text-xl font-semibold">
+                Review cycles kept stretching
+            </h3>
+
+            <p class="mt-3 leading-relaxed text-ink/55">
+                Teams repeatedly checked, compared, and rechecked the same
+                information before they felt ready to move forward.
+            </p>
+        </article>
+
+        <article
+            class="reveal rounded-[25px] border border-aubergine/10 bg-paper p-6 shadow-card"
+        >
+            <span
+                class="flex h-11 w-11 items-center justify-center rounded-2xl bg-lavender text-lg text-violet"
+            >
+                04
+            </span>
+
+            <h3 class="mt-5 text-xl font-semibold">
+                Small details were easy to miss
+            </h3>
+
+            <p class="mt-3 leading-relaxed text-ink/55">
+                Under time pressure, a minor clause or change could be
+                overlooked even when it had important consequences later.
+            </p>
+        </article>
+
+    </div>
+
+    <div
+        class="reveal mt-10 rounded-[28px] bg-aubergine p-7 text-paper shadow-soft sm:p-9"
+    >
+
+        <p class="text-xs font-semibold uppercase tracking-[0.16em] text-saffron">
+            What people told us
+        </p>
+
+        <div class="mt-6 grid gap-6 md:grid-cols-3">
+
+            <p class="text-lg leading-relaxed text-paper/85">
+                <span class="quote-mark text-3xl text-saffron">“</span>
+                We know the answer is somewhere in here, but finding it
+                takes too long.
+            </p>
+
+            <p class="text-lg leading-relaxed text-paper/85">
+                <span class="quote-mark text-3xl text-saffron">“</span>
+                I need one more check before I can trust this.
+            </p>
+
+            <p class="text-lg leading-relaxed text-paper/85">
+                <span class="quote-mark text-3xl text-saffron">“</span>
+                I do not want to miss a detail and find out later.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</section>
+
+<section id="research" class="bg-parchment py-20 lg:py-28">
+<div class="mx-auto max-w-[1100px] px-5">
+
+    <div class="grid gap-12 lg:grid-cols-12">
+
+        <div class="reveal lg:col-span-5">
+
+            <p class="text-sm font-semibold text-terracotta">
+                Research
+            </p>
+
+            <h2
+                class="display-font mt-4 text-4xl leading-tight sm:text-5xl"
+            >
+                We wanted to understand how legal teams worked
+
+                <span class="text-violet">
+                    when time was limited.
+                </span>
+            </h2>
+
+            <p class="mt-6 leading-relaxed text-ink/60">
+                The research focused on what happened before a decision:
+                how people found information, checked details, compared
+                documents, and decided whether something was ready to move
+                forward.
+            </p>
+
+        </div>
+
+        <div class="reveal lg:col-span-7">
+
+            <div
+                class="rounded-[28px] border border-aubergine/10 bg-paper p-7 shadow-card"
+            >
+
+                <div class="grid gap-6 sm:grid-cols-3">
+
+                    <div>
+                        <p class="text-4xl font-semibold text-violet">
+                            24
+                        </p>
+
+                        <p class="mt-2 text-sm text-ink/50">
+                            User interviews
+                        </p>
+                    </div>
+
+                    <div>
+                        <p class="text-4xl font-semibold text-violet">
+                            3
+                        </p>
+
+                        <p class="mt-2 text-sm text-ink/50">
+                            User groups
+                        </p>
+                    </div>
+
+                    <div>
+                        <p class="text-4xl font-semibold text-violet">
+                            1
+                        </p>
+
+                        <p class="mt-2 text-sm text-ink/50">
+                            Shared pattern
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="my-7 h-px bg-aubergine/10"></div>
+
+                <p class="text-sm font-semibold">
+                    Legal counsel · Contract managers · Growing businesses
+                </p>
+
+                <p class="mt-3 leading-relaxed text-ink/55">
+                    We looked at how different teams handled the same
+                    pressure: finding reliable information quickly while
+                    remaining responsible for the final decision.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="mt-14 grid gap-6 md:grid-cols-2">
+
+        <div
+            class="reveal rounded-[26px] border border-terracotta/20 bg-terracotta/10 p-7"
+        >
+            <p class="text-xs font-semibold uppercase tracking-[0.16em] text-terracotta">
+                What we expected
+            </p>
+
+            <h3 class="mt-4 text-2xl font-semibold">
+                Lawyers needed help writing contracts faster.
+            </h3>
+        </div>
+
+        <div
+            class="reveal rounded-[26px] border border-violet/20 bg-lavender/55 p-7"
+        >
+            <p class="text-xs font-semibold uppercase tracking-[0.16em] text-violet">
+                What we learned
+            </p>
+
+            <h3 class="mt-4 text-2xl font-semibold">
+                Most time went into finding, checking, and trusting
+                information.
+            </h3>
+        </div>
+
+    </div>
+
+    <div class="mt-14">
+
+        <p class="reveal text-sm font-semibold text-terracotta">
+            Three things stood out
+        </p>
+
+        <div class="mt-6 grid gap-5 md:grid-cols-3">
+
+            <article
+                class="reveal rounded-[25px] border border-aubergine/10 bg-paper p-6"
+            >
+                <p class="text-4xl font-semibold text-violet">
+                    01
+                </p>
+
+                <p class="mt-5 text-lg font-medium leading-relaxed">
+                    Finding the right clause often took longer than
+                    reviewing it.
+                </p>
+            </article>
+
+            <article
+                class="reveal rounded-[25px] border border-aubergine/10 bg-paper p-6"
+            >
+                <p class="text-4xl font-semibold text-violet">
+                    02
+                </p>
+
+                <p class="mt-5 text-lg font-medium leading-relaxed">
+                    Teams spent a lot of time comparing documents and
+                    validating the same details.
+                </p>
+            </article>
+
+            <article
+                class="reveal rounded-[25px] border border-aubergine/10 bg-paper p-6"
+            >
+                <p class="text-4xl font-semibold text-violet">
+                    03
+                </p>
+
+                <p class="mt-5 text-lg font-medium leading-relaxed">
+                    People wanted to move faster, but still wanted to make
+                    the final call themselves.
+                </p>
+            </article>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+<section class="bg-ink py-20 text-cream lg:py-28">
+<div class="mx-auto max-w-[1100px] px-5">
+
+    <div class="reveal max-w-3xl">
+
+        <p class="text-sm font-semibold text-saffron">
+            Turning research into design
+        </p>
+
+        <h2
+            class="display-font mt-4 text-4xl leading-tight sm:text-5xl"
+        >
+            Every insight became a principle.
+
+            <span class="text-lavender">
+                Every principle led to a product decision.
+            </span>
+        </h2>
+
+    </div>
+
+    <div class="mt-12 space-y-5">
+
+        <article
+            class="reveal grid gap-6 rounded-[27px] border border-white/10 bg-white/[0.05] p-7 md:grid-cols-[1fr_auto_1fr]"
+        >
+
+            <div>
+                <p class="text-xs uppercase tracking-[0.15em] text-cream/40">
+                    Research insight
+                </p>
+
+                <p class="mt-3 text-lg font-medium">
+                    People needed to know where information came from.
+                </p>
+            </div>
+
+            <div class="hidden items-center text-2xl text-saffron md:flex">
+                →
+            </div>
+
+            <div>
+                <p class="text-xs uppercase tracking-[0.15em] text-saffron">
+                    Design response
+                </p>
+
+                <p class="mt-3 text-lg font-medium text-lavender">
+                    Source references, clause history, and related
+                    documents.
+                </p>
+            </div>
+
+        </article>
+
+        <article
+            class="reveal grid gap-6 rounded-[27px] border border-white/10 bg-white/[0.05] p-7 md:grid-cols-[1fr_auto_1fr]"
+        >
+
+            <div>
+                <p class="text-xs uppercase tracking-[0.15em] text-cream/40">
+                    Research insight
+                </p>
+
+                <p class="mt-3 text-lg font-medium">
+                    Finding the right clause took too long.
+                </p>
+            </div>
+
+            <div class="hidden items-center text-2xl text-saffron md:flex">
+                →
+            </div>
+
+            <div>
+                <p class="text-xs uppercase tracking-[0.15em] text-saffron">
+                    Design response
+                </p>
+
+                <p class="mt-3 text-lg font-medium text-lavender">
+                    Smart search, useful filters, and quick previews.
+                </p>
+            </div>
+
+        </article>
+
+        <article
+            class="reveal grid gap-6 rounded-[27px] border border-white/10 bg-white/[0.05] p-7 md:grid-cols-[1fr_auto_1fr]"
+        >
+
+            <div>
+                <p class="text-xs uppercase tracking-[0.15em] text-cream/40">
+                    Research insight
+                </p>
+
+                <p class="mt-3 text-lg font-medium">
+                    Important risks could disappear inside long documents.
+                </p>
+            </div>
+
+            <div class="hidden items-center text-2xl text-saffron md:flex">
+                →
+            </div>
+
+            <div>
+                <p class="text-xs uppercase tracking-[0.15em] text-saffron">
+                    Design response
+                </p>
+
+                <p class="mt-3 text-lg font-medium text-lavender">
+                    Risk flags, highlighted changes, and clear explanations.
+                </p>
+            </div>
+
+        </article>
+
+        <article
+            class="reveal grid gap-6 rounded-[27px] border border-white/10 bg-white/[0.05] p-7 md:grid-cols-[1fr_auto_1fr]"
+        >
+
+            <div>
+                <p class="text-xs uppercase tracking-[0.15em] text-cream/40">
+                    Research insight
+                </p>
+
+                <p class="mt-3 text-lg font-medium">
+                    People wanted support, not decisions made for them.
+                </p>
+            </div>
+
+            <div class="hidden items-center text-2xl text-saffron md:flex">
+                →
+            </div>
+
+            <div>
+                <p class="text-xs uppercase tracking-[0.15em] text-saffron">
+                    Design response
+                </p>
+
+                <p class="mt-3 text-lg font-medium text-lavender">
+                    Clear review controls, editable drafts, and human
+                    approval.
+                </p>
+            </div>
+
+        </article>
+
+    </div>
+
+</div>
+</section>
+
+<section id="design" class="bg-cream py-20 lg:py-28">
+<div class="mx-auto max-w-[1260px] px-5">
+
+    <div class="reveal max-w-3xl">
+
+        <p class="text-sm font-semibold text-terracotta">
+            The experience
+        </p>
+
+        <h2
+            class="display-font mt-4 text-4xl leading-tight sm:text-5xl"
+        >
+            The workflow was designed around one simple idea:
+
+            <span class="text-violet">
+                help people understand before asking them to decide.
+            </span>
+        </h2>
+
+        <p class="mt-6 text-lg leading-relaxed text-ink/60">
+            The product moved from contract onboarding to discovery,
+            understanding, review, and approval. At every stage, the system
+            surfaced useful information while keeping the reviewer in
+            charge.
+        </p>
+
+    </div>
+
+    <div class="mt-14 space-y-14">
+
+        <article class="reveal grid items-center gap-8 lg:grid-cols-12">
+
+            <div class="lg:col-span-5">
+
+                <div class="flex items-center gap-4">
+
+                    <span
+                        class="number-circle flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl text-sm font-semibold text-paper"
+                    >
+                        01
+                    </span>
+
+                    <p class="text-xs font-semibold uppercase tracking-[0.16em] text-violet">
+                        Contract onboarding
+                    </p>
+
+                </div>
+
+                <h3 class="mt-6 text-3xl font-semibold">
+                    Start with a clean, reliable contract.
+                </h3>
+
+                <p class="mt-4 leading-relaxed text-ink/60">
+                    Upload and validation were kept simple. The system
+                    checked the document and detected possible duplicates
+                    before review began, reducing avoidable errors later.
+                </p>
+
+                <div
+                    class="mt-6 rounded-2xl bg-parchment p-5"
+                >
+                    <p class="text-xs font-semibold text-terracotta">
+                        Why this mattered
+                    </p>
+
+                    <p class="mt-2 text-sm leading-relaxed text-ink/65">
+                        A reliable review starts with confidence that the
+                        right document is in the system.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="screen-card lg:col-span-7">
+
+                <div
+                    class="image-frame aspect-[16/9] rounded-[28px] border border-aubergine/10 shadow-card"
+                >
+                    <img
+                        src="https://muxdesigns.co.in/wp-content/uploads/2026/07/legal-1.jpg"
+                        alt="AI Legal Assistant contract onboarding screen"
+                    >
+                </div>
+
+            </div>
+
+        </article>
+
+        <article class="reveal grid items-center gap-8 lg:grid-cols-12">
+
+            <div class="order-2 screen-card lg:order-1 lg:col-span-7">
+
+                <div
+                    class="image-frame aspect-[16/9] rounded-[28px] border border-aubergine/10 shadow-card"
+                >
+                    <img
+                        src="https://muxdesigns.co.in/wp-content/uploads/2026/07/legal-2.jpg"
+                        alt="AI Legal Assistant contract discovery screen"
+                    >
+                </div>
+
+            </div>
+
+            <div class="order-1 lg:order-2 lg:col-span-5">
+
+                <div class="flex items-center gap-4">
+
+                    <span
+                        class="number-circle flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl text-sm font-semibold text-paper"
+                    >
+                        02
+                    </span>
+
+                    <p class="text-xs font-semibold uppercase tracking-[0.16em] text-violet">
+                        Find the right contract
+                    </p>
+
+                </div>
+
+                <h3 class="mt-6 text-3xl font-semibold">
+                    Give people the context they need before they dive in.
+                </h3>
+
+                <p class="mt-4 leading-relaxed text-ink/60">
+                    Search, filters, and a quick contract overview helped
+                    reviewers understand what they were opening and why it
+                    mattered.
+                </p>
+
+                <div class="mt-6 rounded-2xl bg-parchment p-5">
+
+                    <p class="text-xs font-semibold text-terracotta">
+                        Design choice
+                    </p>
+
+                    <p class="mt-2 text-sm leading-relaxed text-ink/65">
+                        Bring the most useful context forward instead of
+                        making people open documents one by one.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </article>
+
+        <article class="reveal grid items-center gap-8 lg:grid-cols-12">
+
+            <div class="lg:col-span-5">
+
+                <div class="flex items-center gap-4">
+
+                    <span
+                        class="number-circle flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl text-sm font-semibold text-paper"
+                    >
+                        03
+                    </span>
+
+                    <p class="text-xs font-semibold uppercase tracking-[0.16em] text-violet">
+                        Understand the contract
+                    </p>
+
+                </div>
+
+                <h3 class="mt-6 text-3xl font-semibold">
+                    Show what matters without hiding the source.
+                </h3>
+
+                <p class="mt-4 leading-relaxed text-ink/60">
+                    Key obligations, dates, terms, and possible risks were
+                    brought together in one view. People could move quickly
+                    while still tracing every important detail back to the
+                    contract.
+                </p>
+
+                <div class="mt-6 rounded-2xl bg-lavender/45 p-5">
+
+                    <p class="text-xs font-semibold text-violet">
+                        Trust pattern
+                    </p>
+
+                    <p class="mt-2 text-sm leading-relaxed text-ink/65">
+                        AI could summarize and point to information, but it
+                        never became the only source of truth.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="screen-card lg:col-span-7">
+
+                <div
+                    class="image-frame aspect-[16/9] rounded-[28px] border border-aubergine/10 shadow-card"
+                >
+                    <img
+                        src="https://muxdesigns.co.in/wp-content/uploads/2026/07/legal-3.jpg"
+                        alt="AI Legal Assistant contract summary screen"
+                    >
+                </div>
+
+            </div>
+
+        </article>
+
+        <article class="reveal grid items-center gap-8 lg:grid-cols-12">
+
+            <div class="order-2 screen-card lg:order-1 lg:col-span-7">
+
+                <div
+                    class="image-frame aspect-[16/9] rounded-[28px] border border-aubergine/10 shadow-card"
+                >
+                    <img
+                        src="https://muxdesigns.co.in/wp-content/uploads/2026/07/legal-4.jpg"
+                        alt="AI Legal Assistant risk and redlining screen"
+                    >
+                </div>
+
+            </div>
+
+            <div class="order-1 lg:order-2 lg:col-span-5">
+
+                <div class="flex items-center gap-4">
+
+                    <span
+                        class="number-circle flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl text-sm font-semibold text-paper"
+                    >
+                        04
+                    </span>
+
+                    <p class="text-xs font-semibold uppercase tracking-[0.16em] text-violet">
+                        Review what needs attention
+                    </p>
+
+                </div>
+
+                <h3 class="mt-6 text-3xl font-semibold">
+                    Make important changes difficult to miss.
+                </h3>
+
+                <p class="mt-4 leading-relaxed text-ink/60">
+                    Risk highlights and redlining brought attention to
+                    critical clauses. Explanations helped reviewers
+                    understand why something had been flagged.
+                </p>
+
+                <div class="mt-6 rounded-2xl bg-parchment p-5">
+
+                    <p class="text-xs font-semibold text-terracotta">
+                        Why this mattered
+                    </p>
+
+                    <p class="mt-2 text-sm leading-relaxed text-ink/65">
+                        Highlighting a risk is useful only when people can
+                        understand the reason behind it.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </article>
+
+        <article class="reveal grid items-center gap-8 lg:grid-cols-12">
+
+            <div class="lg:col-span-5">
+
+                <div class="flex items-center gap-4">
+
+                    <span
+                        class="number-circle flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl text-sm font-semibold text-paper"
+                    >
+                        05
+                    </span>
+
+                    <p class="text-xs font-semibold uppercase tracking-[0.16em] text-violet">
+                        Human approval
+                    </p>
+
+                </div>
+
+                <h3 class="mt-6 text-3xl font-semibold">
+                    AI could suggest. People still made the decision.
+                </h3>
+
+                <p class="mt-4 leading-relaxed text-ink/60">
+                    Suggestions were presented as part of a review flow,
+                    not as automatic next steps. Users could inspect,
+                    accept, edit, or discard changes before approval.
+                </p>
+
+                <div class="mt-6 rounded-2xl bg-lavender/45 p-5">
+
+                    <p class="text-xs font-semibold text-violet">
+                        Core principle
+                    </p>
+
+                    <p class="mt-2 text-sm leading-relaxed text-ink/65">
+                        The system supported judgment. It did not replace
+                        responsibility.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="screen-card lg:col-span-7">
+
+                <div
+                    class="image-frame aspect-[16/9] rounded-[28px] border border-aubergine/10 shadow-card"
+                >
+                    <img
+                        src="https://muxdesigns.co.in/wp-content/uploads/2026/07/legal-5.jpg"
+                        alt="AI Legal Assistant review and approval screen"
+                    >
+                </div>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</div>
+
+</section>
+
+<section class="bg-parchment py-20 lg:py-28">
+<div class="mx-auto max-w-[1100px] px-5">
+
+    <div class="reveal max-w-3xl">
+
+        <p class="text-sm font-semibold text-terracotta">
+            What changed through testing
+        </p>
+
+        <h2
+            class="display-font mt-4 text-4xl leading-tight sm:text-5xl"
+        >
+            Four rounds of feedback.
+
+            <span class="text-violet">
+                Four moments where trust needed work.
+            </span>
+        </h2>
+
+        <p class="mt-6 leading-relaxed text-ink/60">
+            The iterations were not about making the interface look more
+            polished. Each change responded to a moment where users were
+            unsure, slowed down, or felt they needed more evidence.
+        </p>
+
+    </div>
+
+    <div class="mt-12 space-y-5">
+
+        <article
+            class="reveal rounded-[27px] border border-aubergine/10 bg-paper p-7"
+        >
+
+            <div class="grid gap-6 md:grid-cols-4">
+
+                <div>
+                    <p class="text-xs text-ink/40">
+                        What we observed
+                    </p>
+
+                    <p class="mt-2 font-semibold">
+                        Users could not verify AI recommendations.
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-xs text-ink/40">
+                        What changed
+                    </p>
+
+                    <p class="mt-2 font-semibold">
+                        Added source citations and similar agreements.
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-xs text-ink/40">
+                        What we learned
+                    </p>
+
+                    <p class="mt-2 font-semibold">
+                        Evidence increased confidence during review.
+                    </p>
+                </div>
+
+                <div
+                    class="rounded-2xl bg-lavender/45 p-4"
+                >
+                    <p class="text-xs font-semibold text-violet">
+                        Result
+                    </p>
+
+                    <p class="mt-2 text-sm font-medium">
+                        Better traceability
+                    </p>
+                </div>
+
+            </div>
+
+        </article>
+
+        <article
+            class="reveal rounded-[27px] border border-aubergine/10 bg-paper p-7"
+        >
+
+            <div class="grid gap-6 md:grid-cols-4">
+
+                <div>
+                    <p class="text-xs text-ink/40">
+                        What we observed
+                    </p>
+
+                    <p class="mt-2 font-semibold">
+                        People wanted support but not automatic decisions.
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-xs text-ink/40">
+                        What changed
+                    </p>
+
+                    <p class="mt-2 font-semibold">
+                        Added clear review and approval checkpoints.
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-xs text-ink/40">
+                        What we learned
+                    </p>
+
+                    <p class="mt-2 font-semibold">
+                        Control mattered as much as speed.
+                    </p>
+                </div>
+
+                <div
+                    class="rounded-2xl bg-lavender/45 p-4"
+                >
+                    <p class="text-xs font-semibold text-violet">
+                        Result
+                    </p>
+
+                    <p class="mt-2 text-sm font-medium">
+                        Clear ownership
+                    </p>
+                </div>
+
+            </div>
+
+        </article>
+
+        <article
+            class="reveal rounded-[27px] border border-aubergine/10 bg-paper p-7"
+        >
+
+            <div class="grid gap-6 md:grid-cols-4">
+
+                <div>
+                    <p class="text-xs text-ink/40">
+                        What we observed
+                    </p>
+
+                    <p class="mt-2 font-semibold">
+                        Similar clauses were difficult to compare.
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-xs text-ink/40">
+                        What changed
+                    </p>
+
+                    <p class="mt-2 font-semibold">
+                        Added side-by-side clause comparison.
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-xs text-ink/40">
+                        What we learned
+                    </p>
+
+                    <p class="mt-2 font-semibold">
+                        The right context in one place reduced effort.
+                    </p>
+                </div>
+
+                <div
+                    class="rounded-2xl bg-lavender/45 p-4"
+                >
+                    <p class="text-xs font-semibold text-violet">
+                        Result
+                    </p>
+
+                    <p class="mt-2 text-sm font-medium">
+                        Faster comparison
+                    </p>
+                </div>
+
+            </div>
+
+        </article>
+
+        <article
+            class="reveal rounded-[27px] border border-aubergine/10 bg-paper p-7"
+        >
+
+            <div class="grid gap-6 md:grid-cols-4">
+
+                <div>
+                    <p class="text-xs text-ink/40">
+                        What we observed
+                    </p>
+
+                    <p class="mt-2 font-semibold">
+                        Important risks disappeared inside long documents.
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-xs text-ink/40">
+                        What changed
+                    </p>
+
+                    <p class="mt-2 font-semibold">
+                        Added risk highlights and plain-language reasons.
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-xs text-ink/40">
+                        What we learned
+                    </p>
+
+                    <p class="mt-2 font-semibold">
+                        Visibility helped people understand issues sooner.
+                    </p>
+                </div>
+
+                <div
+                    class="rounded-2xl bg-lavender/45 p-4"
+                >
+                    <p class="text-xs font-semibold text-violet">
+                        Result
+                    </p>
+
+                    <p class="mt-2 text-sm font-medium">
+                        Clearer risk review
+                    </p>
+                </div>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</div>
+</section>
+
+<section id="impact" class="bg-aubergine py-20 text-paper lg:py-28">
+<div class="mx-auto max-w-[1100px] px-5">
+
+    <div class="reveal max-w-4xl">
+
+        <p class="text-sm font-semibold text-saffron">
+            Impact
+        </p>
+
+        <h2
+            class="display-font mt-4 text-4xl leading-tight sm:text-5xl"
+        >
+            The impact was bigger than faster drafting.
+
+            <span class="text-lavender">
+                The product became a more confident way to review.
+            </span>
+        </h2>
+
+        <p class="mt-6 max-w-3xl text-lg leading-relaxed text-paper/65">
+            By bringing information, evidence, and review controls together,
+            the experience helped legal teams move through contracts with
+            less manual effort while keeping responsibility with the people
+            making the decisions.
+        </p>
+
+    </div>
+
+    <div class="mt-14 grid gap-5 md:grid-cols-2">
+
+        <article
+            class="reveal rounded-[27px] border border-white/10 bg-white/[0.05] p-7"
+        >
+
+            <p class="text-xs font-semibold uppercase tracking-[0.16em] text-saffron">
+                For users
+            </p>
+
+            <ul class="mt-6 space-y-4 text-lg text-paper/80">
+
+                <li class="flex gap-3">
+                    <span class="text-saffron">•</span>
+                    Find relevant information faster
+                </li>
+
+                <li class="flex gap-3">
+                    <span class="text-saffron">•</span>
+                    Spend less time comparing documents
+                </li>
+
+                <li class="flex gap-3">
+                    <span class="text-saffron">•</span>
+                    Understand risks with more context
+                </li>
+
+                <li class="flex gap-3">
+                    <span class="text-saffron">•</span>
+                    Stay in control of final decisions
+                </li>
+
+            </ul>
+
+        </article>
+
+        <article
+            class="reveal rounded-[27px] border border-white/10 bg-white/[0.05] p-7"
+        >
+
+            <p class="text-xs font-semibold uppercase tracking-[0.16em] text-saffron">
+                For the business
+            </p>
+
+            <ul class="mt-6 space-y-4 text-lg text-paper/80">
+
+                <li class="flex gap-3">
+                    <span class="text-saffron">•</span>
+                    More efficient review cycles
+                </li>
+
+                <li class="flex gap-3">
+                    <span class="text-saffron">•</span>
+                    More consistent review practices
+                </li>
+
+                <li class="flex gap-3">
+                    <span class="text-saffron">•</span>
+                    Less repeated manual work
+                </li>
+
+                <li class="flex gap-3">
+                    <span class="text-saffron">•</span>
+                    A scalable foundation for AI-assisted legal work
+                </li>
+
+            </ul>
+
+        </article>
+
+    </div>
+
+    <div
+        class="reveal mt-10 overflow-hidden rounded-[30px] border border-white/10 bg-white/[0.06] p-8 sm:p-10"
+    >
+
+        <p class="text-xs font-semibold uppercase tracking-[0.16em] text-saffron">
+            The confidence journey
+        </p>
+
+        <div class="mt-8 grid gap-6 md:grid-cols-4">
+
+            <div>
+                <p class="text-2xl font-semibold">
+                    Source
+                </p>
+
+                <p class="mt-1 text-sm text-paper/50">
+                    See where information came from
+                </p>
+            </div>
+
+            <div>
+                <p class="text-2xl font-semibold">
+                    Understanding
+                </p>
+
+                <p class="mt-1 text-sm text-paper/50">
+                    Know what matters and why
+                </p>
+            </div>
+
+            <div>
+                <p class="text-2xl font-semibold">
+                    Confidence
+                </p>
+
+                <p class="mt-1 text-sm text-paper/50">
+                    Review with evidence and context
+                </p>
+            </div>
+
+            <div>
+                <p class="text-2xl font-semibold">
+                    Decision
+                </p>
+
+                <p class="mt-1 text-sm text-paper/50">
+                    Move forward with human approval
+                </p>
+            </div>
+
+        </div>
+
+        <div class="progress-line mt-8 h-1 w-full rounded-full"></div>
+
+    </div>
+
+</div>
+</section>
+
+<section class="bg-cream py-20 lg:py-28">
+<div class="mx-auto max-w-[900px] px-5 text-center">
+
+    <p class="reveal text-sm font-semibold text-terracotta">
+        Key learning
+    </p>
+
+    <h2
+        class="display-font reveal mt-5 text-4xl leading-tight sm:text-5xl"
+    >
+        People did not want more AI.
+
+        <span class="text-violet">
+            They wanted less effort finding information and more confidence
+            in what they were reviewing.
+        </span>
+    </h2>
+
+    <p class="reveal mx-auto mt-7 max-w-2xl text-lg leading-relaxed text-ink/60">
+        The most useful AI experience was not the one that took over the
+        work. It was the one that made the right information easier to
+        find, easier to understand, and easier to verify.
+    </p>
+
+    <a
+        href="index.html"
+        class="reveal mt-10 inline-flex items-center gap-3 rounded-full bg-aubergine px-6 py-3.5 text-sm font-medium text-paper transition hover:-translate-y-1 hover:bg-violet"
+    >
+        Explore more projects
+
+        <span>
+            →
+        </span>
+    </a>
+
+</div>
+</section>
+
+</main>
+
+<footer class="bg-ink py-8 text-cream/45">
+<div
+    class="mx-auto flex max-w-[1260px] flex-col items-center justify-between gap-3 px-5 text-xs sm:flex-row"
+>
+
+    <p>
+        Moumita Majumder · Product Designer
+    </p>
+
+    <p>© 2026 · Designed with curiosity and care</p>
+
+</div>
+
+</footer>
+
+<script>
+
+const navbar = document.getElementById("navbar");
+
+window.addEventListener("scroll", () => {
+
+    if (window.scrollY > 20) {
+
+        navbar.classList.add(
+            "nav-shadow",
+            "border-aubergine/10"
+        );
+
+    } else {
+
+        navbar.classList.remove(
+            "nav-shadow",
+            "border-aubergine/10"
+        );
+
+    }
+
+});
+
+const observer = new IntersectionObserver(
+
+    (entries) => {
+
+        entries.forEach((entry) => {
+
+            if (entry.isIntersecting) {
+
+                entry.target.classList.add("visible");
+
+                observer.unobserve(entry.target);
+
+            }
+
+        });
+
+    },
+
+    {
+        threshold: 0.08
+    }
+
+);
+
+document.querySelectorAll(".reveal").forEach((element) => {
+        observer.observe(element);
+    });
+
+document.querySelectorAll('a[href^="#"]').forEach((link) => {
+
+        link.addEventListener("click", (event) => {
+
+            const target = document.querySelector(
+                link.getAttribute("href")
+            );
+
+            if (target) {
+
+                event.preventDefault();
+
+                target.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+            }
+
+        });
+
+    });
+
+</script>
+
+</body>
+</html>
