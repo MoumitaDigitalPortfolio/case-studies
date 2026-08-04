@@ -1,1772 +1,1562 @@
 <!doctype html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="AI-assisted document intelligence case study by Moumita Majumder for Honeywell.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="AI Document Intelligence case study by Moumita Majumder.">
 <title>AI Document Intelligence | Moumita Majumder</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
-tailwind.config={
-theme:{
-extend:{
-colors:{
-ink:"#25221D",
-paper:"#FFFDF8",
-cream:"#F7F0E4",
-sand:"#E8DCC9",
-red:"#9F3028",
-redDark:"#74211D",
-redSoft:"#E9C7C1",
-plum:"#49314F",
-olive:"#66705D"
-},
-boxShadow:{
-soft:"0 20px 60px rgba(52,38,28,.10)",
-lift:"0 28px 80px rgba(52,38,28,.15)"
-}
-}
-}
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        ink: "#24211D",
+        paper: "#FFFDF8",
+        cream: "#F5EEE4",
+        sand: "#E6D8C5",
+        red: "#7E2420",
+        redDark: "#581815",
+        redSoft: "#E8C5C0",
+        olive: "#68705F"
+      },
+      boxShadow: {
+        soft: "0 18px 55px rgba(36,33,29,.10)",
+        lift: "0 28px 80px rgba(36,33,29,.16)"
+      }
+    }
+  }
 }
 </script>
 <style>
-html{scroll-behavior:smooth}
-body{
-margin:0;
-overflow-x:hidden;
-background:#F7F0E4;
-color:#25221D;
-font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
+html {
+  scroll-behavior: smooth;
 }
-.display-font{
-font-family:Georgia,"Times New Roman",serif
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background: #F5EEE4;
+  color: #24211D;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
-.hero-grid{
-background-image:
-linear-gradient(rgba(37,34,29,.035) 1px,transparent 1px),
-linear-gradient(90deg,rgba(37,34,29,.035) 1px,transparent 1px);
-background-size:52px 52px
+.display-font {
+  font-family: Georgia, "Times New Roman", serif;
 }
-.reveal{
-opacity:0;
-transform:translateY(28px);
-transition:opacity .8s ease,transform .8s ease
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(36,33,29,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(36,33,29,.035) 1px, transparent 1px);
+  background-size: 56px 56px;
 }
-.reveal.visible{
-opacity:1;
-transform:translateY(0)
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .7s ease, transform .7s ease;
 }
-.nav-shadow{
-box-shadow:0 10px 35px rgba(52,38,28,.10)
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
-.workflow-line{
-position:relative
+.nav-shadow {
+  box-shadow: 0 10px 35px rgba(36,33,29,.09);
 }
-.workflow-line:before{
-content:"";
-position:absolute;
-left:18px;
-top:42px;
-bottom:-42px;
-width:1px;
-background:rgba(37,34,29,.14)
+.step-button {
+  transition: all .25s ease;
 }
-.workflow-line:last-child:before{
-display:none
+.step-button.active {
+  background: #7E2420;
+  border-color: #7E2420;
+  color: #FFFDF8;
 }
-.screen-frame{
-background:
-radial-gradient(circle at 85% 10%,rgba(159,48,40,.10),transparent 30%),
-linear-gradient(135deg,#F5EDE2,#FFFDF8)
+.step-panel {
+  display: none;
 }
-.screen-canvas{
-min-height:500px
+.step-panel.active {
+  display: block;
+  animation: panelIn .4s ease;
 }
-.step-button{
-transition:all .25s ease
+@keyframes panelIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-.step-button.active{
-background:#9F3028;
-border-color:#9F3028;
-color:#FFFDF8
+.mobile-scroll {
+  scrollbar-width: none;
 }
-.step-panel{
-display:none
+.mobile-scroll::-webkit-scrollbar {
+  display: none;
 }
-.step-panel.active{
-display:block;
-animation:fadeIn .45s ease
+.screen-frame {
+  background:
+    radial-gradient(circle at 88% 8%, rgba(126,36,32,.12), transparent 30%),
+    linear-gradient(135deg, #F4EADF, #FFFDF8);
 }
-@keyframes fadeIn{
-from{opacity:0;transform:translateY(12px)}
-to{opacity:1;transform:translateY(0)}
+@media (max-width: 767px) {
+  .hero-grid {
+    background-size: 38px 38px;
+  }
 }
-.marquee-track{
-width:max-content;
-animation:marquee 36s linear infinite
-}
-.marquee:hover .marquee-track{
-animation-play-state:paused
-}
-@keyframes marquee{
-from{transform:translateX(0)}
-to{transform:translateX(-50%)}
-}
-.mobile-scroll{
-scrollbar-width:none
-}
-.mobile-scroll::-webkit-scrollbar{
-display:none
-}
-@media(max-width:767px){
-.screen-canvas{
-min-height:390px
-}
-}
-@media(prefers-reduced-motion:reduce){
-html{scroll-behavior:auto}
-.reveal{
-opacity:1;
-transform:none
-}
-.marquee-track{
-animation:none
-}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
 }
 </style>
 </head>
-
 <body>
-
-<header id="navbar" class="fixed inset-x-0 top-0 z-50 border-b border-transparent bg-cream/90 backdrop-blur-xl transition-all duration-300">
-<div class="mx-auto flex h-16 max-w-[1260px] items-center justify-between px-5">
-
+<header id="navbar" class="fixed inset-x-0 top-0 z-50 border-b border-transparent bg-cream/90 backdrop-blur-xl transition-all duration-300"
+>
+  <div class="mx-auto flex h-16 max-w-[1260px] items-center justify-between px-5">
 <a href="index.html" class="flex items-center gap-3">
-<div class="flex h-9 w-9 items-center justify-center rounded-xl bg-ink text-xs font-semibold text-paper">MM</div>
-<div>
-<p class="text-sm font-semibold">Moumita Majumder</p>
-<p class="text-[11px] text-ink/45">Product Design Portfolio</p>
-</div>
+  <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-ink text-xs font-semibold text-paper">
+    MM
+  </div>
+  <div>
+    <p class="text-sm font-semibold">Moumita Majumder</p>
+    <p class="text-[11px] text-ink/45">Product Design Portfolio</p>
+  </div>
 </a>
-
 <nav class="hidden items-center gap-7 text-sm text-ink/60 md:flex">
-<a href="#challenge" class="transition hover:text-red">Challenge</a>
-<a href="#research" class="transition hover:text-red">Research</a>
-<a href="#opportunity" class="transition hover:text-red">Opportunity</a>
-<a href="#solution" class="transition hover:text-red">Solution</a>
-<a href="#impact" class="transition hover:text-red">Impact</a>
+  <a href="#challenge" class="transition hover:text-red">Challenge</a>
+  <a href="#research" class="transition hover:text-red">Research</a>
+  <a href="#opportunity" class="transition hover:text-red">Opportunity</a>
+  <a href="#solution" class="transition hover:text-red">Solution</a>
+  <a href="#outcome" class="transition hover:text-red">Outcome</a>
 </nav>
-
-<a href="index.html#projects" class="rounded-full border border-ink/10 bg-paper px-4 py-2 text-xs font-medium transition hover:border-red hover:text-red">
-All projects
+<a
+  href="index.html#projects"
+  class="rounded-full border border-ink/10 bg-paper px-4 py-2 text-xs font-medium transition hover:border-red hover:text-red"
+>
+  All projects
 </a>
-
-</div>
+  </div>
 </header>
-
 <main>
-
 <section class="relative min-h-screen overflow-hidden pt-16">
-
-<div class="hero-grid absolute inset-0"></div>
-<div class="absolute right-[-180px] top-16 h-[560px] w-[560px] rounded-full bg-red/10 blur-3xl"></div>
-<div class="absolute bottom-[-220px] left-[-180px] h-[480px] w-[480px] rounded-full bg-plum/10 blur-3xl"></div>
-
-<div class="relative mx-auto flex min-h-[calc(100vh-64px)] max-w-[1260px] items-center px-5 py-16">
-
+  <div class="hero-grid absolute inset-0"></div>
+  <div class="absolute -right-40 top-10 h-[560px] w-[560px] rounded-full bg-red/10 blur-3xl"></div>
+  <div class="absolute -bottom-52 -left-40 h-[480px] w-[480px] rounded-full bg-ink/5 blur-3xl"></div>
+  <div class="relative mx-auto flex min-h-[calc(100vh-64px)] max-w-[1260px] items-center px-5 py-20">
 <div class="grid w-full items-center gap-14 lg:grid-cols-12">
-
-<div class="lg:col-span-7">
-
-<div class="reveal inline-flex items-center gap-3 rounded-full border border-red/20 bg-paper/90 px-4 py-2 shadow-sm">
-<span class="h-2 w-2 rounded-full bg-red"></span>
-<span class="text-xs font-semibold uppercase tracking-[.15em] text-ink/55">
-Honeywell · Enterprise AI
-</span>
+  <div class="lg:col-span-7">
+    <div class="reveal inline-flex items-center gap-3 rounded-full border border-red/20 bg-paper/90 px-4 py-2 shadow-sm">
+      <span class="h-2 w-2 rounded-full bg-red"></span>
+      <span class="text-xs font-semibold uppercase tracking-[.15em] text-ink/55">
+        Honeywell · Enterprise AI
+      </span>
+    </div>
+    <p class="reveal mt-8 text-sm font-semibold uppercase tracking-[.18em] text-red">
+      AI document intelligence
+    </p>
+    <h1 class="display-font reveal mt-4 max-w-5xl text-5xl leading-[.98] tracking-[-.045em] sm:text-6xl lg:text-7xl">
+      Turning scattered knowledge into a
+      <span class="text-red">
+        stronger starting point.
+      </span>
+    </h1>
+    <p class="reveal mt-7 max-w-2xl text-lg leading-relaxed text-ink/60 sm:text-xl">
+      Proposal teams often knew the right information existed somewhere.
+      Finding it, checking it, and turning it into a useful response was the hard part.
+    </p>
+    <p class="reveal mt-4 max-w-2xl leading-relaxed text-ink/48">
+      I designed an AI-assisted workflow that reduced repetitive information work while keeping evidence, judgment, and final approval with people.
+    </p>
+    <div class="reveal mt-9 flex flex-wrap gap-3">
+      <a
+        href="#challenge"
+        class="inline-flex items-center gap-3 rounded-full bg-ink px-6 py-3.5 text-sm font-medium text-paper transition hover:-translate-y-1 hover:bg-red"
+      >
+        Read the case study
+        <span>↓</span>
+      </a>
+      <a
+        href="#solution"
+        class="inline-flex items-center gap-3 rounded-full border border-ink/15 bg-paper/80 px-6 py-3.5 text-sm font-medium transition hover:border-red hover:text-red"
+      >
+        View the solution
+      </a>
+    </div>
+    <div class="reveal mt-10 grid max-w-2xl grid-cols-2 gap-6 border-t border-ink/10 pt-6 sm:grid-cols-4">
+      <div>
+        <p class="text-xs text-ink/40">Role</p>
+        <p class="mt-2 text-sm font-semibold">Product Designer</p>
+      </div>
+      <div>
+        <p class="text-xs text-ink/40">Duration</p>
+        <p class="mt-2 text-sm font-semibold">6 weeks</p>
+      </div>
+      <div>
+        <p class="text-xs text-ink/40">Team</p>
+        <p class="mt-2 text-sm font-semibold">Product · AI · Engineering</p>
+      </div>
+      <div>
+        <p class="text-xs text-ink/40">Focus</p>
+        <p class="mt-2 text-sm font-semibold">AI workflow UX</p>
+      </div>
+    </div>
+  </div>
+  <div class="reveal lg:col-span-5">
+    <div class="overflow-hidden rounded-[32px] border border-ink/10 bg-paper p-5 shadow-soft">
+      <div class="rounded-[24px] bg-ink p-7 text-paper">
+        <p class="text-xs font-semibold uppercase tracking-[.16em] text-redSoft">
+          Before
+        </p>
+        <h2 class="mt-3 text-xl font-medium">
+          The answer existed, but the path was fragmented.
+        </h2>
+        <div class="mt-7 space-y-3">
+          <div class="rounded-xl border border-white/10 bg-white/5 p-3 text-sm">
+            Search old proposals
+          </div>
+          <div class="rounded-xl border border-white/10 bg-white/5 p-3 text-sm">
+            Read long documents
+          </div>
+          <div class="rounded-xl border border-white/10 bg-white/5 p-3 text-sm">
+            Ask subject experts
+          </div>
+          <div class="rounded-xl border border-white/10 bg-white/5 p-3 text-sm">
+            Compare, copy, rewrite
+          </div>
+        </div>
+      </div>
+      <div class="mt-4 rounded-[24px] bg-red p-7 text-paper">
+        <p class="text-xs font-semibold uppercase tracking-[.16em] text-paper/60">
+          After
+        </p>
+        <h2 class="mt-3 text-xl font-medium">
+          AI prepares. People evaluate and approve.
+        </h2>
+        <div class="mt-7 grid grid-cols-2 gap-3">
+          <div class="rounded-xl bg-paper/10 p-4 text-sm">
+            Find
+          </div>
+          <div class="rounded-xl bg-paper/10 p-4 text-sm">
+            Connect
+          </div>
+          <div class="rounded-xl bg-paper/10 p-4 text-sm">
+            Draft
+          </div>
+          <div class="rounded-xl bg-paper/10 p-4 text-sm">
+            Review
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
-<p class="reveal mt-8 text-sm font-semibold uppercase tracking-[.18em] text-red">
-AI document intelligence
-</p>
-
-<h1 class="reveal display-font mt-4 max-w-7xl text-5xl leading-[.98] tracking-[-.045em] sm:text-6xl lg:text-7xl">
-Helping teams move from
-<span class="text-red">information overload</span>
-to a confident first draft.
-</h1>
-
-<p class="reveal mt-7 max-w-2xl text-lg leading-relaxed text-ink/60 sm:text-xl">
-Proposal teams often knew the right answer existed somewhere inside the company. The difficult part was finding it, checking it, and turning it into a useful response before time ran out.
-</p>
-
-<p class="reveal mt-4 max-w-2xl text-base leading-relaxed text-ink/50">
-I designed an AI-assisted workflow that reduced repetitive searching while keeping evidence, review, and final accountability with people.
-</p>
-
-<div class="reveal mt-9 flex flex-wrap gap-3">
-
-<a href="#challenge" class="inline-flex items-center gap-3 rounded-full bg-ink px-6 py-3.5 text-sm font-medium text-paper transition hover:-translate-y-1 hover:bg-red">
-Read the case study
-<span>↓</span>
-</a>
-
-<a href="#solution" class="inline-flex items-center gap-3 rounded-full border border-ink/15 bg-paper/80 px-6 py-3.5 text-sm font-medium transition hover:border-red hover:text-red">
-View the solution
-</a>
-
-</div>
-
-<div class="reveal mt-10 grid max-w-2xl grid-cols-2 gap-5 border-t border-ink/10 pt-6 sm:grid-cols-4">
-
-<div>
-<p class="text-xs text-ink/40">Role</p>
-<p class="mt-2 text-sm font-semibold">Product Designer</p>
-</div>
-
-<div>
-<p class="text-xs text-ink/40">Duration</p>
-<p class="mt-2 text-sm font-semibold">6 weeks</p>
-</div>
-
-<div>
-<p class="text-xs text-ink/40">Team</p>
-<p class="mt-2 text-sm font-semibold">Product · AI · Engineering</p>
-</div>
-
-<div>
-<p class="text-xs text-ink/40">Focus</p>
-<p class="mt-2 text-sm font-semibold">AI workflow UX</p>
-</div>
-
-</div>
-
-</div>
-
-<div class="reveal lg:col-span-5">
-
-<div class="overflow-hidden rounded-[32px] border border-ink/10 bg-paper p-5 shadow-soft">
-
-<div class="rounded-[25px] bg-ink p-6 text-paper">
-
-<div class="flex items-center justify-between">
-
-<div>
-<p class="text-xs font-semibold uppercase tracking-[.15em] text-redSoft">
-Before
-</p>
-<p class="mt-2 text-lg font-medium">
-The answer existed, but the path to it was scattered.
-</p>
-</div>
-
-<div class="flex h-11 w-11 items-center justify-center rounded-xl bg-red">
-01
-</div>
-
-</div>
-
-<div class="mt-7 space-y-3">
-
-<div class="rounded-xl border border-white/10 bg-white/5 p-3 text-sm">
-Search old proposals
-</div>
-
-<div class="rounded-xl border border-white/10 bg-white/5 p-3 text-sm">
-Read long documents
-</div>
-
-<div class="rounded-xl border border-white/10 bg-white/5 p-3 text-sm">
-Ask subject experts
-</div>
-
-<div class="rounded-xl border border-white/10 bg-white/5 p-3 text-sm">
-Compare, copy, rewrite
-</div>
-
-</div>
-
-</div>
-
-<div class="mt-4 rounded-[25px] bg-red p-6 text-paper">
-
-<div class="flex items-center justify-between">
-
-<div>
-<p class="text-xs font-semibold uppercase tracking-[.15em] text-paper/60">
-After
-</p>
-<p class="mt-2 text-lg font-medium">
-AI prepares the first pass. People make the final call.
-</p>
-</div>
-
-<div class="flex h-11 w-11 items-center justify-center rounded-xl bg-paper/15">
-02
-</div>
-
-</div>
-
-<div class="mt-7 grid grid-cols-2 gap-3">
-
-<div class="rounded-xl bg-paper/10 p-4 text-sm">Find</div>
-<div class="rounded-xl bg-paper/10 p-4 text-sm">Connect</div>
-<div class="rounded-xl bg-paper/10 p-4 text-sm">Draft</div>
-<div class="rounded-xl bg-paper/10 p-4 text-sm">Review</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
+  </div>
 </section>
-
-<section class="overflow-hidden border-y border-ink/10 bg-paper py-5">
-
-<div class="marquee">
-
-<div class="marquee-track flex items-center gap-4 whitespace-nowrap">
-
-<span class="rounded-full border border-red/20 bg-red/5 px-5 py-2 text-sm font-medium">AI experience design</span> <span class="rounded-full border border-ink/10 px-5 py-2 text-sm font-medium">Enterprise workflows</span> <span class="rounded-full border border-ink/10 px-5 py-2 text-sm font-medium">Document intelligence</span> <span class="rounded-full border border-ink/10 px-5 py-2 text-sm font-medium">Human-in-the-loop</span> <span class="rounded-full border border-ink/10 px-5 py-2 text-sm font-medium">Trust and transparency</span> <span class="rounded-full border border-ink/10 px-5 py-2 text-sm font-medium">Workflow prototyping</span>
-
-<span class="rounded-full border border-red/20 bg-red/5 px-5 py-2 text-sm font-medium">AI experience design</span> <span class="rounded-full border border-ink/10 px-5 py-2 text-sm font-medium">Enterprise workflows</span> <span class="rounded-full border border-ink/10 px-5 py-2 text-sm font-medium">Document intelligence</span> <span class="rounded-full border border-ink/10 px-5 py-2 text-sm font-medium">Human-in-the-loop</span> <span class="rounded-full border border-ink/10 px-5 py-2 text-sm font-medium">Trust and transparency</span> <span class="rounded-full border border-ink/10 px-5 py-2 text-sm font-medium">Workflow prototyping</span>
-
-</div>
-
-</div>
-
-</section>
-
 <section id="challenge" class="bg-paper py-24">
-
-<div class="mx-auto max-w-[1260px] px-5">
-
-<div class="reveal w-full">
-
-<p class="text-sm font-semibold text-red">The challenge</p>
-
-<h2 class="display-font mt-3 text-4xl leading-tight sm:text-5xl">
-The work became difficult
-<span class="text-red">before anyone started writing.</span>
-</h2>
-
-<p class="mt-4 text-lg leading-relaxed text-ink/60">
-A new request could arrive with hundreds of pages to understand. Teams had to search previous proposals, look through internal knowledge, ask experts for help, compare information, and only then begin writing.
-</p>
-
-<p class="mt-4 text-lg leading-relaxed text-ink/60">
-The opportunity was not simply to make AI write faster.<br/> The real design question was:
-<strong class="text-ink">
-How might AI help people reach a strong starting point without hiding the evidence they need to trust the result?
-</strong>
-</p>
-
+  <div class="mx-auto max-w-[1260px] px-5">
+<div class="reveal max-w-4xl">
+  <p class="text-sm font-semibold text-red">
+    The challenge
+  </p>
+  <h2 class="display-font mt-3 text-4xl leading-tight sm:text-5xl">
+    The work became difficult
+    <span class="text-red">
+      before anyone started writing.
+    </span>
+  </h2>
+  <p class="mt-7 text-lg leading-relaxed text-ink/60">
+    A new request could mean searching old proposals, checking internal knowledge, consulting experts, and comparing information across systems.
+  </p>
+  <p class="mt-4 text-lg leading-relaxed text-ink/60">
+    The question was not “How can AI write faster?”
+    <strong class="text-ink">
+      It was how AI could help people reach a reliable starting point without hiding the evidence behind it.
+    </strong>
+  </p>
 </div>
-
-<div class="reveal mt-16 grid gap-10 border-y border-ink/10 py-12 lg:grid-cols-2">
-
-<div>
-
-<p class="text-xs font-semibold uppercase tracking-[.16em] text-ink/40">
-The existing workflow
-</p>
-
-<h3 class="mt-3 text-3xl font-medium">
-Information was spread across people, files, and systems.
-</h3>
-
-<div class="mt-9 flex flex-wrap gap-3">
-
-<span class="rounded-full bg-cream px-5 py-2.5 text-sm">Search</span> <span class="rounded-full bg-cream px-5 py-2.5 text-sm">Read</span> <span class="rounded-full bg-cream px-5 py-2.5 text-sm">Compare</span> <span class="rounded-full bg-cream px-5 py-2.5 text-sm">Ask</span> <span class="rounded-full bg-cream px-5 py-2.5 text-sm">Rewrite</span> <span class="rounded-full bg-cream px-5 py-2.5 text-sm">Verify</span>
-
+<div class="reveal mt-16 grid gap-12 border-y border-ink/10 py-12 lg:grid-cols-2">
+  <div>
+    <p class="text-xs font-semibold uppercase tracking-[.16em] text-ink/40">
+      Existing workflow
+    </p>
+    <h3 class="mt-3 text-3xl font-medium">
+      Knowledge was spread across files, systems, and people.
+    </h3>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <span class="rounded-full bg-cream px-5 py-2.5 text-sm">Search</span>
+      <span class="rounded-full bg-cream px-5 py-2.5 text-sm">Read</span>
+      <span class="rounded-full bg-cream px-5 py-2.5 text-sm">Compare</span>
+      <span class="rounded-full bg-cream px-5 py-2.5 text-sm">Ask</span>
+      <span class="rounded-full bg-cream px-5 py-2.5 text-sm">Verify</span>
+    </div>
+  </div>
+  <div class="border-t border-ink/10 pt-10 lg:border-l lg:border-t-0 lg:pl-12 lg:pt-0">
+    <p class="text-xs font-semibold uppercase tracking-[.16em] text-red">
+      Design opportunity
+    </p>
+    <h3 class="mt-3 text-3xl font-medium">
+      Reduce the effort of getting started—not the responsibility of finishing.
+    </h3>
+    <p class="mt-7 leading-relaxed text-ink/55">
+      AI could bring useful information together and prepare a working draft. People would still apply context, validate accuracy, and make the final decision.
+    </p>
+  </div>
 </div>
-
-</div>
-
-<div class="border-l-0 border-ink/10 pl-0 lg:border-l lg:pl-12">
-
-<p class="text-xs font-semibold uppercase tracking-[.16em] text-red">
-The design opportunity
-</p>
-
-<h3 class="mt-3 text-3xl font-medium">
-Reduce the effort of getting started, not the responsibility of finishing.
-</h3>
-
-<p class="mt-7 leading-relaxed text-ink/55">
-AI could bring useful information together and create a working first draft. People would still provide context, check accuracy, apply business judgment, and approve the final response.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
+  </div>
 </section>
-
-<section id="research" class="bg-cream py-24">
-
-<div class="mx-auto max-w-[1260px] px-5">
-
-<div class="grid gap-14 lg:grid-cols-12">
-
-<div class="reveal lg:col-span-5">
-
-<p class="text-sm font-semibold text-red">Research</p>
-
-<h2 class="display-font mt-3 text-4xl leading-tight sm:text-5xl">
-I investigated the work
-<span class="text-red">before designing the AI.</span>
-</h2>
-
-<p class="mt-7 text-lg leading-relaxed text-ink/60">
-Rather than beginning with a list of AI features, I mapped how proposal teams moved from a new request to a finished response.
-</p>
-
-
-
-<div class="mt-10 border-t border-ink/10 pt-7">
-
-<div class="grid grid-cols-3 gap-5">
-
-<div>
-<p class="text-3xl font-semibold text-red">08</p>
-<p class="mt-2 text-xs text-ink/45">People involved</p>
-</div>
-
-<div>
-<p class="text-3xl font-semibold text-red">03</p>
-<p class="mt-2 text-xs text-ink/45">Research activities</p>
-</div>
-
-<div>
-<p class="text-3xl font-semibold text-red">06</p>
-<p class="mt-2 text-xs text-ink/45">Questions explored</p>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="reveal lg:col-span-7">
-
-<div class="border-l border-ink/15 pl-7 sm:pl-10">
-
-<div class="workflow-line pb-10">
-
-<div class="relative z-10 flex h-9 w-9 items-center justify-center rounded-full bg-red text-xs font-semibold text-paper">
-01
-</div>
-
-<p class="mt-4 text-xs font-semibold uppercase tracking-[.14em] text-red">
-Find
-</p>
-
-<h3 class="mt-2 text-2xl font-medium">
-Where do people look first?
-</h3>
-
-<p class="mt-3 max-w-xl leading-relaxed text-ink/55">
-People often needed to check several systems before they could begin. The first challenge was not writing. It was knowing where the useful information lived.
-</p>
-
-</div>
-
-<div class="workflow-line pb-10">
-
-<div class="relative z-10 flex h-9 w-9 items-center justify-center rounded-full bg-ink text-xs font-semibold text-paper">
-02
-</div>
-
-<p class="mt-4 text-xs font-semibold uppercase tracking-[.14em] text-ink/45">
-Friction
-</p>
-
-<h3 class="mt-2 text-2xl font-medium">
-What takes the most time?
-</h3>
-
-<p class="mt-3 max-w-xl leading-relaxed text-ink/55">
-Finding, reading, comparing, and bringing information together consumed time that people wanted to spend improving the actual response.
-</p>
-
-</div>
-
-<div class="workflow-line pb-10">
-
-<div class="relative z-10 flex h-9 w-9 items-center justify-center rounded-full bg-plum text-xs font-semibold text-paper">
-03
-</div>
-
-<p class="mt-4 text-xs font-semibold uppercase tracking-[.14em] text-plum">
-Confidence
-</p>
-
-<h3 class="mt-2 text-2xl font-medium">
-What makes people hesitate?
-</h3>
-
-<p class="mt-3 max-w-xl leading-relaxed text-ink/55">
-People became cautious when they could not tell whether information was current, complete, or relevant to the new request.
-</p>
-
-</div>
-
-<div class="workflow-line">
-
-<div class="relative z-10 flex h-9 w-9 items-center justify-center rounded-full bg-olive text-xs font-semibold text-paper">
-04
-</div>
-
-<p class="mt-4 text-xs font-semibold uppercase tracking-[.14em] text-olive">
-AI role
-</p>
-
-<h3 class="mt-2 text-2xl font-medium">
-Where would AI actually help?
-</h3>
-
-<p class="mt-3 max-w-xl leading-relaxed text-ink/55">
-The strongest opportunity was not replacing expertise. It was reducing repetitive searching and helping people reach a useful, evidence-backed first draft.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<!--<div class="reveal mt-16 border-t border-ink/10 pt-8">
-
-<p class="max-w-4xl text-2xl leading-relaxed sm:text-3xl">
-<strong class="text-red">Key insight:</strong>
-People did not need AI to sound more confident. They needed AI to make the path from information to evidence
-<span class="text-ink/50">shorter, clearer, and easier to review.</span>
-</p>
-
-</div>-->
-
-</div>
-
+<section id="research" class="relative overflow-hidden bg-cream px-5 py-20 text-ink sm:py-24">
+  <div class="mx-auto max-w-[1260px]">
+    <div class="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-24">
+      <div>
+        <div class="flex items-center gap-3">
+          <span class="text-xs font-semibold uppercase tracking-[0.18em] text-red">
+            Research · Where confidence breaks
+          </span>
+          <span class="h-px w-12 bg-red/40"></span>
+        </div>
+      </div>
+      <div>
+        <h2 class="display-font text-4xl leading-[1.05] tracking-[-0.04em] sm:text-5xl">
+          I started by understanding
+          <span class="text-red">the work, not the AI.</span>
+        </h2>
+        <p class="mt-5 max-w-3xl text-base leading-7 text-ink/60 sm:text-lg sm:leading-8">
+          I mapped how people found information, checked details, and built confidence before creating a response. The goal was to understand where effort accumulated and where AI could genuinely help.
+        </p>
+      </div>
+    </div>
+    <div class="mt-12 border-y border-ink/10 py-7">
+      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-[0.15em] text-ink/40">
+            Participants
+          </p>
+          <div class="mt-3 flex items-baseline gap-2">
+            <span class="text-4xl font-semibold tracking-[-0.04em] text-red">
+              08
+            </span>
+            <span class="text-sm text-ink/50">
+              people
+            </span>
+          </div>
+        </div>
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-[0.15em] text-ink/40">
+            Participant profile
+          </p>
+          <p class="mt-3 max-w-[240px] text-base leading-6 text-ink/75">
+            Document creators · Analysts · Reviewers
+          </p>
+        </div>
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-[0.15em] text-ink/40">
+            Research activities
+          </p>
+          <p class="mt-3 max-w-[270px] text-base leading-6 text-ink/75">
+            Interviews · Workflow walkthroughs · Concept evaluation
+          </p>
+        </div>
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-[0.15em] text-ink/40">
+            What we explored
+          </p>
+          <p class="mt-3 max-w-[260px] text-base leading-6 text-ink/75">
+            Find · Understand · Verify · Draft
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="relative mt-14 overflow-hidden rounded-[30px] border border-ink/10 bg-paper shadow-soft sm:mt-16">
+      <div
+        class="pointer-events-none absolute inset-0 opacity-70"
+        style="background-image:linear-gradient(rgba(37,34,29,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(37,34,29,.035) 1px,transparent 1px);background-size:48px 48px"
+      ></div>
+      <div class="pointer-events-none absolute -left-24 top-24 h-72 w-72 rounded-full bg-red/10 blur-3xl"></div>
+      <div class="pointer-events-none absolute -right-24 top-20 h-80 w-80 rounded-full bg-plum/10 blur-3xl"></div>
+      <div class="pointer-events-none absolute bottom-10 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-olive/10 blur-3xl"></div>
+      <div class="relative z-20 px-6 pt-7 sm:px-10 sm:pt-10">
+        <p class="text-xs font-semibold uppercase tracking-[0.18em] text-ink/40">
+          Research room
+        </p>
+        <div class="mt-3 flex flex-wrap items-center gap-3 text-xl font-semibold tracking-[-0.025em] sm:text-2xl">
+          <span class="text-ink">
+            Six questions.
+          </span>
+          <span class="text-ink/20">
+            /
+          </span>
+          <span class="text-red">
+            One workflow.
+          </span>
+        </div>
+        <div class="mt-4 flex items-center">
+          <span class="h-px w-20 bg-red/35"></span>
+          <span class="h-2 w-2 rotate-45 border-r border-t border-red/50"></span>
+        </div>
+      </div>
+      <div class="relative z-10 grid gap-5 px-5 pb-6 pt-6 sm:grid-cols-2 sm:px-8 lg:hidden">
+        <article class="rounded-2xl border border-[#7FA7C9]/30 bg-[#EEF5FA] p-5 shadow-sm">
+          <p class="text-xs font-semibold uppercase tracking-[0.14em] text-[#356B91]">
+            01 · Find
+          </p>
+          <h3 class="mt-2 text-lg font-semibold text-ink">
+            Where do you look first?
+          </h3>
+          <p class="mt-2 text-sm leading-6 text-ink/55">
+            “I usually check several places before I can begin.”
+          </p>
+        </article>
+        <article class="rounded-2xl border border-[#D9A75B]/30 bg-[#FFF6E7] p-5 shadow-sm">
+          <p class="text-xs font-semibold uppercase tracking-[0.14em] text-[#A86B17]">
+            02 · Friction
+          </p>
+          <h3 class="mt-2 text-lg font-semibold text-ink">
+            What slows you down?
+          </h3>
+          <p class="mt-2 text-sm leading-6 text-ink/55">
+            “Finding information and bringing it together takes time.”
+          </p>
+        </article>
+        <article class="rounded-2xl border border-[#C98B95]/30 bg-[#FFF0F2] p-5 shadow-sm">
+          <p class="text-xs font-semibold uppercase tracking-[0.14em] text-[#A84E5B]">
+            03 · Hesitation
+          </p>
+          <h3 class="mt-2 text-lg font-semibold text-ink">
+            What makes you hesitate?
+          </h3>
+          <p class="mt-2 text-sm leading-6 text-ink/55">
+            “I need to know whether the information is current and correct.”
+          </p>
+        </article>
+        <article class="rounded-2xl border border-[#70AAA2]/30 bg-[#ECF7F5] p-5 shadow-sm">
+          <p class="text-xs font-semibold uppercase tracking-[0.14em] text-[#347A72]">
+            04 · AI role
+          </p>
+          <h3 class="mt-2 text-lg font-semibold text-ink">
+            What can AI handle?
+          </h3>
+          <p class="mt-2 text-sm leading-6 text-ink/55">
+            “It can summarise information and prepare a first draft.”
+          </p>
+        </article>
+        <article class="rounded-2xl border border-[#9B89BE]/30 bg-[#F4F0FA] p-5 shadow-sm">
+          <p class="text-xs font-semibold uppercase tracking-[0.14em] text-[#6D5A91]">
+            05 · Review
+          </p>
+          <h3 class="mt-2 text-lg font-semibold text-ink">
+            What must you review?
+          </h3>
+          <p class="mt-2 text-sm leading-6 text-ink/55">
+            “I still need to check details and identify what is missing.”
+          </p>
+        </article>
+        <article class="rounded-2xl border border-[#8DA77D]/30 bg-[#F1F7ED] p-5 shadow-sm">
+          <p class="text-xs font-semibold uppercase tracking-[0.14em] text-[#58764A]">
+            06 · Approval
+          </p>
+          <h3 class="mt-2 text-lg font-semibold text-ink">
+            When do you approve?
+          </h3>
+          <p class="mt-2 text-sm leading-6 text-ink/55">
+            “Only after I have reviewed the response myself.”
+          </p>
+        </article>
+      </div>
+      <div class="relative z-10 hidden min-h-[650px] lg:block">
+        <div class="absolute left-1/2 top-[43%] z-20 -translate-x-1/2 -translate-y-1/2">
+          <div class="absolute -inset-16 rounded-full border border-dashed border-red/20"></div>
+          <div class="absolute -inset-28 rounded-full border border-ink/10"></div>
+          <span class="absolute -right-3 top-4 h-4 w-4 rounded-full bg-red"></span>
+          <span class="absolute -bottom-2 left-10 h-3 w-3 rounded-full bg-olive"></span>
+          <span class="absolute -left-3 top-20 h-3 w-3 rounded-full bg-plum"></span>
+          <div class="relative flex h-40 w-40 flex-col items-center justify-center rounded-full bg-ink text-paper shadow-lift">
+            <div>
+              <div class="mx-auto h-7 w-7 rounded-full bg-paper"></div>
+              <div class="mt-1 h-12 w-20 rounded-t-[40px] bg-paper/90"></div>
+            </div>
+            <p class="mt-3 text-[12px] font-semibold tracking-[0.08em] text-paper/60">
+              Document creator
+            </p>
+          </div>
+        </div>
+        <article class="absolute left-[7%] top-[15%] z-20 w-60">
+          <div class="relative rounded-2xl border border-[#7FA7C9]/30 bg-[#EEF5FA]/95 p-5 shadow-sm">
+            <span class="absolute right-[-80px] top-1/2 h-px w-20 bg-[#356B91]/25"></span>
+            <p class="text-xs font-semibold uppercase tracking-[0.14em] text-[#356B91]">
+              01 · Find
+            </p>
+            <h3 class="mt-2 text-lg font-semibold text-ink">
+              Where do you look first?
+            </h3>
+            <p class="mt-2 text-sm leading-6 text-ink/55">
+              “I usually have to check a few different places before I can get started.”
+            </p>
+          </div>
+        </article>
+        <article class="absolute left-[8%] top-[49%] z-20 w-60">
+          <div class="relative rounded-2xl border border-[#D9A75B]/30 bg-[#FFF6E7]/95 p-5 shadow-sm">
+            <span class="absolute right-[-80px] top-1/2 h-px w-20 bg-[#A86B17]/25"></span>
+            <p class="text-xs font-semibold uppercase tracking-[0.14em] text-[#A86B17]">
+              02 · Friction
+            </p>
+            <h3 class="mt-2 text-lg font-semibold text-ink">
+              What slows you down?
+            </h3>
+            <p class="mt-2 text-sm leading-6 text-ink/55">
+              “A lot of time goes into finding information and bringing it together.”
+            </p>
+          </div>
+        </article>
+        <article class="absolute right-[7%] top-[15%] z-20 w-60">
+          <div class="relative rounded-2xl border border-[#C98B95]/30 bg-[#FFF0F2]/95 p-5 shadow-sm">
+            <span class="absolute left-[-80px] top-1/2 h-px w-20 bg-[#A84E5B]/25"></span>
+            <p class="text-xs font-semibold uppercase tracking-[0.14em] text-[#A84E5B]">
+              03 · Hesitation
+            </p>
+            <h3 class="mt-2 text-lg font-semibold text-ink">
+              What makes you hesitate?
+            </h3>
+            <p class="mt-2 text-sm leading-6 text-ink/55">
+              “Sometimes it is hard to know whether the information is complete or correct.”
+            </p>
+          </div>
+        </article>
+        <article class="absolute right-[8%] top-[49%] z-20 w-60">
+          <div class="relative rounded-2xl border border-[#70AAA2]/30 bg-[#ECF7F5]/95 p-5 shadow-sm">
+            <span class="absolute left-[-80px] top-1/2 h-px w-20 bg-[#347A72]/25"></span>
+            <p class="text-xs font-semibold uppercase tracking-[0.14em] text-[#347A72]">
+              04 · AI role
+            </p>
+            <h3 class="mt-2 text-lg font-semibold text-ink">
+              What can AI handle?
+            </h3>
+            <p class="mt-2 text-sm leading-6 text-ink/55">
+              “Summarising information and creating a useful first draft.”
+            </p>
+          </div>
+        </article>
+        <article class="absolute bottom-[7%] left-[27%] z-20 w-60">
+          <div class="relative rounded-2xl border border-[#9B89BE]/30 bg-[#F4F0FA]/95 p-5 shadow-sm">
+            <span class="absolute -top-14 left-1/2 h-14 w-px bg-[#6D5A91]/25"></span>
+            <p class="text-xs font-semibold uppercase tracking-[0.14em] text-[#6D5A91]">
+              05 · Review
+            </p>
+            <h3 class="mt-2 text-lg font-semibold text-ink">
+              What must you review?
+            </h3>
+            <p class="mt-2 text-sm leading-6 text-ink/55">
+              “I need to check details and make sure nothing is missing.”
+            </p>
+          </div>
+        </article>
+        <article class="absolute bottom-[7%] right-[27%] z-20 w-60">
+          <div class="relative rounded-2xl border border-[#8DA77D]/30 bg-[#F1F7ED]/95 p-5 shadow-sm">
+            <span class="absolute -top-14 left-1/2 h-14 w-px bg-[#58764A]/25"></span>
+            <p class="text-xs font-semibold uppercase tracking-[0.14em] text-[#58764A]">
+              06 · Approval
+            </p>
+            <h3 class="mt-2 text-lg font-semibold text-ink">
+              When do you approve?
+            </h3>
+            <p class="mt-2 text-sm leading-6 text-ink/55">
+              “Only after I have reviewed everything myself.”
+            </p>
+          </div>
+        </article>
+      </div>
+      <div class="relative z-30 border-t border-ink/10 bg-paper/90 px-6 py-4 backdrop-blur sm:px-8">
+        <div class="flex flex-col gap-3 text-sm md:flex-row md:items-center md:justify-between">
+          <div class="flex flex-wrap items-center gap-3">
+            <span class="text-xs font-semibold uppercase tracking-[0.16em] text-ink/40">
+              Research direction
+            </span>
+            <span class="hidden h-px w-8 bg-ink/15 md:block"></span>
+            <span class="text-ink/55">
+              From existing behaviour to an AI-assisted workflow
+            </span>
+          </div>
+          <div class="flex items-center gap-3 font-medium">
+            <span class="text-[#356B91]">
+              Observe
+            </span>
+            <span class="text-ink/25">
+              →
+            </span>
+            <span class="text-[#A86B17]">
+              Explore
+            </span>
+            <span class="text-ink/25">
+              →
+            </span>
+            <span class="text-[#6D5A91]">
+              Test
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="relative mt-12 overflow-hidden rounded-[26px] bg-ink px-7 py-8 text-paper shadow-soft sm:mt-16 sm:px-12 sm:py-10">
+      <div class="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full border border-paper/10"></div>
+      <div class="pointer-events-none absolute -right-8 -top-8 h-48 w-48 rounded-full border border-paper/10"></div>
+      <div class="absolute bottom-0 left-0 h-1 w-32 bg-red"></div>
+      <div class="relative z-10">
+        <p class="text-xs font-semibold uppercase tracking-[0.16em] text-redSoft">
+          Key insight
+        </p>
+        <h3 class="mt-4 w-full text-2xl font-medium leading-[1.15] tracking-[-0.025em] sm:text-2xl">
+          <span class="text-paper/40">
+            AI was not rejected because it was slow.
+          </span>
+          <br>
+          <span class="text-paper/75">
+            People hesitated when they could not confidently verify
+          </span>
+          <span class="text-redSoft">
+            what it generated.
+          </span>
+        </h3>
+      </div>
+    </div>
+  </div>
 </section>
-
+<!-- HOW RESEARCH CHANGED THE DESIGN -->
+<section class="relative overflow-hidden bg-paper py-24 text-ink sm:py-24" id="research-impact">
+  <!-- Subtle editorial grid -->
+  <div
+    class="pointer-events-none absolute inset-0 opacity-[0.42]"
+    style="background-image:
+      linear-gradient(rgba(36,33,29,.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(36,33,29,.035) 1px, transparent 1px);
+      background-size:56px 56px">
+  </div>
+  <!-- Decorative red line -->
+  <div class="relative mx-auto max-w-[1260px] px-4">
+<!-- Section heading -->
+<div class="grid gap-10 pb-8 lg:grid-cols-[0.62fr_1.38fr]">
+  <div>
+    <div class="flex items-center gap-3">
+      <span class="font-semibold text-xs uppercase tracking-[0.18em] text-red">
+        Research to design
+      </span>
+      <span class="h-px w-12 bg-red/35"></span>
+    </div>
+  </div>
+  <div>
+    <p class="font-semibold text-sm uppercase tracking-[0.15em] text-ink/35">
+      Evidence → decision → interface
+    </p>
+    <h2 class="display-font mt-4 max-w-4xl text-4xl leading-[1.04] tracking-[-0.04em] sm:text-5xl">
+      How research changed
+      <span class="text-red">the design.</span>
+    </h2>
+    <p class="mt-6 max-w-3xl text-base leading-7 text-ink/60 sm:text-lg sm:leading-8">
+      Research did not simply confirm the problem. It changed what the
+      workflow needed to make visible, controllable, and reviewable.
+    </p>
+  </div>
+</div>
+<!-- Evidence trail -->
+<div class="relative mt-6">
+  <!-- Desktop connecting line -->
+  <div
+    class="absolute left-0 right-0 top-[38px] hidden h-px bg-ink/10 lg:block">
+  </div>
+  <div class="grid gap-12 lg:grid-cols-5 lg:gap-7">
+    <!-- 01 OBSERVED -->
+    <article class="relative">
+      <div class="relative z-10 flex h-[76px] items-center">
+        <span class="bg-paper pr-5 font-semibold text-5xl leading-none tracking-[-0.06em] text-red">
+          01
+        </span>
+      </div>
+      <div class="mt-6 border-l-2 border-red pl-5">
+        <p class="font-semibold text-xs uppercase tracking-[0.17em] text-red">
+          Observed
+        </p>
+        <h3 class="mt-4 text-xl font-semibold leading-tight">
+          Search started in several places.
+        </h3>
+        <p class="mt-4 text-sm leading-6 text-ink/55">
+          <strong class="font-semibold text-ink">
+            6 of 8 participants
+          </strong>
+          started by searching at least three locations before they could
+          begin.
+        </p>
+      </div>
+    </article>
+    <!-- 02 INSIGHT -->
+    <article class="relative lg:pt-12">
+      <div class="relative z-10 flex h-[76px] items-center">
+        <span class="bg-paper pr-5 font-semibold text-5xl leading-none tracking-[-0.06em] text-ink/25">
+          02
+        </span>
+      </div>
+      <div class="mt-6  pl-5">
+        <p class="font-semibold text-xs uppercase tracking-[0.17em] text-ink/45">
+          Insight
+        </p>
+        <h3 class="mt-4 text-xl font-semibold leading-tight">
+          Source confidence was unclear.
+        </h3>
+        <p class="mt-4 text-sm leading-6 text-ink/55">
+          Users often did not know which source was current, relevant,
+          or safe to reuse.
+        </p>
+      </div>
+    </article>
+    <!-- 03 DESIGN DECISION -->
+    <article class="relative">
+      <div class="relative z-10 flex h-[76px] items-center">
+        <span class="bg-paper pr-5 font-semibold text-5xl leading-none tracking-[-0.06em] text-red">
+          03
+        </span>
+      </div>
+      <div class="mt-6 border-l-2 border-red pl-5">
+        <p class="font-semibold text-xs uppercase tracking-[0.17em] text-red">
+          Design decision
+        </p>
+        <h3 class="mt-4 text-xl font-semibold leading-tight">
+          Make knowledge selection visible.
+        </h3>
+        <p class="mt-4 text-sm leading-6 text-ink/55">
+          Users review the knowledge selected for generation before AI
+          creates a draft.
+        </p>
+      </div>
+    </article>
+    <!-- 04 UI CHANGE -->
+    <article class="relative lg:pt-12">
+      <div class="relative z-10 flex h-[76px] items-center">
+        <span class="bg-paper pr-5 font-semibold text-5xl leading-none tracking-[-0.06em] text-ink/25">
+          04
+        </span>
+      </div>
+      <div class="mt-6 s pl-5">
+        <p class="font-semibold text-xs uppercase tracking-[0.17em] text-ink/45">
+          UI change
+        </p>
+        <h3 class="mt-4 text-xl font-semibold leading-tight">
+          Show what AI is using.
+        </h3>
+        <p class="mt-4 text-sm leading-6 text-ink/55">
+          Added source selection and a visible
+          <strong class="font-semibold text-ink">
+            Knowledge used
+          </strong>
+          panel beside the draft.
+        </p>
+      </div>
+    </article>
+    <!-- 05 VALIDATION -->
+    <article class="relative">
+      <div class="relative z-10 flex h-[76px] items-center">
+        <span class="bg-paper pr-5 font-semibold text-5xl leading-none tracking-[-0.06em] text-red">
+          05
+        </span>
+      </div>
+      <div class="mt-6 border-l-2 border-red pl-5">
+        <p class="font-semibold text-xs uppercase tracking-[0.17em] text-red">
+          Validation
+        </p>
+        <h3 class="mt-4 text-xl font-semibold leading-tight">
+          Context became easier to inspect.
+        </h3>
+        <p class="mt-4 text-sm leading-6 text-ink/55">
+          Participants could explain why a source was included and identify
+          missing context before reviewing the generated response.
+        </p>
+      </div>
+    </article>
+  </div>
+</div>
+<!-- Bottom synthesis -->
+<div class="mt-20 grid border-y border-ink/10 py-9 lg:grid-cols-[0.7fr_1.3fr]">
+  <div>
+    <p class="font-semibold text-xs uppercase tracking-[0.17em] text-red">
+      What changed
+    </p>
+  </div>
+  <div class="mt-5 lg:mt-0">
+    <p class="display-font max-w-4xl text-2xl leading-[1.25] tracking-[-0.02em] text-ink sm:text-3xl">
+      The solution moved from
+      <span class="text-ink/35">
+        “AI finds the answer”
+      </span>
+      to
+      <span class="text-red">
+        “people can see, shape, and review the knowledge behind the answer.”
+      </span>
+    </p>
+  </div>
+</div>
+  </div>
+</section>
 <section id="opportunity" class="bg-ink py-24 text-paper">
-
-<div class="mx-auto max-w-[1260px] px-5">
-
+  <div class="mx-auto max-w-[1260px] px-5">
 <div class="reveal w-full">
-
-<p class="text-sm font-semibold text-redSoft">AI opportunity</p>
-
-<h2 class="display-font mt-3 text-4xl leading-tight sm:text-5xl">
-The opportunity was not
-<span class="text-red">“AI writes the document.”</span>
-</h2>
-
-<p class="mt-7 text-lg leading-relaxed text-paper/60">
-The opportunity was to redesign the slowest part of the workflow: turning scattered company knowledge into a useful starting point that people could understand, improve, and approve.
-</p>
-
+  <p class="text-sm font-semibold text-redSoft">
+    AI opportunity
+  </p>
+  <h2 class="display-font mt-3 text-4xl leading-tight sm:text-5xl">
+    AI prepares the work.
+    <span class="text-red">
+      People remain responsible for it.
+    </span>
+  </h2>
+  <p class="mt-7 text-lg leading-relaxed text-paper/60">
+    The opportunity was to redesign the slowest part of the workflow: turning scattered knowledge into a useful starting point that people could inspect, improve, and approve.
+  </p>
 </div>
-
-<div class="reveal mt-16 grid gap-0 border-y border-white/10 lg:grid-cols-2">
-
-<div class="py-10 lg:pr-14">
-
-<p class="text-xs font-semibold uppercase tracking-[.16em] text-redSoft">
-What AI can do
-</p>
-
-<h3 class="mt-4 text-3xl font-medium">
-Handle repeatable information work.
-</h3>
-
-<div class="mt-9 space-y-5">
-
-<div class="border-b border-white/10 pb-5">
-<p class="font-medium">Retrieve</p>
-<p class="mt-2 text-sm leading-relaxed text-paper/55">
-Search approved knowledge and bring relevant information into one place.
-</p>
+<div class="reveal mt-16 grid border-y border-white/10 lg:grid-cols-3">
+  <div class="py-10 lg:pr-10">
+    <p class="text-xs font-semibold uppercase tracking-[.16em] text-redSoft">
+      AI prepares
+    </p>
+    <h3 class="mt-4 text-2xl font-medium">
+      Information work
+    </h3>
+    <p class="mt-5 leading-relaxed text-paper/55">
+      Search approved knowledge, connect relevant information, summarise long content, prepare a draft, and flag missing evidence.
+    </p>
+  </div>
+  <div class="border-y border-white/10 py-10 lg:border-x lg:border-y-0 lg:px-10">
+    <p class="text-xs font-semibold uppercase tracking-[.16em] text-redSoft">
+      People evaluate
+    </p>
+    <h3 class="mt-4 text-2xl font-medium">
+      Context and quality
+    </h3>
+    <p class="mt-5 leading-relaxed text-paper/55">
+      Apply customer knowledge, assess relevance, validate accuracy, improve the response, and resolve uncertainty.
+    </p>
+  </div>
+  <div class="py-10 lg:pl-10">
+    <p class="text-xs font-semibold uppercase tracking-[.16em] text-redSoft">
+      People approve
+    </p>
+    <h3 class="mt-4 text-2xl font-medium">
+      The final decision
+    </h3>
+    <p class="mt-5 leading-relaxed text-paper/55">
+      AI cannot own business judgment, accept accountability, or approve a final response. Those responsibilities remain human.
+    </p>
+  </div>
 </div>
-
-<div class="border-b border-white/10 pb-5">
-<p class="font-medium">Connect</p>
-<p class="mt-2 text-sm leading-relaxed text-paper/55">
-Compare information across documents and identify useful relationships.
-</p>
-</div>
-
-<div class="border-b border-white/10 pb-5">
-<p class="font-medium">Summarise</p>
-<p class="mt-2 text-sm leading-relaxed text-paper/55">
-Turn long content into a shorter, easier-to-review starting point.
-</p>
-</div>
-
-<div class="border-b border-white/10 pb-5">
-<p class="font-medium">Draft</p>
-<p class="mt-2 text-sm leading-relaxed text-paper/55">
-Create an editable first version based on the available evidence.
-</p>
-</div>
-
-<div>
-<p class="font-medium">Flag gaps</p>
-<p class="mt-2 text-sm leading-relaxed text-paper/55">
-Show where evidence is missing or where expert input may still be needed.
-</p>
-</div>
-
-</div>
-
-</div>
-
-<div class="border-t border-white/10 py-10 lg:border-l lg:border-t-0 lg:pl-14">
-
-<p class="text-xs font-semibold uppercase tracking-[.16em] text-redSoft">
-What AI cannot do
-</p>
-
-<h3 class="mt-4 text-3xl font-medium">
-Own business judgment or accountability.
-</h3>
-
-<div class="mt-9 space-y-5">
-
-<div class="border-b border-white/10 pb-5">
-<p class="font-medium">Know unstated context</p>
-<p class="mt-2 text-sm leading-relaxed text-paper/55">
-AI cannot automatically understand details that were never documented or shared.
-</p>
-</div>
-
-<div class="border-b border-white/10 pb-5">
-<p class="font-medium">Decide what matters most</p>
-<p class="mt-2 text-sm leading-relaxed text-paper/55">
-People must apply customer knowledge, business priorities, and professional judgment.
-</p>
-</div>
-
-<div class="border-b border-white/10 pb-5">
-<p class="font-medium">Guarantee correctness</p>
-<p class="mt-2 text-sm leading-relaxed text-paper/55">
-A generated response still needs evidence, review, and expert validation.
-</p>
-</div>
-
-<div class="border-b border-white/10 pb-5">
-<p class="font-medium">Accept responsibility</p>
-<p class="mt-2 text-sm leading-relaxed text-paper/55">
-AI cannot be accountable for commercial, legal, or business outcomes.
-</p>
-</div>
-
-<div>
-<p class="font-medium">Approve the final response</p>
-<p class="mt-2 text-sm leading-relaxed text-paper/55">
-Final approval remains a deliberate action performed by a responsible person.
-</p>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
 <div class="reveal mt-12 border-l-4 border-red pl-6">
-
-<p class="text-xl leading-relaxed text-paper/75">
-The design principle became:
-<strong class="text-paper">
-AI accelerates the work of understanding and preparing. People remain responsible for judging and approving.
-</strong>
-</p>
-
+  <p class="text-xl leading-relaxed text-paper/75">
+    <strong class="text-paper">
+      Why not Chat:
+    </strong>
+Users needed to add context, review evidence, and approve the final response. A guided workflow made each stage clear and easier to manage.
+  </p>
 </div>
-
-</div>
-
+  </div>
 </section>
-
-<section class="bg-paper py-24">
-
-<div class="mx-auto max-w-[1260px] px-5">
-
-<div class="reveal w-full">
-
-<p class="text-sm font-semibold text-red">Design principles</p>
-
-<h2 class="display-font mt-3 text-4xl leading-tight sm:text-5xl">
-The workflow needed to be
-<span class="text-red">fast, inspectable, and human-led.</span>
-</h2>
-
+<!-- A DECISION WE DID NOT MAKE -->
+<section class="relative overflow-hidden bg-cream py-20 sm:py-24" id="decision-not-made">
+  <!-- Subtle background detail -->
+  <div class="absolute right-[-8rem] top-[-8rem] h-72 w-72 rounded-full border border-ink/5"></div>
+  <div class="absolute right-[-3rem] top-[-3rem] h-48 w-48 rounded-full border border-red/10"></div>
+  <div class="relative mx-auto max-w-[1260px] px-4">
+<!-- Section label -->
+<div class="reveal flex items-center gap-3">
+  <span class="font-semibold text-xs uppercase tracking-[0.18em] text-red">
+    Design trade-off
+  </span>
+  <span class="h-px w-10 bg-red/35"></span>
 </div>
-
-<div class="mt-16">
-
-<div class="reveal grid gap-8 border-t border-ink/10 py-9 md:grid-cols-[100px_1fr_1fr]">
-
-<p class="text-4xl font-semibold text-red">01</p>
-
-<div>
-<h3 class="text-2xl font-medium">Reduce the busy work</h3>
-<p class="mt-3 leading-relaxed text-ink/55">
-Help people reach a useful starting point without requiring them to search every document manually.
-</p>
+<div class="reveal mt-4 grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12">
+  <!-- Alternative considered -->
+  <div class="border-b border-ink/10 pb-8 lg:border-b-0 lg:border-r lg:pb-0 lg:pr-20">
+    <p class="text-xs font-semibold uppercase tracking-[0.16em] text-ink/35">
+      We considered
+    </p>
+    <div class="relative mt-4 inline-block">
+      <h2 class="display-font text-4xl leading-[1.05] text-ink/35 line-through decoration-red decoration-2 sm:text-5xl">
+        One prompt.<br>One complete proposal.
+      </h2>
+    </div>
+  </div>
+  <!-- Decision -->
+  <div>
+    <p class="text-xs font-semibold uppercase tracking-[0.16em] text-red">
+      We chose
+    </p>
+    <h2 class="display-font mt-5 text-4xl leading-[1.05] tracking-[-0.04em] sm:text-5xl">
+      A guided workflow
+      <span class="text-red">
+        with meaningful control.
+      </span>
+    </h2>
+    <p class="mt-6 w-full text-base leading-7 text-ink/60 sm:text-lg sm:leading-8">
+      A single prompt was faster, but it reduced control over source
+      selection, customer context, and review. The guided workflow
+      collected critical information before generation.
+    </p>
+  </div>
 </div>
-
-<p class="leading-relaxed text-ink/50">
-AI retrieves, compares, summarises, and drafts. The workflow removes repetitive effort without removing professional judgment.
-</p>
-
+<!-- Decision line -->
+<!--<div class="reveal mt-12 flex items-center gap-4 border-t border-ink/10 pt-6">
+  <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-red text-sm text-paper">
+    →
+  </span>
+  <p class="text-sm leading-6 text-ink/55 sm:text-base">
+    <strong class="font-semibold text-ink">
+      The trade-off:
+    </strong>
+    one extra step before generation for stronger context and more reliable review.
+  </p>
 </div>
-
-<div class="reveal grid gap-8 border-t border-ink/10 py-9 md:grid-cols-[100px_1fr_1fr]">
-
-<p class="text-4xl font-semibold text-red">02</p>
-
-<div>
-<h3 class="text-2xl font-medium">Keep the evidence close</h3>
-<p class="mt-3 leading-relaxed text-ink/55">
-Important AI responses should remain connected to the information that supports them.
-</p>
-</div>
-
-<p class="leading-relaxed text-ink/50">
-Sources, references, missing information, and confidence cues are available during review instead of being hidden behind another step.
-</p>
-
-</div>
-
-<div class="reveal grid gap-8 border-y border-ink/10 py-9 md:grid-cols-[100px_1fr_1fr]">
-
-<p class="text-4xl font-semibold text-red">03</p>
-
-<div>
-<h3 class="text-2xl font-medium">Make review unavoidable</h3>
-<p class="mt-3 leading-relaxed text-ink/55">
-A polished AI draft should never look like an approved final answer.
-</p>
-</div>
-
-<p class="leading-relaxed text-ink/50">
-Generated content remains editable, evidence stays visible, and approval is separated from generation as a clear human action.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
+  </div>-->
 </section>
-
-<section id="solution" class="bg-cream py-24">
-
-<div class="mx-auto max-w-[1380px] px-5">
-
+<section id="solution" class="bg-paper py-8">
+  <div class="mx-auto max-w-[1400px] px-5">
 <div class="reveal mx-auto max-w-[1260px]">
-
-<p class="text-sm font-semibold text-red">The solution</p>
-
-<h2 class="display-font mt-3 max-w-5xl text-4xl leading-tight sm:text-5xl">
-From a new request to a
-<span class="text-red">ready-to-review response.</span>
-</h2>
-
-<p class="mt-7 max-w-3xl text-lg leading-relaxed text-ink/60">
-Instead of asking users to chat their way through a complex task, I designed a guided workflow. Each step gives AI the context it needs while keeping important decisions visible and manageable.
-</p>
-
+  <p class="text-sm font-semibold text-red">
+    The solution
+  </p>
+  <h2 class="display-font mt-3 max-w-5xl text-4xl leading-tight sm:text-5xl">
+From blank brief to
+    <span class="text-red">
+     a ready document.
+    </span>
+  </h2>
+  <p class="mt-6 w-full text-lg leading-relaxed text-ink/60">
+    Instead of asking users to chat through a complex task, I designed a structured workflow. Each step provides AI with useful context while keeping decisions visible and manageable.
+  </p>
 </div>
-
-<div class="mobile-scroll reveal mt-12 flex gap-3 overflow-x-auto pb-4">
-
-<button class="step-button active shrink-0 rounded-full border border-ink/10 bg-paper px-6 py-3 text-sm font-medium" data-step="brief">
-01 · Set the brief
-</button>
-
-<button class="step-button shrink-0 rounded-full border border-ink/10 bg-paper px-6 py-3 text-sm font-medium" data-step="context">
-02 · Add context
-</button>
-
-<button class="step-button shrink-0 rounded-full border border-ink/10 bg-paper px-6 py-3 text-sm font-medium" data-step="generate">
-03 · Generate
-</button>
-
-<button class="step-button shrink-0 rounded-full border border-ink/10 bg-paper px-6 py-3 text-sm font-medium" data-step="review">
-04 · Review evidence
-</button>
-
-<button class="step-button shrink-0 rounded-full border border-ink/10 bg-paper px-6 py-3 text-sm font-medium" data-step="approve">
-05 · Approve
-</button>
-
+<div class="reveal mobile-scroll mt-12 flex gap-3 overflow-x-auto pb-4">
+  <button data-step="brief" class="step-button active shrink-0 rounded-full border border-ink/10 bg-paper px-6 py-3 text-sm font-medium">
+    01 · Set the brief
+  </button>
+  <button data-step="context" class="step-button shrink-0 rounded-full border border-ink/10 bg-paper px-6 py-3 text-sm font-medium">
+    02 · Add context
+  </button>
+  <button data-step="generate" class="step-button shrink-0 rounded-full border border-ink/10 bg-paper px-6 py-3 text-sm font-medium">
+    03 · Generate
+  </button>
+  <button data-step="review" class="step-button shrink-0 rounded-full border border-ink/10 bg-paper px-6 py-3 text-sm font-medium">
+    04 · Review evidence
+  </button>
+  <button data-step="approve" class="step-button shrink-0 rounded-full border border-ink/10 bg-paper px-6 py-3 text-sm font-medium">
+    05 · Approve
+  </button>
 </div>
-
 <div class="mt-6">
-
-<div id="brief" class="step-panel active">
-
-<div class="screen-frame overflow-hidden rounded-[34px] border border-ink/10 shadow-lift">
-
-<div class="grid lg:grid-cols-[.8fr_1.2fr]">
-
-<div class="flex flex-col justify-between p-7 sm:p-10">
-
-<div>
-
-<p class="text-sm font-semibold text-red">Step 01</p>
-
-<h3 class="mt-3 text-3xl font-medium">
-Start with the right brief.
-</h3>
-
-<p class="mt-5 leading-relaxed text-ink/60">
-The user adds the request, audience, requirements, and business context. This gives AI a stronger foundation before it begins searching or drafting.
-</p>
-
-</div>
-
-<div class="mt-10 border-t border-ink/10 pt-6">
-
-<p class="text-xs uppercase tracking-[.14em] text-ink/40">
-Design decision
-</p>
-
-<p class="mt-2 text-sm leading-relaxed text-ink/60">
-Collect important context up front so users spend less time correcting an irrelevant first draft later.
-</p>
-
-</div>
-
-</div>
-
-<div class="screen-canvas bg-ink p-5 sm:p-8">
-
-<div class="mx-auto flex h-full max-w-[760px] flex-col rounded-[24px] bg-paper p-5 sm:p-8">
-
-<div class="flex items-center justify-between border-b border-ink/10 pb-5">
-
-<div>
-<p class="text-xs font-semibold text-red">CREATE RESPONSE</p>
-<p class="mt-1 text-sm text-ink/45">Tell us what you need.</p>
-</div>
-
-<span class="rounded-full bg-red/10 px-3 py-1 text-xs text-red">
-Step 1 of 5
-</span>
-
-</div>
-
-<div class="mt-7 grid gap-5 sm:grid-cols-2">
-
-<div>
-<p class="mb-2 text-xs text-ink/45">Request title</p>
-<div class="rounded-xl border border-ink/10 bg-cream p-4 text-sm">
-New customer proposal
-</div>
-</div>
-
-<div>
-<p class="mb-2 text-xs text-ink/45">Audience</p>
-<div class="rounded-xl border border-ink/10 bg-cream p-4 text-sm">
-Enterprise customer
-</div>
-</div>
-
-</div>
-
-<div class="mt-5">
-
-<p class="mb-2 text-xs text-ink/45">Requirements and context</p>
-
-<div class="h-28 rounded-xl border border-ink/10 bg-cream p-4 text-sm text-ink/40">
-Add key requirements, customer context, and important details...
-</div>
-
-</div>
-
-<div class="mt-auto flex justify-end pt-7">
-
-<div class="rounded-full bg-red px-6 py-3 text-xs font-medium text-paper">
-Continue
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<div id="context" class="step-panel">
-
-<div class="screen-frame overflow-hidden rounded-[34px] border border-ink/10 shadow-lift">
-
-<div class="grid lg:grid-cols-[.8fr_1.2fr]">
-
-<div class="flex flex-col justify-between p-7 sm:p-10">
-
-<div>
-
-<p class="text-sm font-semibold text-red">Step 02</p>
-
-<h3 class="mt-3 text-3xl font-medium">
-Give AI the context it cannot infer.
-</h3>
-
-<p class="mt-5 leading-relaxed text-ink/60">
-Users can select relevant knowledge, add project-specific details, and choose the tone or structure before generation.
-</p>
-
-</div>
-
-<div class="mt-10 border-t border-ink/10 pt-6">
-
-<p class="text-xs uppercase tracking-[.14em] text-ink/40">
-Design decision
-</p>
-
-<p class="mt-2 text-sm leading-relaxed text-ink/60">
-Make context visible and editable instead of hiding it inside a prompt.
-</p>
-
-</div>
-
-</div>
-
-<div class="screen-canvas bg-plum p-5 sm:p-8">
-
-<div class="mx-auto h-full max-w-[760px] rounded-[24px] bg-paper p-5 sm:p-8">
-
-<div class="flex items-center justify-between border-b border-ink/10 pb-5">
-
-<div>
-<p class="text-xs font-semibold text-red">ADD CONTEXT</p>
-<p class="mt-1 text-sm text-ink/45">Choose what AI should consider.</p>
-</div>
-
-<span class="rounded-full bg-plum/10 px-3 py-1 text-xs text-plum">
-Step 2 of 5
-</span>
-
-</div>
-
-<div class="mt-7">
-
-<p class="text-sm font-medium">Relevant knowledge</p>
-
-<div class="mt-4 space-y-3">
-
-<div class="flex items-center justify-between rounded-xl border-2 border-red bg-red/5 p-4">
-<span class="text-sm">Previous proposal · 2025</span>
-<span class="text-xs text-red">Selected</span>
-</div>
-
-<div class="flex items-center justify-between rounded-xl border border-ink/10 p-4">
-<span class="text-sm">Product capability guide</span>
-<span class="text-xs text-ink/40">Add</span>
-</div>
-
-<div class="flex items-center justify-between rounded-xl border border-ink/10 p-4">
-<span class="text-sm">Customer requirements</span>
-<span class="text-xs text-red">Selected</span>
-</div>
-
-</div>
-
-</div>
-
-<div class="mt-8 grid gap-4 sm:grid-cols-3">
-
-<div class="rounded-xl bg-cream p-4 text-center text-sm">Clear</div>
-<div class="rounded-xl border-2 border-red bg-red/5 p-4 text-center text-sm">Professional</div>
-<div class="rounded-xl bg-cream p-4 text-center text-sm">Technical</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<div id="generate" class="step-panel">
-
-<div class="screen-frame overflow-hidden rounded-[34px] border border-ink/10 shadow-lift">
-
-<div class="grid lg:grid-cols-[.8fr_1.2fr]">
-
-<div class="flex flex-col justify-between p-7 sm:p-10">
-
-<div>
-
-<p class="text-sm font-semibold text-red">Step 03</p>
-
-<h3 class="mt-3 text-3xl font-medium">
-Create a useful first version.
-</h3>
-
-<p class="mt-5 leading-relaxed text-ink/60">
-AI searches approved knowledge, connects relevant information, and creates an editable draft. The goal is to remove the slowest first steps, not to replace expert work.
-</p>
-
-</div>
-
-<div class="mt-10 border-t border-ink/10 pt-6">
-
-<p class="text-xs uppercase tracking-[.14em] text-ink/40">
-Design decision
-</p>
-
-<p class="mt-2 text-sm leading-relaxed text-ink/60">
-Show progress and the information being used so generation does not feel like an unexplained black box.
-</p>
-
-</div>
-
-</div>
-
-<div class="screen-canvas bg-ink p-5 sm:p-8">
-
-<div class="mx-auto h-full max-w-[760px] rounded-[24px] bg-paper p-5 sm:p-8">
-
-<div class="flex items-center justify-between">
-
-<div class="flex items-center gap-3">
-
-<span class="h-3 w-3 rounded-full bg-red"></span>
-
-<div>
-<p class="text-sm font-medium">Preparing your response</p>
-<p class="mt-1 text-xs text-ink/45">Connecting relevant information</p>
-</div>
-
-</div>
-
-<span class="text-xs text-red">68%</span>
-
-</div>
-
-<div class="mt-7 h-2 overflow-hidden rounded-full bg-cream">
-
-<div class="h-full w-[68%] rounded-full bg-red"></div>
-
-</div>
-
-<div class="mt-8 grid gap-4 sm:grid-cols-2">
-
-<div class="rounded-xl bg-cream p-5">
-
-<p class="text-xs text-ink/40">Knowledge used</p>
-
-<p class="mt-2 text-2xl font-semibold">12</p>
-
-<p class="mt-1 text-xs text-ink/45">Relevant sources found</p>
-
-</div>
-
-<div class="rounded-xl bg-cream p-5">
-
-<p class="text-xs text-ink/40">Potential gaps</p>
-
-<p class="mt-2 text-2xl font-semibold text-red">02</p>
-
-<p class="mt-1 text-xs text-ink/45">May need expert input</p>
-
-</div>
-
-</div>
-
-<div class="mt-8 space-y-4">
-
-<div class="h-4 w-full rounded bg-cream"></div>
-<div class="h-4 w-[92%] rounded bg-cream"></div>
-<div class="h-4 w-[80%] rounded bg-cream"></div>
-<div class="h-4 w-[95%] rounded bg-cream"></div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<div id="review" class="step-panel">
-
-<div class="screen-frame overflow-hidden rounded-[34px] border border-ink/10 shadow-lift">
-
-<div class="grid lg:grid-cols-[.8fr_1.2fr]">
-
-<div class="flex flex-col justify-between p-7 sm:p-10">
-
-<div>
-
-<p class="text-sm font-semibold text-red">Step 04</p>
-
-<h3 class="mt-3 text-3xl font-medium">
-Review the draft with evidence beside it.
-</h3>
-
-<p class="mt-5 leading-relaxed text-ink/60">
-Users can edit the response, inspect the source behind an answer, identify missing information, and ask an expert when needed.
-</p>
-
-</div>
-
-<div class="mt-10 border-t border-ink/10 pt-6">
-
-<p class="text-xs uppercase tracking-[.14em] text-ink/40">
-Design decision
-</p>
-
-<p class="mt-2 text-sm leading-relaxed text-ink/60">
-Keep evidence in the same working space so review does not require jumping between multiple systems.
-</p>
-
-</div>
-
-</div>
-
-<div class="screen-canvas bg-redDark p-5 sm:p-8">
-
-<div class="mx-auto grid h-full max-w-[860px] gap-4 rounded-[24px] bg-paper p-4 sm:grid-cols-[1.4fr_.8fr] sm:p-6">
-
-<div>
-
-<div class="flex items-center justify-between border-b border-ink/10 pb-4">
-
-<p class="text-sm font-semibold">AI draft</p>
-
-<span class="rounded-full bg-red/10 px-3 py-1 text-xs text-red">
-Review required
-</span>
-
-</div>
-
-<div class="mt-6 space-y-4">
-
-<div class="h-4 w-full rounded bg-cream"></div>
-<div class="h-4 w-[92%] rounded bg-cream"></div>
-
-<div class="rounded-lg border-l-4 border-red bg-red/5 p-4 text-sm">
-This response uses information from the 2025 enterprise proposal.
-</div>
-
-<div class="h-4 w-[88%] rounded bg-cream"></div>
-<div class="h-4 w-full rounded bg-cream"></div>
-<div class="h-4 w-[72%] rounded bg-cream"></div>
-
-</div>
-
-</div>
-
-<div class="rounded-xl bg-cream p-4">
-
-<p class="text-xs font-semibold text-red">EVIDENCE</p>
-
-<div class="mt-5 space-y-3">
-
-<div class="rounded-lg bg-paper p-3">
-
-<p class="text-xs font-medium">
-Previous proposal
-</p>
-
-<p class="mt-1 text-[11px] text-ink/45">
-Section 4.2
-</p>
-
-</div>
-
-<div class="rounded-lg bg-paper p-3">
-
-<p class="text-xs font-medium">
-Product capability guide
-</p>
-
-<p class="mt-1 text-[11px] text-ink/45">
-Page 18
-</p>
-
-</div>
-
-<div class="rounded-lg border border-red/20 bg-red/5 p-3">
-
-<p class="text-xs font-medium text-red">
-Missing information
-</p>
-
-<p class="mt-1 text-[11px] text-ink/45">
-Confirm with subject expert
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<div id="approve" class="step-panel">
-
-<div class="screen-frame overflow-hidden rounded-[34px] border border-ink/10 shadow-lift">
-
-<div class="grid lg:grid-cols-[.8fr_1.2fr]">
-
-<div class="flex flex-col justify-between p-7 sm:p-10">
-
-<div>
-
-<p class="text-sm font-semibold text-red">Step 05</p>
-
-<h3 class="mt-3 text-3xl font-medium">
-A person gives the final approval.
-</h3>
-
-<p class="mt-5 leading-relaxed text-ink/60">
-AI can prepare the response, but it cannot accept responsibility for it. Publishing remains a deliberate action taken by an accountable person.
-</p>
-
-</div>
-
-<div class="mt-10 border-t border-ink/10 pt-6">
-
-<p class="text-xs uppercase tracking-[.14em] text-ink/40">
-Design decision
-</p>
-
-<p class="mt-2 text-sm leading-relaxed text-ink/60">
-Separate generation from approval so a polished AI draft is never mistaken for a finished, trusted response.
-</p>
-
-</div>
-
-</div>
-
-<div class="screen-canvas bg-red p-5 sm:p-8">
-
-<div class="mx-auto flex h-full max-w-[760px] items-center justify-center rounded-[24px] bg-paper p-8 text-center">
-
-<div>
-
-<div class="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-red text-3xl text-paper">
-✓
-</div>
-
-<p class="mt-7 text-2xl font-semibold">
-Ready for final approval
-</p>
-
-<p class="mx-auto mt-3 max-w-md text-sm leading-relaxed text-ink/50">
-The draft has been reviewed, evidence has been checked, and remaining questions have been resolved.
-</p>
-
-<div class="mx-auto mt-8 max-w-md rounded-xl bg-cream p-5 text-left">
-
-<p class="text-xs text-ink/40">Accountable reviewer</p>
-
-<p class="mt-2 text-sm font-medium">
-Proposal owner
-</p>
-
-</div>
-
-<div class="mt-7 inline-flex rounded-full bg-ink px-7 py-3.5 text-xs font-medium text-paper">
-Approve and publish
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
+  <div id="brief" class="step-panel active">
+    <div class="screen-frame overflow-hidden rounded-[34px] shadow-lift">
+      <div class="grid lg:grid-cols-[.55fr_1.45fr]">
+        <div class="flex flex-col justify-between p-8 sm:p-8">
+          <div>
+            <p class="text-sm font-semibold text-red">
+              Step 01
+            </p>
+            <h3 class="mt-3 text-3xl font-medium">
+              Start with the right brief.
+            </h3>
+            <p class="mt-5 leading-relaxed text-ink/60">
+              Users add the request, audience, requirements, and business context before AI begins searching or drafting.
+            </p>
+          </div>
+          <div class="mt-8 pt-6">
+            <p class="text-xs uppercase tracking-[.14em] text-ink/40">
+              Design decision
+            </p>
+            <p class="mt-2 text-sm leading-relaxed text-ink/60">
+              Collect critical context early to reduce irrelevant output and repeated correction later.
+            </p>
+          </div>
+        </div>
+        <div class="min-h-[580px] bg-ink p-5 sm:p-10">
+          <div class="mx-auto flex min-h-[500px] max-w-[900px] flex-col rounded-[24px] bg-paper p-6 sm:p-10">
+            <div class="flex items-center justify-between border-b border-ink/10 pb-5">
+              <div>
+                <p class="text-xs font-semibold text-red">
+                  CREATE RESPONSE
+                </p>
+                <p class="mt-1 text-sm text-ink/45">
+                  Tell us what you need.
+                </p>
+              </div>
+              <span class="rounded-full bg-red/10 px-3 py-1 text-xs text-red">
+                Step 1 of 5
+              </span>
+            </div>
+            <div class="mt-8 grid gap-5 sm:grid-cols-2">
+              <div>
+                <p class="mb-2 text-xs text-ink/45">
+                  Request title
+                </p>
+                <div class="rounded-xl border border-ink/10 bg-cream p-4 text-sm">
+                  New customer proposal
+                </div>
+              </div>
+              <div>
+                <p class="mb-2 text-xs text-ink/45">
+                  Audience
+                </p>
+                <div class="rounded-xl border border-ink/10 bg-cream p-4 text-sm">
+                  Enterprise customer
+                </div>
+              </div>
+            </div>
+            <div class="mt-5">
+              <p class="mb-2 text-xs text-ink/45">
+                Requirements and context
+              </p>
+              <div class="h-40 rounded-xl border border-ink/10 bg-cream p-4 text-sm text-ink/40">
+                Add key requirements, customer context, and important details...
+              </div>
+            </div>
+            <div class="mt-auto flex justify-end pt-8">
+              <div class="rounded-full bg-red px-7 py-3.5 text-xs font-medium text-paper">
+                Continue
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="context" class="step-panel">
+    <div class="screen-frame overflow-hidden rounded-[34px] border border-ink/10 shadow-lift">
+      <div class="grid lg:grid-cols-[.55fr_1.45fr]">
+        <div class="flex flex-col justify-between p-8 sm:p-10">
+          <div>
+            <p class="text-sm font-semibold text-red">
+              Step 02
+            </p>
+            <h3 class="mt-3 text-3xl font-medium">
+              Add context AI cannot infer.
+            </h3>
+            <p class="mt-5 leading-relaxed text-ink/60">
+              Users select relevant knowledge and add project-specific information before generation.
+            </p>
+          </div>
+          <div class="mt-10 border-t border-ink/10 pt-6">
+            <p class="text-xs uppercase tracking-[.14em] text-ink/40">
+              Design decision
+            </p>
+            <p class="mt-2 text-sm leading-relaxed text-ink/60">
+              Make context visible and editable instead of hiding it inside a prompt.
+            </p>
+          </div>
+        </div>
+        <div class="min-h-[580px] bg-redDark p-5 sm:p-10">
+          <div class="mx-auto min-h-[500px] max-w-[900px] rounded-[24px] bg-paper p-6 sm:p-10">
+            <div class="flex items-center justify-between border-b border-ink/10 pb-5">
+              <div>
+                <p class="text-xs font-semibold text-red">
+                  ADD CONTEXT
+                </p>
+                <p class="mt-1 text-sm text-ink/45">
+                  Choose what AI should consider.
+                </p>
+              </div>
+              <span class="rounded-full bg-red/10 px-3 py-1 text-xs text-red">
+                Step 2 of 5
+              </span>
+            </div>
+            <div class="mt-8">
+              <p class="text-sm font-medium">
+                Relevant knowledge
+              </p>
+              <div class="mt-5 space-y-3">
+                <div class="flex items-center justify-between rounded-xl border-2 border-red bg-red/5 p-4">
+                  <span class="text-sm">
+                    Previous proposal · 2025
+                  </span>
+                  <span class="text-xs text-red">
+                    Selected
+                  </span>
+                </div>
+                <div class="flex items-center justify-between rounded-xl border border-ink/10 p-4">
+                  <span class="text-sm">
+                    Product capability guide
+                  </span>
+                  <span class="text-xs text-ink/40">
+                    Add
+                  </span>
+                </div>
+                <div class="flex items-center justify-between rounded-xl border-2 border-red bg-red/5 p-4">
+                  <span class="text-sm">
+                    Customer requirements
+                  </span>
+                  <span class="text-xs text-red">
+                    Selected
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="generate" class="step-panel">
+    <div class="screen-frame overflow-hidden rounded-[34px] border border-ink/10 shadow-lift">
+      <div class="grid lg:grid-cols-[.55fr_1.45fr]">
+        <div class="flex flex-col justify-between p-8 sm:p-10">
+          <div>
+            <p class="text-sm font-semibold text-red">
+              Step 03
+            </p>
+            <h3 class="mt-3 text-3xl font-medium">
+              Create a useful first version.
+            </h3>
+            <p class="mt-5 leading-relaxed text-ink/60">
+              AI searches approved knowledge, connects relevant information, and prepares an editable draft.
+            </p>
+          </div>
+          <div class="mt-10 border-t border-ink/10 pt-6">
+            <p class="text-xs uppercase tracking-[.14em] text-ink/40">
+              Design decision
+            </p>
+            <p class="mt-2 text-sm leading-relaxed text-ink/60">
+              Show progress and useful signals so generation does not feel like an unexplained black box.
+            </p>
+          </div>
+        </div>
+        <div class="min-h-[580px] bg-ink p-5 sm:p-10">
+          <div class="mx-auto min-h-[500px] max-w-[900px] rounded-[24px] bg-paper p-6 sm:p-10">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <span class="h-3 w-3 rounded-full bg-red"></span>
+                <div>
+                  <p class="text-sm font-medium">
+                    Preparing your response
+                  </p>
+                  <p class="mt-1 text-xs text-ink/45">
+                    Connecting relevant information
+                  </p>
+                </div>
+              </div>
+              <span class="text-xs text-red">
+                68%
+              </span>
+            </div>
+            <div class="mt-7 h-2 overflow-hidden rounded-full bg-cream">
+              <div class="h-full w-[68%] rounded-full bg-red"></div>
+            </div>
+            <div class="mt-9 grid gap-4 sm:grid-cols-2">
+              <div class="rounded-xl bg-cream p-6">
+                <p class="text-xs text-ink/40">
+                  Knowledge used
+                </p>
+                <p class="mt-3 text-3xl font-semibold">
+                  12
+                </p>
+                <p class="mt-1 text-xs text-ink/45">
+                  Relevant sources found
+                </p>
+              </div>
+              <div class="rounded-xl bg-cream p-6">
+                <p class="text-xs text-ink/40">
+                  Potential gaps
+                </p>
+                <p class="mt-3 text-3xl font-semibold text-red">
+                  02
+                </p>
+                <p class="mt-1 text-xs text-ink/45">
+                  May need expert input
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="review" class="step-panel">
+    <div class="screen-frame overflow-hidden rounded-[34px] border border-ink/10 shadow-lift">
+      <div class="grid lg:grid-cols-[.55fr_1.45fr]">
+        <div class="flex flex-col justify-between p-8 sm:p-10">
+          <div>
+            <p class="text-sm font-semibold text-red">
+              Step 04
+            </p>
+            <h3 class="mt-3 text-3xl font-medium">
+              Review the draft with evidence beside it.
+            </h3>
+            <p class="mt-5 leading-relaxed text-ink/60">
+              Users can edit the response, inspect supporting sources, and identify information that still needs expert input.
+            </p>
+          </div>
+          <div class="mt-10 border-t border-ink/10 pt-6">
+            <p class="text-xs uppercase tracking-[.14em] text-ink/40">
+              Design decision
+            </p>
+            <p class="mt-2 text-sm leading-relaxed text-ink/60">
+              Keep evidence in the same workspace so review does not require switching between systems.
+            </p>
+          </div>
+        </div>
+        <div class="min-h-[580px] bg-redDark p-5 sm:p-10">
+          <div class="mx-auto grid min-h-[500px] max-w-[980px] gap-5 rounded-[24px] bg-paper p-5 sm:grid-cols-[1.45fr_.75fr] sm:p-8">
+            <div>
+              <div class="flex items-center justify-between border-b border-ink/10 pb-4">
+                <p class="text-sm font-semibold">
+                  AI draft
+                </p>
+                <span class="rounded-full bg-red/10 px-3 py-1 text-xs text-red">
+                  Review required
+                </span>
+              </div>
+              <div class="mt-7 space-y-4">
+                <div class="h-4 w-full rounded bg-cream"></div>
+                <div class="h-4 w-[92%] rounded bg-cream"></div>
+                <div class="rounded-lg border-l-4 border-red bg-red/5 p-4 text-sm">
+                  This response uses information from the 2025 enterprise proposal.
+                </div>
+                <div class="h-4 w-full rounded bg-cream"></div>
+                <div class="h-4 w-[78%] rounded bg-cream"></div>
+              </div>
+            </div>
+            <div class="rounded-xl bg-cream p-5">
+              <p class="text-xs font-semibold text-red">
+                EVIDENCE
+              </p>
+              <div class="mt-6 space-y-3">
+                <div class="rounded-lg bg-paper p-4">
+                  <p class="text-xs font-medium">
+                    Previous proposal
+                  </p>
+                  <p class="mt-1 text-[11px] text-ink/45">
+                    Section 4.2
+                  </p>
+                </div>
+                <div class="rounded-lg bg-paper p-4">
+                  <p class="text-xs font-medium">
+                    Product guide
+                  </p>
+                  <p class="mt-1 text-[11px] text-ink/45">
+                    Page 18
+                  </p>
+                </div>
+                <div class="rounded-lg border border-red/20 bg-red/5 p-4">
+                  <p class="text-xs font-medium text-red">
+                    Missing information
+                  </p>
+                  <p class="mt-1 text-[11px] text-ink/45">
+                    Confirm with subject expert
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="approve" class="step-panel">
+    <div class="screen-frame overflow-hidden rounded-[34px] border border-ink/10 shadow-lift">
+      <div class="grid lg:grid-cols-[.55fr_1.45fr]">
+        <div class="flex flex-col justify-between p-8 sm:p-10">
+          <div>
+            <p class="text-sm font-semibold text-red">
+              Step 05
+            </p>
+            <h3 class="mt-3 text-3xl font-medium">
+              A person makes the final call.
+            </h3>
+            <p class="mt-5 leading-relaxed text-ink/60">
+              AI can prepare the response, but publishing remains a deliberate action taken by an accountable person.
+            </p>
+          </div>
+          <div class="mt-10 border-t border-ink/10 pt-6">
+            <p class="text-xs uppercase tracking-[.14em] text-ink/40">
+              Design decision
+            </p>
+            <p class="mt-2 text-sm leading-relaxed text-ink/60">
+              Separate generation from approval so an AI draft is never mistaken for a finished response.
+            </p>
+          </div>
+        </div>
+        <div class="flex min-h-[580px] items-center justify-center bg-red p-6">
+          <div class="w-full max-w-[760px] rounded-[24px] bg-paper p-10 text-center">
+            <div class="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-red text-3xl text-paper">
+              ✓
+            </div>
+            <h3 class="mt-7 text-3xl font-semibold">
+              Ready for final approval
+            </h3>
+            <p class="mx-auto mt-4 max-w-md leading-relaxed text-ink/50">
+              The draft has been reviewed, evidence has been checked, and remaining questions have been resolved.
+            </p>
+            <div class="mx-auto mt-8 max-w-md rounded-xl bg-cream p-5 text-left">
+              <p class="text-xs text-ink/40">
+                Accountable reviewer
+              </p>
+              <p class="mt-2 text-sm font-medium">
+                Proposal owner
+              </p>
+            </div>
+            <div class="mt-8 inline-flex rounded-full bg-ink px-7 py-3.5 text-xs font-medium text-paper">
+              Approve and publish
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
 </section>
-
-<section class="bg-paper py-24">
-
-<div class="mx-auto max-w-[1260px] px-5">
-
-<div class="reveal grid gap-14 lg:grid-cols-12">
-
-<div class="lg:col-span-5">
-
-<p class="text-sm font-semibold text-red">
-Trust in the workflow
-</p>
-
-<h2 class="display-font mt-3 text-4xl leading-tight">
-Trust should be designed into the work,
-<span class="text-red">not added as a warning.</span>
-</h2>
-
-<p class="mt-7 text-lg leading-relaxed text-ink/60">
-Trust is built through what people can see, inspect, change, and approve at each stage.
-</p>
-
+<!-- TRUST IS BUILT INTO THE WORKFLOW -->
+<section
+  id="trust"
+  class="relative overflow-hidden bg-cream py-20 sm:py-24"
+>
+  <div class="mx-auto max-w-[1260px] px-5">
+<!-- Section label -->
+<div class="reveal flex items-center gap-3">
+  <span class="font-semibold text-xs uppercase tracking-[0.18em] text-red">
+    Trust by design
+  </span>
+  <span class="h-px w-10 bg-red/35"></span>
 </div>
-
-<div class="lg:col-span-7">
-
-<div class="border-t border-ink/10">
-
-<div class="grid gap-6 border-b border-ink/10 py-7 sm:grid-cols-[150px_1fr]">
-
-<p class="text-sm font-semibold text-red">
-Evidence
-</p>
-
-<p class="leading-relaxed text-ink/55">
-Important AI responses remain connected to source information so users can check where an answer came from.
-</p>
-
+<!-- Heading -->
+<div class="reveal mt-6 w-full">
+  <h2 class="display-font mt-4 text-4xl leading-[1.05] tracking-[-0.04em] sm:text-5xl">
+    AI could prepare the draft.
+    <span class="text-red">
+      People still needed to check it.
+    </span>
+  </h2>
+  <p class="mt-5 w-full text-base leading-7 text-ink/60 sm:text-lg sm:leading-8">
+    So the workflow kept the information behind the response visible,
+    editable, and easy to review.
+  </p>
 </div>
-
-<div class="grid gap-6 border-b border-ink/10 py-7 sm:grid-cols-[150px_1fr]">
-
-<p class="text-sm font-semibold text-red">
-Editability
-</p>
-
-<p class="leading-relaxed text-ink/55">
-Generated content remains fully editable. AI output is treated as a starting point, not an instruction.
-</p>
-
+<!-- Image -->
+<div class="reveal mt-10 overflow-hidden border-y border-ink/10">
+  <img
+    decoding="async"
+    src="https://muxdesigns.co.in/wp-content/uploads/2026/06/trust-and-safety-image-1024x312.jpg"
+    alt="AI-assisted document workflow with visible evidence and human review"
+    class="block h-auto w-full object-cover"
+  >
 </div>
-
-<div class="grid gap-6 border-b border-ink/10 py-7 sm:grid-cols-[150px_1fr]">
-
-<p class="text-sm font-semibold text-red">
-Uncertainty
-</p>
-
-<p class="leading-relaxed text-ink/55">
-Missing information and low-confidence areas are made visible instead of being hidden behind a confident-looking response.
-</p>
-
+<!-- Three principles -->
+<div class="reveal grid border-b border-ink/10 sm:grid-cols-3">
+  <!-- Principle 01 -->
+  <div class="py-8 sm:pr-8">
+    <p class="font-semibold text-xs tracking-[0.16em] text-red">
+      01
+    </p>
+    <h3 class="mt-3 text-lg font-semibold text-ink">
+      Keep the draft editable
+    </h3>
+    <p class="mt-2 text-sm leading-6 text-ink/55">
+      AI provides a starting point—not a finished answer.
+    </p>
+  </div>
+  <!-- Principle 02 -->
+  <div class="border-t border-ink/10 py-8 sm:border-l sm:border-t-0 sm:px-8">
+    <p class="font-semibold text-xs tracking-[0.16em] text-red">
+      02
+    </p>
+    <h3 class="mt-3 text-lg font-semibold text-ink">
+      Show the evidence
+    </h3>
+    <p class="mt-2 text-sm leading-6 text-ink/55">
+      Users can see what information shaped the response.
+    </p>
+  </div>
+  <!-- Principle 03 -->
+  <div class="border-t border-ink/10 py-8 sm:border-l sm:border-t-0 sm:pl-8">
+    <p class="font-semibold text-xs tracking-[0.16em] text-red">03</p>
+    <h3 class="mt-3 text-lg font-semibold text-ink">Keep approval human</h3>
+    <p class="mt-2 text-sm leading-6 text-ink/55">
+      The final decision stays with the person responsible.
+    </p>
+  </div>
 </div>
-
-<div class="grid gap-6 py-7 sm:grid-cols-[150px_1fr]">
-
-<p class="text-sm font-semibold text-red">
-Approval
-</p>
-
-<p class="leading-relaxed text-ink/55">
-Final approval remains a separate, intentional human action with clear accountability.
-</p>
-
+<!-- Closing statement -->
+<div class="reveal mt-8 border-l-2 border-red pl-6">
+  <p class="w-full text-lg leading-7 text-ink/70">
+    The goal was not to make AI seem certain.
+    It was to make its output
+    <strong class="font-semibold text-ink">
+      easier to understand, question, and improve.
+    </strong>
+  </p>
 </div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
+  </div>
 </section>
-
-<section class="bg-cream py-24">
-
-<div class="mx-auto max-w-[1260px] px-5">
-
-<div class="reveal w-full">
-
-<p class="text-sm font-semibold text-red">
-Testing and iteration
-</p>
-
-<h2 class="display-font mt-3 text-4xl leading-tight sm:text-5xl">
-Testing showed that speed alone
-<span class="text-red">did not create confidence.</span>
-</h2>
-
-<p class="mt-7 text-lg leading-relaxed text-ink/60">
-Proposal owners and reviewers tried finding information, generating a response, checking evidence, and approving the final output.
-</p>
-
+<section id="outcome" class="bg-red py-24 text-paper">
+  <div class="mx-auto max-w-[1260px] px-5">
+<div class="grid gap-14 lg:grid-cols-12">
+  <div class="reveal lg:col-span-7">
+    <p class="text-sm font-semibold text-paper/60">
+      Outcome
+    </p>
+    <h2 class="display-font mt-3 text-4xl leading-tight sm:text-5xl">
+      Less time gathering information.
+      <span class="text-paper/70">
+        More time improving the response.
+      </span>
+    </h2>
+    <p class="mt-7 max-w-2xl text-lg leading-relaxed text-paper/75">
+      The workflow helped teams begin with a stronger, evidence-backed draft while keeping review and accountability visible.
+    </p>
+  </div>
+  <div class="reveal lg:col-span-5">
+    <div class="border-y border-paper/20">
+      <div class="py-6">
+        <p class="text-xs uppercase tracking-[.15em] text-paper/50">
+          Workflow
+        </p>
+        <p class="mt-3 text-xl font-medium">
+          Relevant information appeared earlier.
+        </p>
+      </div>
+      <div class="border-t border-paper/20 py-6">
+        <p class="text-xs uppercase tracking-[.15em] text-paper/50">
+          Knowledge
+        </p>
+        <p class="mt-3 text-xl font-medium">
+          Useful company knowledge became easier to reuse.
+        </p>
+      </div>
+      <div class="border-t border-paper/20 py-6">
+        <p class="text-xs uppercase tracking-[.15em] text-paper/50">
+          Trust
+        </p>
+        <p class="mt-3 text-xl font-medium">
+          People could inspect, improve, and approve AI output with confidence.
+        </p>
+      </div>
+    </div>
+  </div>
 </div>
-
-<div class="mt-16">
-
-<div class="reveal grid gap-8 border-t border-ink/10 py-9 md:grid-cols-[100px_1fr_1fr]">
-
-<p class="text-4xl font-semibold text-red">
-01
-</p>
-
-<div>
-
-<p class="text-xs font-semibold uppercase tracking-[.14em] text-ink/40">
-Observation
-</p>
-
-<h3 class="mt-3 text-2xl font-medium">
-The draft looked finished too early.
-</h3>
-
-</div>
-
-<p class="leading-relaxed text-ink/55">
-People moved quickly through the generated response until they needed to understand where a specific answer came from. Source references were moved closer to the AI output.
-</p>
-
-</div>
-
-<div class="reveal grid gap-8 border-t border-ink/10 py-9 md:grid-cols-[100px_1fr_1fr]">
-
-<p class="text-4xl font-semibold text-red">
-02
-</p>
-
-<div>
-
-<p class="text-xs font-semibold uppercase tracking-[.14em] text-ink/40">
-Observation
-</p>
-
-<h3 class="mt-3 text-2xl font-medium">
-Review was easy to treat as optional.
-</h3>
-
-</div>
-
-<p class="leading-relaxed text-ink/55">
-Users sometimes skimmed AI text when review appeared to be a final clean-up step. Review actions became more visible throughout the workflow.
-</p>
-
-</div>
-
-<div class="reveal grid gap-8 border-y border-ink/10 py-9 md:grid-cols-[100px_1fr_1fr]">
-
-<p class="text-4xl font-semibold text-red">
-03
-</p>
-
-<div>
-
-<p class="text-xs font-semibold uppercase tracking-[.14em] text-ink/40">
-Observation
-</p>
-
-<h3 class="mt-3 text-2xl font-medium">
-People wanted a clear final checkpoint.
-</h3>
-
-</div>
-
-<p class="leading-relaxed text-ink/55">
-An editable draft and visible evidence increased confidence, but users still wanted a deliberate human approval step before publishing.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<section id="impact" class="bg-red py-24 text-paper">
-
-<div class="mx-auto max-w-[1260px] px-5">
-
-<div class="reveal grid gap-14 lg:grid-cols-12">
-
-<div class="lg:col-span-7">
-
-<p class="text-sm font-semibold text-paper/60">
-Outcome
-</p>
-
-<h2 class="display-font mt-3 text-4xl leading-tight sm:text-5xl">
-Less time gathering information.
-<span class="text-paper/70">
-More time improving the response.
-</span>
-</h2>
-
-<p class="mt-7 max-w-2xl text-lg leading-relaxed text-paper/75">
-The redesigned workflow helped teams begin with a stronger, evidence-backed first draft while keeping review and accountability visible.
-</p>
-
-</div>
-
-<div class="lg:col-span-5">
-
-<div class="border-t border-paper/20">
-
-<div class="py-6">
-
-<p class="text-xs uppercase tracking-[.15em] text-paper/50">
-Workflow outcome
-</p>
-
-<p class="mt-3 text-xl font-medium">
-Relevant information appeared earlier.
-</p>
-
-</div>
-
-<div class="border-t border-paper/20 py-6">
-
-<p class="text-xs uppercase tracking-[.15em] text-paper/50">
-Knowledge outcome
-</p>
-
-<p class="mt-3 text-xl font-medium">
-Useful company knowledge became easier to reuse.
-</p>
-
-</div>
-
-<div class="border-y border-paper/20 py-6">
-
-<p class="text-xs uppercase tracking-[.15em] text-paper/50">
-Trust outcome
-</p>
-
-<p class="mt-3 text-xl font-medium">
-People could inspect, improve, and approve AI output with confidence.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
 <div class="reveal mt-14 border-t border-paper/20 pt-8">
-
-<p class="max-w-5xl text-2xl leading-relaxed sm:text-3xl">
-Find faster.
-Understand better.
-<span class="text-paper/65">
-Keep people responsible for the final decision.
-</span>
-</p>
-
+  <p class="max-w-5xl text-2xl leading-relaxed sm:text-3xl">
+    Find faster. Understand better.
+    <span class="text-paper/65">
+      Keep people responsible for the final decision.
+    </span>
+  </p>
 </div>
-
-</div>
-
+  </div>
 </section>
-
 <section class="bg-paper py-24">
-
-<div class="mx-auto max-w-[1260px] px-5">
-
-<div class="reveal grid gap-14 lg:grid-cols-12">
-
-<div class="lg:col-span-5">
-
-<p class="text-sm font-semibold text-red">
-Reflection
-</p>
-
-<h2 class="display-font mt-3 text-4xl leading-tight">
-The most important design decision was not adding AI.
-</h2>
-
+  <div class="mx-auto max-w-[1260px] px-5">
+<div class="grid gap-14 lg:grid-cols-12">
+  <div class="reveal lg:col-span-5">
+    <p class="text-sm font-semibold text-red">
+      Reflection
+    </p>
+    <h2 class="display-font mt-3 text-4xl leading-tight">
+      The most important decision was not adding AI.
+    </h2>
+  </div>
+  <div class="reveal lg:col-span-7">
+    <p class="text-xl leading-relaxed text-ink/65">
+      It was deciding where AI should help, where it needed to remain transparent, and where people had to stay responsible.
+    </p>
+    <p class="mt-7 leading-relaxed text-ink/55">
+      This project reinforced that useful enterprise AI is not a chat interface placed on top of an existing workflow. It requires redesigning how information is found, how uncertainty is communicated, and how people stay in control.
+    </p>
+    <div class="mt-10 border-l-4 border-red pl-6">
+      <p class="text-lg font-medium leading-relaxed">
+        The strongest AI experience did not remove people from the workflow. It helped them spend less time searching and more time applying their expertise.
+      </p>
+    </div>
+  </div>
 </div>
-
-<div class="lg:col-span-7">
-
-<p class="text-xl leading-relaxed text-ink/65">
-It was deciding where AI should help, where it should remain transparent, and where people needed to stay responsible.
-</p>
-
-<p class="mt-7 leading-relaxed text-ink/55">
-This project reinforced that useful enterprise AI is not a chat box placed on top of an existing workflow. It requires redesigning how information is found, how uncertainty is communicated, and how people remain in control of important decisions.
-</p>
-
-<div class="mt-10 border-l-4 border-red pl-6">
-
-<p class="text-lg font-medium leading-relaxed">
-The best AI experience did not make people disappear from the workflow.
-It helped them spend less time searching and more time applying their expertise.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
+  </div>
 </section>
-
 <section class="bg-ink py-20 text-paper">
-
-<div class="mx-auto flex max-w-[1260px] flex-col gap-8 px-5 md:flex-row md:items-end md:justify-between">
-
+  <div class="mx-auto flex max-w-[1260px] flex-col gap-8 px-5 md:flex-row md:items-end md:justify-between">
 <div class="reveal max-w-2xl">
-
-<p class="text-sm font-semibold text-redSoft">
-Next project
-</p>
-
-<h2 class="display-font mt-3 text-4xl leading-tight">
-See how I designed AI workflows that help legal teams review with confidence.
-</h2>
-
+  <p class="text-sm font-semibold text-redSoft">
+    Next project
+  </p>
+  <h2 class="display-font mt-3 text-4xl leading-tight">
+    Designing AI workflows that help legal teams review with confidence.
+  </h2>
 </div>
-
-<a href="ai_legal.html" class="reveal inline-flex shrink-0 items-center gap-3 rounded-full bg-red px-6 py-3.5 text-sm font-medium text-paper transition hover:-translate-y-1 hover:bg-paper hover:text-ink">
-View AI legal review
-<span>→</span>
+<a
+  href="ai_legal.html"
+  class="reveal inline-flex shrink-0 items-center gap-3 rounded-full bg-red px-6 py-3.5 text-sm font-medium text-paper transition hover:-translate-y-1 hover:bg-paper hover:text-ink"
+>
+  View AI legal review
+  <span>→</span>
 </a>
-
-</div>
-
+  </div>
 </section>
-
 </main>
-
 <footer class="border-t border-white/10 bg-ink py-7 text-paper/45">
-
-<div class="mx-auto flex max-w-[1260px] flex-col items-center justify-between gap-3 px-5 text-xs sm:flex-row">
-
+  <div class="mx-auto flex max-w-[1260px] flex-col items-center justify-between gap-3 px-5 text-xs sm:flex-row">
 <p>
-© 2026 Moumita Majumder · Product Design Portfolio
+  © 2026 Moumita Majumder · Product Design Portfolio
 </p>
-
 <a href="index.html" class="transition hover:text-red">
-Back to home
+  Back to home
 </a>
-
-</div>
-
+  </div>
 </footer>
-
 <script>
-
-const navbar=document.getElementById("navbar")
-
-window.addEventListener("scroll",()=>{
-if(window.scrollY>20){
-navbar.classList.add("nav-shadow","border-ink/10")
-}else{
-navbar.classList.remove("nav-shadow","border-ink/10")
-}
-})
-
-const observer=new IntersectionObserver(
-entries=>{
-entries.forEach(entry=>{
-if(entry.isIntersecting){
-entry.target.classList.add("visible")
-observer.unobserve(entry.target)
-}
-})
-},
-{
-threshold:.1
-}
-)
-
-document.querySelectorAll(".reveal").forEach(element=>{
-observer.observe(element)
-})
-
-document.querySelectorAll('a[href^="#"]').forEach(link=>{
-
-link.addEventListener("click",event=>{
-
-const target=document.querySelector(
-link.getAttribute("href")
-)
-
-if(target){
-
-event.preventDefault()
-
-target.scrollIntoView({
-behavior:"smooth",
-block:"start"
-})
-
-}
-
-})
-
-})
-
-const stepButtons=document.querySelectorAll(".step-button")
-const stepPanels=document.querySelectorAll(".step-panel")
-
-stepButtons.forEach(button=>{
-
-button.addEventListener("click",()=>{
-
-const step=button.dataset.step
-
-stepButtons.forEach(item=>{
-item.classList.remove("active")
-})
-
-stepPanels.forEach(panel=>{
-panel.classList.remove("active")
-})
-
-button.classList.add("active")
-
-document
-.getElementById(step)
-.classList.add("active")
-
-})
-
-})
-
+const navbar = document.getElementById("navbar");
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 20) {
+    navbar.classList.add("nav-shadow", "border-ink/10");
+  } else {
+    navbar.classList.remove("nav-shadow", "border-ink/10");
+  }
+});
+const observer = new IntersectionObserver(
+  entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  },
+  {
+    threshold: 0.1
+  }
+);
+document.querySelectorAll(".reveal").forEach(element => {
+  observer.observe(element);
+});
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener("click", event => {
+    const target = document.querySelector(
+      link.getAttribute("href")
+    );
+    if (target) {
+      event.preventDefault();
+      target.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }
+  });
+});
+const stepButtons = document.querySelectorAll(".step-button");
+const stepPanels = document.querySelectorAll(".step-panel");
+stepButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    const selectedStep = button.dataset.step;
+    stepButtons.forEach(item => {
+      item.classList.remove("active");
+    });
+    stepPanels.forEach(panel => {
+      panel.classList.remove("active");
+    });
+    button.classList.add("active");
+    document
+      .getElementById(selectedStep)
+      .classList.add("active");
+  });
+});
 </script>
-
 </body>
 </html>

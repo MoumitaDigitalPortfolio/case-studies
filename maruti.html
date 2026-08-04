@@ -1,0 +1,881 @@
+<!doctype html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta name="description"
+         content="MASS Service Marketplace case study by Moumita Majumder."
+      />
+      <title>MASS Service Marketplace | Moumita Majumder</title>
+      <script src="https://cdn.tailwindcss.com"></script>
+      <script>
+         tailwind.config = {
+            theme: {
+               extend: {
+                  colors: {
+                     ink: "#24211D",
+                     paper: "#FFFDF8",
+                     cream: "#F5EEE4",
+                     sand: "#E7D9C7",
+                     red: "#7E2420",
+                     redDark: "#581815",
+                     redSoft: "#E8C5C0",
+                     marutiBlue: "#173E73",
+                     marutiBlueSoft: "#DCE8F4",
+                     road: "#34383B",
+                     signal: "#D84A3A",
+                  },
+                  boxShadow: {
+                     soft: "0 18px 55px rgba(36,33,29,.10)",
+                     lift: "0 28px 80px rgba(36,33,29,.16)",
+                  },
+               },
+            },
+         };
+      </script>
+      <style>
+         html {
+            scroll-behavior: smooth;
+         }
+         body {
+            margin: 0;
+            overflow-x: hidden;
+            background: #f5eee4;
+            color: #24211d;
+            font-family:
+               Inter,
+               ui-sans-serif,
+               system-ui,
+               -apple-system,
+               BlinkMacSystemFont,
+               "Segoe UI",
+               sans-serif;
+         }
+         .display-font {
+            font-family: Georgia, "Times New Roman", serif;
+         }
+         .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition:
+               opacity 0.7s ease,
+               transform 0.7s ease;
+         }
+         .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+         }
+         .nav-shadow {
+            box-shadow: 0 10px 35px rgba(36, 33, 29, 0.09);
+         }
+         .hero-road {
+            background: linear-gradient(
+               90deg,
+               transparent 0,
+               transparent 48%,
+               rgba(255, 255, 255, 0.8) 48%,
+               rgba(255, 255, 255, 0.8) 52%,
+               transparent 52%
+            );
+            background-size: 130px 100%;
+         }
+         .road-line {
+            background-image: repeating-linear-gradient(
+               90deg,
+               rgba(255, 255, 255, 0.75) 0,
+               rgba(255, 255, 255, 0.75) 54px,
+               transparent 54px,
+               transparent 96px
+            );
+         }
+         .mobile-scroll {
+            scrollbar-width: none;
+         }
+         .mobile-scroll::-webkit-scrollbar {
+            display: none;
+         }
+         @media (prefers-reduced-motion: reduce) {
+            html {
+               scroll-behavior: auto;
+            }
+            .reveal {
+               opacity: 1;
+               transform: none;
+            }
+         }
+      </style>
+   </head>
+   <body>
+      <header
+         id="navbar"
+         class="fixed inset-x-0 top-0 z-50 border-b border-transparent bg-cream/90 backdrop-blur-xl transition-all duration-300"
+      >
+         <div
+            class="mx-auto flex h-16 max-w-[1260px] items-center justify-between px-5"
+         >
+            <a href="index.html" class="flex items-center gap-3">
+               <div
+                  class="flex h-9 w-9 items-center justify-center rounded-xl bg-ink text-xs font-semibold text-paper"
+               >
+                  MM
+               </div>
+               <div>
+                  <p class="text-sm font-semibold">Moumita Majumder</p>
+                  <p class="text-[11px] text-ink/45">
+                     Product Design Portfolio
+                  </p>
+               </div>
+            </a>
+            <nav class="hidden items-center gap-7 text-sm text-ink/60 md:flex">
+               <a href="#challenge" class="transition hover:text-red">
+                  Challenge
+               </a>
+               <a href="#research" class="transition hover:text-red">
+                  Research
+               </a>
+               <a href="#decisions" class="transition hover:text-red">
+                  Decisions
+               </a>
+               <a href="#solution" class="transition hover:text-red">
+                  Solution
+               </a>
+               <a href="#outcome" class="transition hover:text-red">
+                  Outcome
+               </a>
+            </nav>
+            <a
+               href="index.html#projects"
+               class="rounded-full border border-ink/10 bg-paper px-4 py-2 text-xs font-medium transition hover:border-red hover:text-red"
+            >
+               All projects
+            </a>
+         </div>
+      </header>
+      <main>
+         <!-- HERO -->
+         <section class="relative min-h-screen overflow-hidden bg-paper pt-16">
+            <div
+               class="absolute inset-y-0 right-0 hidden w-[43%] bg-marutiBlue lg:block"
+            >
+               <div class="hero-road absolute inset-0 opacity-20"></div>
+            </div>
+            <div
+               class="absolute right-[-180px] top-28 h-[500px] w-[500px] rounded-full bg-red/10 blur-3xl"
+            ></div>
+            <div
+               class="relative mx-auto flex min-h-[calc(100vh-64px)] max-w-[1260px] items-center px-5 py-20"
+            >
+               <div class="grid w-full items-center gap-14 lg:grid-cols-12">
+                  <div class="reveal lg:col-span-7">
+                     <div
+                        class="inline-flex items-center gap-3 rounded-full border border-marutiBlue/15 bg-marutiBlueSoft/40 px-4 py-2"
+                     >
+                        <span class="h-2 w-2 rounded-full bg-red"> </span>
+                        <span
+                           class="text-xs font-semibold uppercase tracking-[.15em] text-marutiBlue"
+                        >
+                           Maruti Suzuki · Dealer ecosystem
+                        </span>
+                     </div>
+                     <p
+                        class="mt-8 text-sm font-semibold uppercase tracking-[.18em] text-red"
+                     >
+                        MASS service marketplace
+                     </p>
+                     <h1
+                        class="display-font mt-4 max-w-5xl text-5xl leading-[.98] tracking-[-.045em] sm:text-6xl lg:text-7xl"
+                     >
+                        Making essential services
+                        <span class="text-red"> easier to reach. </span>
+                     </h1>
+                     <p
+                        class="mt-7 max-w-2xl text-lg leading-relaxed text-ink/60 sm:text-xl"
+                     >
+                        MASS dealers needed access to Maruti services without
+                        navigating complicated payment processes or unfamiliar
+                        enterprise tools.
+                     </p>
+                     <p class="mt-4 max-w-2xl leading-relaxed text-ink/48">
+                        I designed a simpler service marketplace that helped
+                        dealers recharge, explore services, and manage usage
+                        with greater independence.
+                     </p>
+                     <div class="mt-9 flex flex-wrap gap-3">
+                        <a
+                           href="#challenge"
+                           class="inline-flex items-center gap-3 rounded-full bg-ink px-6 py-3.5 text-sm font-medium text-paper transition hover:-translate-y-1 hover:bg-red"
+                        >
+                           Read the case study
+                           <span> ↓ </span>
+                        </a>
+                        <a
+                           href="#solution"
+                           class="inline-flex items-center gap-3 rounded-full border border-ink/15 bg-paper px-6 py-3.5 text-sm font-medium transition hover:border-red hover:text-red"
+                        >
+                           View the solution
+                        </a>
+                     </div>
+                     <div
+                        class="mt-10 grid max-w-2xl grid-cols-2 gap-6 border-t border-ink/10 pt-6 sm:grid-cols-4"
+                     >
+                        <div>
+                           <p class="text-xs text-ink/40">Role</p>
+                           <p class="mt-2 text-sm font-semibold">
+                              Lead Product Designer
+                           </p>
+                        </div>
+                        <div>
+                           <p class="text-xs text-ink/40">Duration</p>
+                           <p class="mt-2 text-sm font-semibold">6 weeks</p>
+                        </div>
+                        <div>
+                           <p class="text-xs text-ink/40">Delivery</p>
+                           <p class="mt-2 text-sm font-semibold">
+                              3 MVP cycles
+                           </p>
+                        </div>
+                        <div>
+                           <p class="text-xs text-ink/40">Focus</p>
+                           <p class="mt-2 text-sm font-semibold">
+                              Dealer experience
+                           </p>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- HERO VISUAL -->
+                  <div class="reveal lg:col-span-5">
+                     <div
+                        class="overflow-hidden rounded-[32px] border border-white/10 bg-marutiBlue p-5 shadow-lift"
+                     >
+                        <div
+                           class="relative min-h-[560px] overflow-hidden rounded-[24px] bg-[#102D54] p-7 text-paper"
+                        >
+                           <div
+                              class="absolute inset-x-0 bottom-0 h-24 road-line opacity-20"
+                           ></div>
+                           <div
+                              class="relative flex items-center justify-between"
+                           >
+                              <div>
+                                 <p
+                                    class="text-xs font-semibold uppercase tracking-[.16em] text-paper/45"
+                                 >
+                                    MASS portal
+                                 </p>
+                                 <p class="mt-2 text-lg font-semibold">
+                                    Everything in one place
+                                 </p>
+                              </div>
+                              <span
+                                 class="flex h-10 w-10 items-center justify-center rounded-full bg-red text-sm"
+                              >
+                                 →
+                              </span>
+                           </div>
+                           <div class="relative mt-10 space-y-4">
+                              <div class="border-l-2 border-red bg-white/5 p-5">
+                                 <p
+                                    class="text-xs uppercase tracking-[.14em] text-paper/45"
+                                 >
+                                    01
+                                 </p>
+                                 <p class="mt-2 font-semibold">
+                                    Recharge balance
+                                 </p>
+                              </div>
+                              <div
+                                 class="ml-8 border-l-2 border-paper/25 bg-white/5 p-5"
+                              >
+                                 <p
+                                    class="text-xs uppercase tracking-[.14em] text-paper/45"
+                                 >
+                                    02
+                                 </p>
+                                 <p class="mt-2 font-semibold">
+                                    Choose a service
+                                 </p>
+                              </div>
+                              <div class="border-l-2 border-red bg-white/5 p-5">
+                                 <p
+                                    class="text-xs uppercase tracking-[.14em] text-paper/45"
+                                 >
+                                    03
+                                 </p>
+                                 <p class="mt-2 font-semibold">Track usage</p>
+                              </div>
+                           </div>
+                           <div
+                              class="absolute bottom-8 left-7 right-7 border-t border-white/10 pt-5"
+                           >
+                              <p class="text-sm leading-6 text-paper/60">
+                                 A service experience designed to feel clear,
+                                 familiar, and ready when dealers need it.
+                              </p>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <!-- CHALLENGE -->
+         <section id="challenge" class="bg-paper py-24">
+            <div class="mx-auto max-w-[1260px] px-5">
+               <div class="reveal w-full">
+                  <p class="text-sm font-semibold text-red">The challenge</p>
+                  <h2 class="display-font mt-3 text-4xl leading-tight sm:text-5xl">
+                     Access became difficult
+                     <span class="text-red"> before the work even began. </span>
+                  </h2>
+                  <p class="mt-7 text-lg leading-relaxed text-ink/60">
+                     Dealers needed essential services, but access often
+                     depended on payment processes, manual support, and systems
+                     that felt harder to use than the task itself.
+                  </p>
+               </div>
+               <div
+                  class="reveal mt-16 grid gap-12 border-y border-ink/10 py-12 lg:grid-cols-2"
+               >
+                  <div>
+                     <p
+                        class="text-xs font-semibold uppercase tracking-[.16em] text-ink/40"
+                     >
+                        Before
+                     </p>
+                     <h3 class="mt-3 text-3xl font-medium">
+                        Too many steps before service access.
+                     </h3>
+                     <div class="mt-8 flex flex-wrap gap-3">
+                        <span class="bg-cream px-5 py-2.5 text-sm">
+                           Request access
+                        </span>
+                        <span class="bg-cream px-5 py-2.5 text-sm"> Wait </span>
+                        <span class="bg-cream px-5 py-2.5 text-sm">
+                           Follow up
+                        </span>
+                        <span class="bg-cream px-5 py-2.5 text-sm">
+                           Manage manually
+                        </span>
+                     </div>
+                  </div>
+                  <div
+                     class="border-t border-ink/10 pt-10 lg:border-l lg:border-t-0 lg:pl-12 lg:pt-0"
+                  >
+                     <p
+                        class="text-xs font-semibold uppercase tracking-[.16em] text-red"
+                     >
+                        Design opportunity
+                     </p>
+                     <h3 class="mt-3 text-3xl font-medium">
+                        Make access feel direct and predictable.
+                     </h3>
+                     <p class="mt-7 leading-relaxed text-ink/55">
+                        The platform needed to reduce dependency on manual
+                        processes while remaining approachable for dealers with
+                        different levels of digital experience.
+                     </p>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <!-- RESEARCH -->
+         <section
+            id="research"
+            class="relative overflow-hidden bg-cream py-20 sm:py-20"
+         >
+            <div class="mx-auto max-w-[1260px] px-5">
+               <div class="grid gap-10 lg:grid-cols-[.7fr_1.3fr] lg:gap-24">
+                  <div class="reveal">
+                     <div class="flex items-center gap-3">
+                        <span
+                           class="text-xs font-semibold uppercase tracking-[.18em] text-red"
+                        >
+                           Research
+                        </span>
+                        <span class="h-px w-10 bg-red/35"> </span>
+                     </div>
+                  </div>
+                  <div class="reveal">
+                     <h2
+                        class="display-font text-4xl leading-[1.05] tracking-[-.04em] sm:text-5xl"
+                     >
+                        I started with the dealer’s day,
+                        <span class="text-red"> not the dashboard. </span>
+                     </h2>
+                     <p
+                        class="mt-5 max-w-3xl text-base leading-7 text-ink/60 sm:text-lg sm:leading-8"
+                     >
+                        Conversations with Maruti stakeholders helped uncover
+                        where access slowed down, what information mattered
+                        most, and which parts of the experience needed to feel
+                        more familiar.
+                     </p>
+                  </div>
+               </div>
+               <div class="reveal mt-14 border-y border-ink/10">
+                  <div class="grid sm:grid-cols-3">
+                     <div class="py-8 sm:pr-8">
+                        <p
+                           class="text-xs font-semibold tracking-[.16em] text-red"
+                        >
+                           01
+                        </p>
+                        <h3 class="mt-3 text-lg font-semibold">
+                           Language mattered
+                        </h3>
+                        <p class="mt-2 text-sm leading-6 text-ink/55">
+                           The experience needed to feel comfortable for
+                           Hindi-speaking users.
+                        </p>
+                     </div>
+                     <div
+                        class="border-t border-ink/10 py-8 sm:border-l sm:border-t-0 sm:px-8"
+                     >
+                        <p
+                           class="text-xs font-semibold tracking-[.16em] text-red"
+                        >
+                           02
+                        </p>
+                        <h3 class="mt-3 text-lg font-semibold">
+                           Service updates came first
+                        </h3>
+                        <p class="mt-2 text-sm leading-6 text-ink/55">
+                           Dealers wanted to understand what was active and
+                           available before reviewing old transactions.
+                        </p>
+                     </div>
+                     <div
+                        class="border-t border-ink/10 py-8 sm:border-l sm:border-t-0 sm:pl-8"
+                     >
+                        <p
+                           class="text-xs font-semibold tracking-[.16em] text-red"
+                        >
+                           03
+                        </p>
+                        <h3 class="mt-3 text-lg font-semibold">
+                           Reports needed less effort
+                        </h3>
+                        <p class="mt-2 text-sm leading-6 text-ink/55">
+                           Complex reporting could be simplified into clearer,
+                           task-focused views.
+                        </p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <!-- PRODUCT DECISIONS -->
+         <section id="decisions" class="bg-ink py-24 text-paper">
+            <div class="mx-auto max-w-[1260px] px-5">
+               <div class="reveal w-full">
+                  <p class="text-sm font-semibold text-redSoft">
+                     Product decisions
+                  </p>
+                  <h2
+                     class="display-font mt-3 text-4xl leading-tight sm:text-5xl"
+                  >
+                     Simple choices made the system
+                     <span class="text-red"> easier to use. </span>
+                  </h2>
+               </div>
+               <div class="reveal mt-16 border-y border-white/10">
+                  <!-- 01 -->
+                  <div
+                     class="grid gap-7 border-b border-white/10 py-6 md:grid-cols-[100px_1fr_1.2fr] md:items-start"
+                  >
+                     <p class="text-sm font-semibold text-redSoft">01</p>
+                     <h3 class="text-2xl font-medium">Prepaid over credit</h3>
+                     <p class="leading-7 text-paper/55">
+                        Dealers could add balance and access services without
+                        waiting for credit approval.
+                     </p>
+                  </div>
+                  <!-- 02 -->
+                  <div
+                     class="grid gap-7 border-b border-white/10 py-6 md:grid-cols-[100px_1fr_1.2fr] md:items-start"
+                  >
+                     <p class="text-sm font-semibold text-redSoft">02</p>
+                     <h3 class="text-2xl font-medium">Hindi-first access</h3>
+                     <p class="leading-7 text-paper/55">
+                        Language support was treated as part of usability—not as
+                        an optional feature.
+                     </p>
+                  </div>
+                  <!-- 03 -->
+                  <div
+                     class="grid gap-7 border-b border-white/10 py-6 md:grid-cols-[100px_1fr_1.2fr] md:items-start"
+                  >
+                     <p class="text-sm font-semibold text-redSoft">03</p>
+                     <h3 class="text-2xl font-medium">Dashboard first</h3>
+                     <p class="leading-7 text-paper/55">
+                        Important actions and service status appeared early,
+                        reducing unnecessary navigation.
+                     </p>
+                  </div>
+                  <!-- 04 -->
+                  <div
+                     class="grid gap-7 py-6 md:grid-cols-[100px_1fr_1.2fr] md:items-start"
+                  >
+                     <p class="text-sm font-semibold text-redSoft">04</p>
+                     <h3 class="text-2xl font-medium">
+                        Reports with a purpose
+                     </h3>
+                     <p class="leading-7 text-paper/55">
+                        Information was grouped around common questions instead
+                        of exposing every available data point.
+                     </p>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <!-- SOLUTION -->
+         <section id="solution" class="bg-paper py-16">
+            <div class="mx-auto max-w-[1260px] px-5">
+               <div class="reveal w-full">
+                  <p class="text-sm font-semibold text-red">The solution</p>
+                  <h2
+                     class="display-font mt-3 text-4xl leading-tight sm:text-5xl"
+                  >
+                     A service journey designed
+                     <span class="text-red"> like a clear route. </span>
+                  </h2>
+                  <p class="mt-7 max-w-7xl text-lg leading-relaxed text-ink/60">
+                     The experience brought the essential tasks into one simple
+                     path: add balance, choose a service, understand usage, and
+                     take action when needed.
+                  </p>
+               </div>
+               <!-- ROUTE -->
+               <div
+                  class="reveal relative mt-16 overflow-hidden border-y border-ink/10 py-12"
+               >
+                  <div
+                     class="absolute left-0 right-0 top-[92px] hidden h-px bg-ink/10 md:block"
+                  ></div>
+                  <div class="relative grid gap-10 md:grid-cols-4">
+                     <div>
+                        <span
+                           class="flex h-12 w-12 items-center justify-center rounded-full bg-marutiBlue text-sm font-semibold text-paper"
+                        >
+                           01
+                        </span>
+                        <h3 class="mt-5 text-xl font-semibold">Recharge</h3>
+                        <p class="mt-2 text-sm leading-6 text-ink/55">
+                           Add balance when it is needed.
+                        </p>
+                     </div>
+                     <div>
+                        <span
+                           class="flex h-12 w-12 items-center justify-center rounded-full bg-red text-sm font-semibold text-paper"
+                        >
+                           02
+                        </span>
+                        <h3 class="mt-5 text-xl font-semibold">Explore</h3>
+                        <p class="mt-2 text-sm leading-6 text-ink/55">
+                           See available services and understand their value.
+                        </p>
+                     </div>
+                     <div>
+                        <span
+                           class="flex h-12 w-12 items-center justify-center rounded-full bg-marutiBlue text-sm font-semibold text-paper"
+                        >
+                           03
+                        </span>
+                        <h3 class="mt-5 text-xl font-semibold">Use</h3>
+                        <p class="mt-2 text-sm leading-6 text-ink/55">
+                           Access services without extra manual coordination.
+                        </p>
+                     </div>
+                     <div>
+                        <span
+                           class="flex h-12 w-12 items-center justify-center rounded-full bg-red text-sm font-semibold text-paper"
+                        >
+                           04
+                        </span>
+                        <h3 class="mt-5 text-xl font-semibold">Track</h3>
+                        <p class="mt-2 text-sm leading-6 text-ink/55">
+                           Check service status and usage in one place.
+                        </p>
+                     </div>
+                  </div>
+               </div>
+               <!-- FEATURE VISUAL -->
+               <div
+                  class="reveal mt-16 grid overflow-hidden border border-ink/10 shadow-soft lg:grid-cols-[.75fr_1.25fr]"
+               >
+                  <div
+                     class="flex flex-col justify-between bg-cream p-8 sm:p-8"
+                  >
+                     <div>
+                        <p
+                           class="text-xs font-semibold uppercase tracking-[.16em] text-red"
+                        >
+                           Dashboard-first
+                        </p>
+                        <h3 class="mt-4 text-3xl font-medium">
+                           What matters appears first.
+                        </h3>
+                        <p class="mt-5 leading-7 text-ink/60">
+                           Service status, available balance, and useful actions
+                           were brought together so dealers could understand
+                           their situation without searching across the
+                           platform.
+                        </p>
+                     </div>
+                     <div class="mt-6 border-t border-ink/10 pt-6">
+                        <p
+                           class="text-xs uppercase tracking-[.14em] text-ink/40"
+                        >
+                           Design principle
+                        </p>
+                        <p class="mt-2 text-sm leading-6 text-ink/60">
+                           Show the next useful action before showing more
+                           information.
+                        </p>
+                     </div>
+                  </div>
+                  <div class="min-h-[520px] bg-marutiBlue p-5 sm:p-10">
+                     <div
+                        class="mx-auto min-h-[440px] max-w-[850px] bg-paper p-6 sm:p-9"
+                     >
+                        <div
+                           class="flex items-center justify-between border-b border-ink/10 pb-5"
+                        >
+                           <div>
+                              <p class="text-xs font-semibold text-red">
+                                 MASS DASHBOARD
+                              </p>
+                              <p class="mt-1 text-sm text-ink/45">
+                                 Welcome back
+                              </p>
+                           </div>
+                           <span
+                              class="rounded-full bg-marutiBlueSoft px-3 py-1 text-xs font-medium text-marutiBlue"
+                           >
+                              Hindi / English
+                           </span>
+                        </div>
+                        <div class="mt-8 grid gap-4 sm:grid-cols-3">
+                           <div class="border-l-2 border-red bg-cream p-5">
+                              <p class="text-xs text-ink/40">
+                                 Available balance
+                              </p>
+                              <p class="mt-3 text-xl font-semibold">
+                                 Ready to use
+                              </p>
+                           </div>
+                           <div
+                              class="border-l-2 border-marutiBlue bg-cream p-5"
+                           >
+                              <p class="text-xs text-ink/40">Active services</p>
+                              <p class="mt-3 text-xl font-semibold">
+                                 View status
+                              </p>
+                           </div>
+                           <div class="border-l-2 border-red bg-cream p-5">
+                              <p class="text-xs text-ink/40">Quick action</p>
+                              <p class="mt-3 text-xl font-semibold">Recharge</p>
+                           </div>
+                        </div>
+                        <div class="mt-7 border border-ink/10 p-5">
+                           <div class="flex items-center justify-between">
+                              <p class="font-semibold">Service overview</p>
+                              <span class="text-xs text-red"> View all → </span>
+                           </div>
+                           <div class="mt-6 space-y-4">
+                              <div
+                                 class="flex items-center justify-between border-b border-ink/10 pb-3"
+                              >
+                                 <span class="text-sm"> Service plan </span>
+                                 <span
+                                    class="text-xs font-medium text-marutiBlue"
+                                 >
+                                    Active
+                                 </span>
+                              </div>
+                              <div class="flex items-center justify-between">
+                                 <span class="text-sm"> Usage report </span>
+                                 <span class="text-xs font-medium text-red">
+                                    Download
+                                 </span>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <!-- OUTCOME -->
+         <section id="outcome" class="bg-red py-24 text-paper">
+            <div class="mx-auto max-w-[1260px] px-5">
+               <div class="grid gap-14 lg:grid-cols-12">
+                  <div class="reveal lg:col-span-7">
+                     <p class="text-sm font-semibold text-paper/60">Outcome</p>
+                     <h2
+                        class="display-font mt-3 text-4xl leading-tight sm:text-5xl"
+                     >
+                        Less time figuring out the system.
+                        <span class="text-paper/65">
+                           More time running the business.
+                        </span>
+                     </h2>
+                     <p
+                        class="mt-7 max-w-2xl text-lg leading-relaxed text-paper/75"
+                     >
+                        The redesigned marketplace gave dealers a clearer path
+                        to services while giving Maruti teams a more structured
+                        way to manage access and usage.
+                     </p>
+                  </div>
+                  <div class="reveal lg:col-span-5">
+                     <div class="border-y border-paper/20">
+                        <div class="py-6">
+                           <p
+                              class="text-xs uppercase tracking-[.15em] text-paper/50"
+                           >
+                              Access
+                           </p>
+                           <p class="mt-3 text-xl font-medium">
+                              Services became easier to reach.
+                           </p>
+                        </div>
+                        <div class="border-t border-paper/20 py-6">
+                           <p
+                              class="text-xs uppercase tracking-[.15em] text-paper/50"
+                           >
+                              Usability
+                           </p>
+                           <p class="mt-3 text-xl font-medium">
+                              Language and clarity were built into the
+                              experience.
+                           </p>
+                        </div>
+                        <div class="border-t border-paper/20 py-6">
+                           <p
+                              class="text-xs uppercase tracking-[.15em] text-paper/50"
+                           >
+                              Operations
+                           </p>
+                           <p class="mt-3 text-xl font-medium">
+                              Service activity became easier to understand and
+                              manage.
+                           </p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="reveal mt-14 border-t border-paper/20 pt-8">
+                  <p class="max-w-5xl text-2xl leading-relaxed sm:text-3xl">
+                     Make access simple.
+                     <span class="text-paper/65">
+                        Keep the next action clear.
+                     </span>
+                  </p>
+               </div>
+            </div>
+         </section>
+         <!-- REFLECTION -->
+         <section class="bg-paper py-24">
+            <div
+               class="mx-auto grid max-w-[1260px] gap-14 px-5 lg:grid-cols-12"
+            >
+               <div class="reveal lg:col-span-5">
+                  <p class="text-sm font-semibold text-red">Reflection</p>
+                  <h2 class="display-font mt-3 text-4xl leading-tight">
+                     The best simplification was not removing features.
+                  </h2>
+               </div>
+               <div class="reveal lg:col-span-7">
+                  <p class="text-xl leading-relaxed text-ink/65">
+                     It was organizing the experience around what dealers needed
+                     to do next.
+                  </p>
+                  <p class="mt-7 leading-relaxed text-ink/55">
+                     This project reinforced that enterprise products do not
+                     need to feel complicated simply because the business behind
+                     them is complex. Clear language, familiar actions, and
+                     useful information can make a large system feel
+                     approachable.
+                  </p>
+                  <div class="mt-10 border-l-4 border-red pl-6">
+                     <p class="text-lg font-medium leading-relaxed">
+                        A good dealer experience should help people get back to
+                        their work—not make the software become the work.
+                     </p>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <!-- NEXT PROJECT -->
+         <section class="bg-ink py-20 text-paper">
+            <div
+               class="mx-auto flex max-w-[1260px] flex-col gap-8 px-5 md:flex-row md:items-end md:justify-between"
+            >
+               <div class="reveal max-w-2xl">
+                  <p class="text-sm font-semibold text-redSoft">Next project</p>
+                  <h2 class="display-font mt-3 text-4xl leading-tight">
+                     Designing an AI workflow that helps teams review complex
+                     documents with confidence.
+                  </h2>
+               </div>
+               <a
+                  href="ai_document.html"
+                  class="reveal inline-flex shrink-0 items-center gap-3 rounded-full bg-red px-6 py-3.5 text-sm font-medium text-paper transition hover:-translate-y-1 hover:bg-paper hover:text-ink"
+               >
+                  View AI Document Intelligence
+                  <span> → </span>
+               </a>
+            </div>
+         </section>
+      </main>
+      <footer class="border-t border-white/10 bg-ink py-7 text-paper/45">
+         <div
+            class="mx-auto flex max-w-[1260px] flex-col items-center justify-between gap-3 px-5 text-xs sm:flex-row"
+         >
+            <p>© 2026 Moumita Majumder · Product Design Portfolio</p>
+            <a href="index.html" class="transition hover:text-red">
+               Back to home
+            </a>
+         </div>
+      </footer>
+      <script>
+         const navbar = document.getElementById("navbar");
+         window.addEventListener("scroll", () => {
+            if (window.scrollY > 20) {
+               navbar.classList.add("nav-shadow", "border-ink/10");
+            } else {
+               navbar.classList.remove("nav-shadow", "border-ink/10");
+            }
+         });
+         const observer = new IntersectionObserver(
+            (entries) => {
+               entries.forEach((entry) => {
+                  if (entry.isIntersecting) {
+                     entry.target.classList.add("visible");
+                     observer.unobserve(entry.target);
+                  }
+               });
+            },
+            {
+               threshold: 0.1,
+            },
+         );
+         document.querySelectorAll(".reveal").forEach((element) => {
+            observer.observe(element);
+         });
+         document.querySelectorAll('a[href^="#"]').forEach((link) => {
+            link.addEventListener("click", (event) => {
+               const target = document.querySelector(link.getAttribute("href"));
+               if (target) {
+                  event.preventDefault();
+                  target.scrollIntoView({
+                     behavior: "smooth",
+                     block: "start",
+                  });
+               }
+            });
+         });
+      </script>
+   </body>
+</html>
