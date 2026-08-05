@@ -157,7 +157,7 @@ body {
     <p class="reveal mt-8 text-sm font-semibold uppercase tracking-[.18em] text-red">
       AI document intelligence
     </p>
-    <h1 class="display-font reveal mt-4 max-w-5xl text-5xl leading-[.98] tracking-[-.045em] sm:text-6xl lg:text-7xl">
+    <h1 class="display-font reveal mt-4 max-w-5xl text-5xl leading-[.98] tracking-[-.045em] sm:text-6xl lg:text-6xl">
       Turning scattered knowledge into a
       <span class="text-red">
         stronger starting point.
@@ -257,11 +257,11 @@ body {
 </section>
 <section id="challenge" class="bg-paper py-24">
   <div class="mx-auto max-w-[1260px] px-5">
-<div class="reveal max-w-4xl">
+<div class="reveal max-w-7xl">
   <p class="text-sm font-semibold text-red">
     The challenge
   </p>
-  <h2 class="display-font mt-3 text-4xl leading-tight sm:text-5xl">
+  <h2 class="display-font mt-2 text-4xl leading-tight sm:text-4xl">
     The work became difficult
     <span class="text-red">
       before anyone started writing.
@@ -271,7 +271,7 @@ body {
     A new request could mean searching old proposals, checking internal knowledge, consulting experts, and comparing information across systems.
   </p>
   <p class="mt-4 text-lg leading-relaxed text-ink/60">
-    The question was not “How can AI write faster?”
+    The question was not “How can AI write faster?”<br/>
     <strong class="text-ink">
       It was how AI could help people reach a reliable starting point without hiding the evidence behind it.
     </strong>
@@ -300,7 +300,7 @@ body {
     <h3 class="mt-3 text-3xl font-medium">
       Reduce the effort of getting started—not the responsibility of finishing.
     </h3>
-    <p class="mt-7 leading-relaxed text-ink/55">
+    <p class="mt-6 leading-relaxed text-ink/55">
       AI could bring useful information together and prepare a working draft. People would still apply context, validate accuracy, and make the final decision.
     </p>
   </div>
@@ -319,7 +319,7 @@ body {
         </div>
       </div>
       <div>
-        <h2 class="display-font text-4xl leading-[1.05] tracking-[-0.04em] sm:text-5xl">
+        <h2 class="display-font mt-2 text-4xl leading-tight sm:text-4xl">
           I started by understanding
           <span class="text-red">the work, not the AI.</span>
         </h2>
@@ -648,7 +648,7 @@ body {
     <p class="font-semibold text-sm uppercase tracking-[0.15em] text-ink/35">
       Evidence → decision → interface
     </p>
-    <h2 class="display-font mt-4 max-w-4xl text-4xl leading-[1.04] tracking-[-0.04em] sm:text-5xl">
+    <h2 class="display-font mt-2 text-4xl leading-tight sm:text-4xl">
       How research changed
       <span class="text-red">the design.</span>
     </h2>
@@ -801,7 +801,7 @@ body {
   <p class="text-sm font-semibold text-redSoft">
     AI opportunity
   </p>
-  <h2 class="display-font mt-3 text-4xl leading-tight sm:text-5xl">
+  <h2 class="display-font mt-2 text-4xl leading-tight sm:text-4xl">
     AI prepares the work.
     <span class="text-red">
       People remain responsible for it.
@@ -886,7 +886,7 @@ Users needed to add context, review evidence, and approve the final response. A 
     <p class="text-xs font-semibold uppercase tracking-[0.16em] text-red">
       We chose
     </p>
-    <h2 class="display-font mt-5 text-4xl leading-[1.05] tracking-[-0.04em] sm:text-5xl">
+    <h2 class="display-font mt-2 text-4xl leading-tight sm:text-4xl">
       A guided workflow
       <span class="text-red">
         with meaningful control.
@@ -913,400 +913,838 @@ Users needed to add context, review evidence, and approve the final response. A 
 </div>
   </div>-->
 </section>
-<section id="solution" class="bg-paper py-8">
-  <div class="mx-auto max-w-[1400px] px-5">
-<div class="reveal mx-auto max-w-[1260px]">
-  <p class="text-sm font-semibold text-red">
-    The solution
-  </p>
-  <h2 class="display-font mt-3 max-w-5xl text-4xl leading-tight sm:text-5xl">
-From blank brief to
-    <span class="text-red">
-     a ready document.
-    </span>
-  </h2>
-  <p class="mt-6 w-full text-lg leading-relaxed text-ink/60">
-    Instead of asking users to chat through a complex task, I designed a structured workflow. Each step provides AI with useful context while keeping decisions visible and manageable.
-  </p>
-</div>
-<div class="reveal mobile-scroll mt-12 flex gap-3 overflow-x-auto pb-4">
-  <button data-step="brief" class="step-button active shrink-0 rounded-full border border-ink/10 bg-paper px-6 py-3 text-sm font-medium">
-    01 · Set the brief
-  </button>
-  <button data-step="context" class="step-button shrink-0 rounded-full border border-ink/10 bg-paper px-6 py-3 text-sm font-medium">
-    02 · Add context
-  </button>
-  <button data-step="generate" class="step-button shrink-0 rounded-full border border-ink/10 bg-paper px-6 py-3 text-sm font-medium">
-    03 · Generate
-  </button>
-  <button data-step="review" class="step-button shrink-0 rounded-full border border-ink/10 bg-paper px-6 py-3 text-sm font-medium">
-    04 · Review evidence
-  </button>
-  <button data-step="approve" class="step-button shrink-0 rounded-full border border-ink/10 bg-paper px-6 py-3 text-sm font-medium">
-    05 · Approve
-  </button>
-</div>
-<div class="mt-6">
-  <div id="brief" class="step-panel active">
-    <div class="screen-frame overflow-hidden rounded-[34px] shadow-lift">
-      <div class="grid lg:grid-cols-[.55fr_1.45fr]">
-        <div class="flex flex-col justify-between p-8 sm:p-8">
-          <div>
-            <p class="text-sm font-semibold text-red">
-              Step 01
-            </p>
-            <h3 class="mt-3 text-3xl font-medium">
-              Start with the right brief.
-            </h3>
-            <p class="mt-5 leading-relaxed text-ink/60">
-              Users add the request, audience, requirements, and business context before AI begins searching or drafting.
-            </p>
-          </div>
-          <div class="mt-8 pt-6">
-            <p class="text-xs uppercase tracking-[.14em] text-ink/40">
-              Design decision
-            </p>
-            <p class="mt-2 text-sm leading-relaxed text-ink/60">
-              Collect critical context early to reduce irrelevant output and repeated correction later.
-            </p>
-          </div>
+<!-- slide show-->
+
+<section id="design-journey" class="relative overflow-hidden bg-cream py-8 sm:py-8">
+  
+  <!-- Background details -->
+  <div class="pointer-events-none absolute inset-0 overflow-hidden">
+    <div class="absolute left-[-10%] top-20 h-72 w-72 rounded-full bg-red/5 blur-3xl"></div>
+    <div class="absolute bottom-0 right-[-8%] h-80 w-80 rounded-full bg-violet/10 blur-3xl"></div>
+  </div>
+
+  <div class="relative mx-auto max-w-[1260px] px-4">
+
+    <!-- Section heading -->
+    <div class="mx-auto w-full">
+      <p class="text-sm font-semibold text-red">
+        Design journey
+      </p>
+
+      <h2 class="display-font mt-2 text-4xl leading-tight sm:text-4xl">
+        From a blank request to
+        <span class="text-red">
+          a document ready to review.
+        </span>
+      </h2>
+
+      <p class="mt-4 max-w-2xl text-lg leading-relaxed text-ink/60">
+        I replaced an open-ended AI interaction with a guided workflow.
+        Each step gives the system better context while keeping the user
+        informed and in control.
+      </p>
+    </div>
+
+    <!-- Slideshow -->
+    <div class="mt-8">
+
+      <!-- AI gradient stage -->
+      <div
+        id="journeyStage"
+        class="journey-stage relative overflow-hidden rounded-[32px] border border-white/10 p-4 shadow-lift sm:p-7"
+      >
+
+        <!-- Decorative AI glows -->
+        <div class="pointer-events-none absolute inset-0 overflow-hidden">
+
+          <div
+            class="absolute -left-24 top-[-100px] h-80 w-80 rounded-full
+                   bg-cyan-400/20 blur-[110px]"
+          ></div>
+
+          <div
+            class="absolute right-[-100px] top-1/4 h-96 w-96 rounded-full
+                   bg-violet-500/25 blur-[120px]"
+          ></div>
+
+          <div
+            class="absolute bottom-[-160px] left-1/3 h-80 w-80 rounded-full
+                   bg-red/15 blur-[110px]"
+          ></div>
+
+          <!-- Subtle grid -->
+          <div class="ai-grid absolute inset-0 opacity-30"></div>
         </div>
-        <div class="min-h-[580px] bg-ink p-5 sm:p-10">
-          <div class="mx-auto flex min-h-[500px] max-w-[900px] flex-col rounded-[24px] bg-paper p-6 sm:p-10">
-            <div class="flex items-center justify-between border-b border-ink/10 pb-5">
-              <div>
-                <p class="text-xs font-semibold text-red">
-                  CREATE RESPONSE
-                </p>
-                <p class="mt-1 text-sm text-ink/45">
-                  Tell us what you need.
-                </p>
-              </div>
-              <span class="rounded-full bg-red/10 px-3 py-1 text-xs text-red">
-                Step 1 of 5
+
+        <!-- Image area -->
+        <div class="relative">
+
+          <!-- Slide label -->
+          <div class="mb-4 flex items-center justify-between">
+
+            <div class="flex items-center gap-3">
+              <span
+                id="slideNumber"
+                class="rounded-full border border-white/15 bg-white/10
+                       px-3 py-1.5 text-xs font-semibold tracking-[0.12em]
+                       text-white backdrop-blur-md"
+              >
+                01 / 06
+              </span>
+
+              <span
+                id="slideEyebrow"
+                class="text-xs font-semibold uppercase tracking-[0.18em]
+                       text-white/55"
+              >
+                Set the brief
               </span>
             </div>
-            <div class="mt-8 grid gap-5 sm:grid-cols-2">
-              <div>
-                <p class="mb-2 text-xs text-ink/45">
-                  Request title
-                </p>
-                <div class="rounded-xl border border-ink/10 bg-cream p-4 text-sm">
-                  New customer proposal
-                </div>
-              </div>
-              <div>
-                <p class="mb-2 text-xs text-ink/45">
-                  Audience
-                </p>
-                <div class="rounded-xl border border-ink/10 bg-cream p-4 text-sm">
-                  Enterprise customer
-                </div>
-              </div>
-            </div>
-            <div class="mt-5">
-              <p class="mb-2 text-xs text-ink/45">
-                Requirements and context
-              </p>
-              <div class="h-40 rounded-xl border border-ink/10 bg-cream p-4 text-sm text-ink/40">
-                Add key requirements, customer context, and important details...
-              </div>
-            </div>
-            <div class="mt-auto flex justify-end pt-8">
-              <div class="rounded-full bg-red px-7 py-3.5 text-xs font-medium text-paper">
-                Continue
-              </div>
+
+            <!-- Navigation arrows -->
+            <div class="flex items-center gap-2">
+
+              <button
+                id="prevSlide"
+                type="button"
+                aria-label="Previous design screen"
+                class="journey-arrow"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M15 18l-6-6 6-6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+
+              <button
+                id="nextSlide"
+                type="button"
+                aria-label="Next design screen"
+                class="journey-arrow"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M9 18l6-6-6-6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+
             </div>
           </div>
+
+          <!-- Product screenshot -->
+          <div
+            class="relative overflow-hidden rounded-[22px]
+                   border border-white/15 bg-[#F8F7F3]
+                   shadow-[0_30px_80px_rgba(0,0,0,0.35)]"
+          >
+
+            <img
+              id="journeyImage"
+              src="images/ai_doc/ai-document-screen-01.jpg"
+              alt="AI document workflow — Set the brief"
+              class="block w-full select-none"
+              draggable="false"
+            >
+
+            <!-- Soft loading overlay -->
+            <div
+              id="imageLoader"
+              class="pointer-events-none absolute inset-0
+                     bg-white/10 opacity-0 transition-opacity"
+            ></div>
+
+          </div>
+
         </div>
       </div>
-    </div>
-  </div>
-  <div id="context" class="step-panel">
-    <div class="screen-frame overflow-hidden rounded-[34px] border border-ink/10 shadow-lift">
-      <div class="grid lg:grid-cols-[.55fr_1.45fr]">
-        <div class="flex flex-col justify-between p-8 sm:p-10">
-          <div>
-            <p class="text-sm font-semibold text-red">
-              Step 02
-            </p>
-            <h3 class="mt-3 text-3xl font-medium">
-              Add context AI cannot infer.
-            </h3>
-            <p class="mt-5 leading-relaxed text-ink/60">
-              Users select relevant knowledge and add project-specific information before generation.
-            </p>
-          </div>
-          <div class="mt-10 border-t border-ink/10 pt-6">
-            <p class="text-xs uppercase tracking-[.14em] text-ink/40">
-              Design decision
-            </p>
-            <p class="mt-2 text-sm leading-relaxed text-ink/60">
-              Make context visible and editable instead of hiding it inside a prompt.
-            </p>
-          </div>
-        </div>
-        <div class="min-h-[580px] bg-redDark p-5 sm:p-10">
-          <div class="mx-auto min-h-[500px] max-w-[900px] rounded-[24px] bg-paper p-6 sm:p-10">
-            <div class="flex items-center justify-between border-b border-ink/10 pb-5">
-              <div>
-                <p class="text-xs font-semibold text-red">
-                  ADD CONTEXT
-                </p>
-                <p class="mt-1 text-sm text-ink/45">
-                  Choose what AI should consider.
-                </p>
-              </div>
-              <span class="rounded-full bg-red/10 px-3 py-1 text-xs text-red">
-                Step 2 of 5
-              </span>
-            </div>
-            <div class="mt-8">
-              <p class="text-sm font-medium">
-                Relevant knowledge
-              </p>
-              <div class="mt-5 space-y-3">
-                <div class="flex items-center justify-between rounded-xl border-2 border-red bg-red/5 p-4">
-                  <span class="text-sm">
-                    Previous proposal · 2025
-                  </span>
-                  <span class="text-xs text-red">
-                    Selected
-                  </span>
-                </div>
-                <div class="flex items-center justify-between rounded-xl border border-ink/10 p-4">
-                  <span class="text-sm">
-                    Product capability guide
-                  </span>
-                  <span class="text-xs text-ink/40">
-                    Add
-                  </span>
-                </div>
-                <div class="flex items-center justify-between rounded-xl border-2 border-red bg-red/5 p-4">
-                  <span class="text-sm">
-                    Customer requirements
-                  </span>
-                  <span class="text-xs text-red">
-                    Selected
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div id="generate" class="step-panel">
-    <div class="screen-frame overflow-hidden rounded-[34px] border border-ink/10 shadow-lift">
-      <div class="grid lg:grid-cols-[.55fr_1.45fr]">
-        <div class="flex flex-col justify-between p-8 sm:p-10">
-          <div>
-            <p class="text-sm font-semibold text-red">
-              Step 03
-            </p>
-            <h3 class="mt-3 text-3xl font-medium">
-              Create a useful first version.
-            </h3>
-            <p class="mt-5 leading-relaxed text-ink/60">
-              AI searches approved knowledge, connects relevant information, and prepares an editable draft.
-            </p>
-          </div>
-          <div class="mt-10 border-t border-ink/10 pt-6">
-            <p class="text-xs uppercase tracking-[.14em] text-ink/40">
-              Design decision
-            </p>
-            <p class="mt-2 text-sm leading-relaxed text-ink/60">
-              Show progress and useful signals so generation does not feel like an unexplained black box.
-            </p>
-          </div>
-        </div>
-        <div class="min-h-[580px] bg-ink p-5 sm:p-10">
-          <div class="mx-auto min-h-[500px] max-w-[900px] rounded-[24px] bg-paper p-6 sm:p-10">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-3">
-                <span class="h-3 w-3 rounded-full bg-red"></span>
-                <div>
-                  <p class="text-sm font-medium">
-                    Preparing your response
-                  </p>
-                  <p class="mt-1 text-xs text-ink/45">
-                    Connecting relevant information
-                  </p>
-                </div>
-              </div>
-              <span class="text-xs text-red">
-                68%
-              </span>
-            </div>
-            <div class="mt-7 h-2 overflow-hidden rounded-full bg-cream">
-              <div class="h-full w-[68%] rounded-full bg-red"></div>
-            </div>
-            <div class="mt-9 grid gap-4 sm:grid-cols-2">
-              <div class="rounded-xl bg-cream p-6">
-                <p class="text-xs text-ink/40">
-                  Knowledge used
-                </p>
-                <p class="mt-3 text-3xl font-semibold">
-                  12
-                </p>
-                <p class="mt-1 text-xs text-ink/45">
-                  Relevant sources found
-                </p>
-              </div>
-              <div class="rounded-xl bg-cream p-6">
-                <p class="text-xs text-ink/40">
-                  Potential gaps
-                </p>
-                <p class="mt-3 text-3xl font-semibold text-red">
-                  02
-                </p>
-                <p class="mt-1 text-xs text-ink/45">
-                  May need expert input
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div id="review" class="step-panel">
-    <div class="screen-frame overflow-hidden rounded-[34px] border border-ink/10 shadow-lift">
-      <div class="grid lg:grid-cols-[.55fr_1.45fr]">
-        <div class="flex flex-col justify-between p-8 sm:p-10">
-          <div>
-            <p class="text-sm font-semibold text-red">
-              Step 04
-            </p>
-            <h3 class="mt-3 text-3xl font-medium">
-              Review the draft with evidence beside it.
-            </h3>
-            <p class="mt-5 leading-relaxed text-ink/60">
-              Users can edit the response, inspect supporting sources, and identify information that still needs expert input.
-            </p>
-          </div>
-          <div class="mt-10 border-t border-ink/10 pt-6">
-            <p class="text-xs uppercase tracking-[.14em] text-ink/40">
-              Design decision
-            </p>
-            <p class="mt-2 text-sm leading-relaxed text-ink/60">
-              Keep evidence in the same workspace so review does not require switching between systems.
-            </p>
-          </div>
-        </div>
-        <div class="min-h-[580px] bg-redDark p-5 sm:p-10">
-          <div class="mx-auto grid min-h-[500px] max-w-[980px] gap-5 rounded-[24px] bg-paper p-5 sm:grid-cols-[1.45fr_.75fr] sm:p-8">
+
+      <!-- Slide information -->
+      <div class="mt-7 grid items-start gap-7 lg:grid-cols-[1fr_auto]">
+
+        <!-- Content -->
+        <div>
+
+          <div class="flex items-center gap-4">
+
+            <span
+              id="slideStep"
+              class="flex h-11 w-11 shrink-0 items-center justify-center
+                     rounded-2xl bg-red text-sm font-semibold text-paper"
+            >
+              01
+            </span>
+
             <div>
-              <div class="flex items-center justify-between border-b border-ink/10 pb-4">
-                <p class="text-sm font-semibold">
-                  AI draft
-                </p>
-                <span class="rounded-full bg-red/10 px-3 py-1 text-xs text-red">
-                  Review required
-                </span>
-              </div>
-              <div class="mt-7 space-y-4">
-                <div class="h-4 w-full rounded bg-cream"></div>
-                <div class="h-4 w-[92%] rounded bg-cream"></div>
-                <div class="rounded-lg border-l-4 border-red bg-red/5 p-4 text-sm">
-                  This response uses information from the 2025 enterprise proposal.
-                </div>
-                <div class="h-4 w-full rounded bg-cream"></div>
-                <div class="h-4 w-[78%] rounded bg-cream"></div>
-              </div>
-            </div>
-            <div class="rounded-xl bg-cream p-5">
-              <p class="text-xs font-semibold text-red">
-                EVIDENCE
+              <p
+                id="slideTitle"
+                class="text-2xl font-semibold tracking-[-0.02em]
+                       text-ink sm:text-2xl"
+              >
+                Start with a clear brief.
               </p>
-              <div class="mt-6 space-y-3">
-                <div class="rounded-lg bg-paper p-4">
-                  <p class="text-xs font-medium">
-                    Previous proposal
-                  </p>
-                  <p class="mt-1 text-[11px] text-ink/45">
-                    Section 4.2
-                  </p>
-                </div>
-                <div class="rounded-lg bg-paper p-4">
-                  <p class="text-xs font-medium">
-                    Product guide
-                  </p>
-                  <p class="mt-1 text-[11px] text-ink/45">
-                    Page 18
-                  </p>
-                </div>
-                <div class="rounded-lg border border-red/20 bg-red/5 p-4">
-                  <p class="text-xs font-medium text-red">
-                    Missing information
-                  </p>
-                  <p class="mt-1 text-[11px] text-ink/45">
-                    Confirm with subject expert
-                  </p>
-                </div>
-              </div>
+
+              <p
+                id="slideDescription"
+                class="mt-2 max-w-7xl text-base leading-relaxed text-ink/60"
+              >
+                Users define the request, audience, requirements, and
+                business context before AI begins working.
+              </p>
             </div>
+
           </div>
+
         </div>
+
+        <!-- Progress indicators -->
+        <div
+          id="slideDots"
+          class="flex items-center gap-2 pt-3 lg:justify-end"
+          aria-label="Design journey slides"
+        >
+
+          <button
+            type="button"
+            class="journey-dot active"
+            data-slide="0"
+            aria-label="Go to slide 1"
+          ></button>
+
+          <button
+            type="button"
+            class="journey-dot"
+            data-slide="1"
+            aria-label="Go to slide 2"
+          ></button>
+
+          <button
+            type="button"
+            class="journey-dot"
+            data-slide="2"
+            aria-label="Go to slide 3"
+          ></button>
+
+          <button
+            type="button"
+            class="journey-dot"
+            data-slide="3"
+            aria-label="Go to slide 4"
+          ></button>
+
+          <button
+            type="button"
+            class="journey-dot"
+            data-slide="4"
+            aria-label="Go to slide 5"
+          ></button>
+
+          <button
+            type="button"
+            class="journey-dot"
+            data-slide="5"
+            aria-label="Go to slide 6"
+          ></button>
+
+        </div>
+
       </div>
+
     </div>
-  </div>
-  <div id="approve" class="step-panel">
-    <div class="screen-frame overflow-hidden rounded-[34px] border border-ink/10 shadow-lift">
-      <div class="grid lg:grid-cols-[.55fr_1.45fr]">
-        <div class="flex flex-col justify-between p-8 sm:p-10">
-          <div>
-            <p class="text-sm font-semibold text-red">
-              Step 05
-            </p>
-            <h3 class="mt-3 text-3xl font-medium">
-              A person makes the final call.
-            </h3>
-            <p class="mt-5 leading-relaxed text-ink/60">
-              AI can prepare the response, but publishing remains a deliberate action taken by an accountable person.
-            </p>
-          </div>
-          <div class="mt-10 border-t border-ink/10 pt-6">
-            <p class="text-xs uppercase tracking-[.14em] text-ink/40">
-              Design decision
-            </p>
-            <p class="mt-2 text-sm leading-relaxed text-ink/60">
-              Separate generation from approval so an AI draft is never mistaken for a finished response.
-            </p>
-          </div>
-        </div>
-        <div class="flex min-h-[580px] items-center justify-center bg-red p-6">
-          <div class="w-full max-w-[760px] rounded-[24px] bg-paper p-10 text-center">
-            <div class="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-red text-3xl text-paper">
-              ✓
-            </div>
-            <h3 class="mt-7 text-3xl font-semibold">
-              Ready for final approval
-            </h3>
-            <p class="mx-auto mt-4 max-w-md leading-relaxed text-ink/50">
-              The draft has been reviewed, evidence has been checked, and remaining questions have been resolved.
-            </p>
-            <div class="mx-auto mt-8 max-w-md rounded-xl bg-cream p-5 text-left">
-              <p class="text-xs text-ink/40">
-                Accountable reviewer
-              </p>
-              <p class="mt-2 text-sm font-medium">
-                Proposal owner
-              </p>
-            </div>
-            <div class="mt-8 inline-flex rounded-full bg-ink px-7 py-3.5 text-xs font-medium text-paper">
-              Approve and publish
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
   </div>
 </section>
-<!-- TRUST IS BUILT INTO THE WORKFLOW -->
+
+
+<style>
+
+.journey-stage {
+  position: relative;
+  isolation: isolate;
+  background: radial-gradient(
+      circle at 8% 12%,
+      rgba(0, 75, 145, 0.42),
+      transparent 34%
+    ),
+    radial-gradient(circle at 92% 18%, rgba(225, 27, 34, 0.22), transparent 32%),
+    radial-gradient(circle at 55% 105%, rgba(0, 75, 145, 0.2), transparent 42%),
+    linear-gradient(135deg, #03070d 0%, #071321 42%, #0a1019 72%, #08090d 100%);
+  box-shadow: 0 30px 90px rgba(2, 7, 14, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+} 
+
+.ai-grid {
+  background-image: linear-gradient(
+      rgba(90, 165, 225, 0.07) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(90, 165, 225, 0.07) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at center, black 10%, transparent 78%);
+} 
+
+.journey-stage::before {
+  content: "";
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  left: -170px;
+  top: 35%;
+  border-radius: 50%;
+  background: rgba(0, 75, 145, 0.2);
+  filter: blur(110px);
+  pointer-events: none;
+  z-index: -1;
+}
+ 
+.journey-stage::after {
+  content: "";
+  position: absolute;
+  width: 340px;
+  height: 340px;
+  right: -150px;
+  top: -110px;
+  border-radius: 50%;
+  background: rgba(225, 27, 34, 0.16);
+  filter: blur(105px);
+  pointer-events: none;
+  z-index: -1;
+}
+
+
+/* Fine AI-style grid */
+
+.ai-grid {
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.07) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.07) 1px,
+      transparent 1px
+    );
+
+  background-size: 46px 46px;
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      black,
+      transparent 90%
+    );
+}
+
+
+/* =========================================================
+   ARROW BUTTONS
+   ========================================================= */
+
+.journey-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 42px;
+  height: 42px;
+
+  border-radius: 999px;
+
+  border: 1px solid rgba(255, 255, 255, 0.16);
+
+  background: rgba(255, 255, 255, 0.08);
+
+  color: rgba(255, 255, 255, 0.9);
+
+  backdrop-filter: blur(12px);
+
+  transition:
+    transform 220ms ease,
+    background 220ms ease,
+    border-color 220ms ease;
+}
+
+.journey-arrow svg {
+  width: 19px;
+  height: 19px;
+}
+
+.journey-arrow:hover {
+  transform: translateY(-2px);
+
+  background: rgba(255, 255, 255, 0.16);
+
+  border-color: rgba(255, 255, 255, 0.30);
+}
+
+.journey-arrow:focus-visible {
+  outline: 2px solid #E38B73;
+
+  outline-offset: 3px;
+}
+
+
+/* =========================================================
+   SLIDE INDICATORS
+   ========================================================= */
+
+.journey-dot {
+  width: 8px;
+  height: 8px;
+
+  padding: 0;
+
+  border: 0;
+
+  border-radius: 999px;
+
+  background: rgba(43, 33, 56, 0.16);
+
+  transition:
+    width 250ms ease,
+    background 250ms ease;
+}
+
+.journey-dot:hover {
+  background: rgba(201, 111, 91, 0.50);
+}
+
+.journey-dot.active {
+  width: 30px;
+
+  background: #C96F5B;
+}
+
+
+/* =========================================================
+   IMAGE TRANSITION
+   ========================================================= */
+
+#journeyImage {
+  transition:
+    opacity 220ms ease,
+    transform 350ms ease;
+}
+
+#journeyImage.is-changing {
+  opacity: 0;
+
+  transform: scale(0.985);
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 640px) {
+
+  .journey-stage {
+    padding: 12px;
+
+    border-radius: 24px;
+  }
+
+  .journey-arrow {
+    width: 38px;
+    height: 38px;
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .journey-arrow,
+  .journey-dot,
+  #journeyImage {
+    transition: none;
+  }
+
+}
+
+</style>
+
+
+<script>
+
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  const slides = [
+
+    {
+      image:"images/ai_doc/ai-document-screen-01.jpg",
+
+      eyebrow:
+        "Set the brief",
+
+      title:
+        "Start with a clear brief.",
+
+      description:
+        "Users define the request, audience, requirements, and business context before AI begins working."
+    },
+
+    {
+      image:
+        "images/ai_doc/ai-document-screen-02.jpg",
+
+      eyebrow:
+        "Generate and Review Content",
+
+      title:
+        "Review useful first version.",
+
+      description:
+        "Users choose relevant knowledge and add details that AI cannot reliably infer."
+    },
+
+    {
+      image:
+        "images/ai_doc/ai-document-screen-03.jpg",
+
+      eyebrow:
+        "Preview Generated Content",
+
+      title:
+        "Preview content before publishine and edit.",
+
+      description:
+        "AI connects approved information and prepares an editable draft instead of producing an unexplained answer."
+    },
+
+    {
+      image:
+        "images/ai_doc/ai-document-screen-04.jpg",
+
+      eyebrow:
+        "Feedback and Publish",
+
+      title:
+        "Share feedback and publish content",
+
+      description:
+        "Users can review the content, inspect supporting sources, and identify details that need expert input."
+    },
+
+    {
+      image:
+        "images/ai_doc/ai-document-screen-05.png",
+
+      eyebrow:
+        "Create Template for domains",
+
+      title:
+        "Create template for document to make generation consistent across domains",
+
+      description:
+        "The workflow keeps the request, source information, and draft connected while users refine the response."
+    },
+
+    {
+      image:
+        "images/ai_doc/ai-document-screen-06.jpg",
+
+      eyebrow:
+        "Create Custom Prompt and Settings",
+
+      title:
+        "User can create custom prompt and set different configuration",
+
+      description:
+        "AI prepares the work, but approval remains a deliberate action taken by an accountable person."
+    }
+
+  ];
+
+
+  /* Elements */
+
+  const image =
+    document.getElementById("journeyImage");
+
+  const number =
+    document.getElementById("slideNumber");
+
+  const eyebrow =
+    document.getElementById("slideEyebrow");
+
+  const step =
+    document.getElementById("slideStep");
+
+  const title =
+    document.getElementById("slideTitle");
+
+  const description =
+    document.getElementById("slideDescription");
+
+  const previous =
+    document.getElementById("prevSlide");
+
+  const next =
+    document.getElementById("nextSlide");
+
+  const dots =
+    document.querySelectorAll(".journey-dot");
+
+
+  let currentSlide = 0;
+
+  let touchStartX = 0;
+
+
+  /* Show slide */
+
+  function showSlide(index) {
+
+    currentSlide =
+      (index + slides.length) % slides.length;
+
+    const slide =
+      slides[currentSlide];
+
+
+    /* Fade image */
+
+    image.classList.add("is-changing");
+
+
+    window.setTimeout(function () {
+
+      image.src =
+        slide.image;
+
+      image.alt =
+        "AI document workflow — " +
+        slide.eyebrow;
+
+      image.onload =
+        function () {
+
+          image.classList.remove(
+            "is-changing"
+          );
+
+        };
+
+    }, 180);
+
+
+    /* Update content */
+
+    const displayNumber =
+      String(currentSlide + 1)
+        .padStart(2, "0");
+
+
+    number.textContent =
+      displayNumber +
+      " / " +
+      String(slides.length)
+        .padStart(2, "0");
+
+
+    eyebrow.textContent =
+      slide.eyebrow;
+
+
+    step.textContent =
+      displayNumber;
+
+
+    title.textContent =
+      slide.title;
+
+
+    description.textContent =
+      slide.description;
+
+
+    /* Update dots */
+
+    dots.forEach(
+      function (dot, index) {
+
+        dot.classList.toggle(
+          "active",
+          index === currentSlide
+        );
+
+      }
+    );
+
+  }
+
+
+  /* Arrow navigation */
+
+  next.addEventListener(
+    "click",
+    function () {
+
+      showSlide(
+        currentSlide + 1
+      );
+
+    }
+  );
+
+
+  previous.addEventListener(
+    "click",
+    function () {
+
+      showSlide(
+        currentSlide - 1
+      );
+
+    }
+  );
+
+
+  /* Dot navigation */
+
+  dots.forEach(
+    function (dot) {
+
+      dot.addEventListener(
+        "click",
+        function () {
+
+          showSlide(
+            Number(
+              dot.dataset.slide
+            )
+          );
+
+        }
+      );
+
+    }
+  );
+
+
+  /* Keyboard navigation */
+
+  document.addEventListener(
+    "keydown",
+    function (event) {
+
+      if (
+        event.key ===
+        "ArrowRight"
+      ) {
+
+        showSlide(
+          currentSlide + 1
+        );
+
+      }
+
+
+      if (
+        event.key ===
+        "ArrowLeft"
+      ) {
+
+        showSlide(
+          currentSlide - 1
+        );
+
+      }
+
+    }
+  );
+
+
+  /* Mobile swipe */
+
+  const stage =
+    document.getElementById(
+      "journeyStage"
+    );
+
+
+  stage.addEventListener(
+    "touchstart",
+    function (event) {
+
+      touchStartX =
+        event.changedTouches[0]
+          .screenX;
+
+    },
+    {
+      passive: true
+    }
+  );
+
+
+  stage.addEventListener(
+    "touchend",
+    function (event) {
+
+      const touchEndX =
+        event.changedTouches[0]
+          .screenX;
+
+
+      const distance =
+        touchEndX -
+        touchStartX;
+
+
+      if (
+        Math.abs(distance)
+        < 45
+      ) {
+        return;
+      }
+
+
+      if (
+        distance < 0
+      ) {
+
+        showSlide(
+          currentSlide + 1
+        );
+
+      } else {
+
+        showSlide(
+          currentSlide - 1
+        );
+
+      }
+
+    },
+    {
+      passive: true
+    }
+  );
+
+});
+
+</script>
+
 <section
   id="trust"
   class="relative overflow-hidden bg-cream py-20 sm:py-24"
@@ -1321,7 +1759,7 @@ From blank brief to
 </div>
 <!-- Heading -->
 <div class="reveal mt-6 w-full">
-  <h2 class="display-font mt-4 text-4xl leading-[1.05] tracking-[-0.04em] sm:text-5xl">
+  <h2 class="display-font mt-2 text-4xl leading-tight sm:text-4xl">
     AI could prepare the draft.
     <span class="text-red">
       People still needed to check it.
@@ -1395,7 +1833,7 @@ From blank brief to
     <p class="text-sm font-semibold text-paper/60">
       Outcome
     </p>
-    <h2 class="display-font mt-3 text-4xl leading-tight sm:text-5xl">
+    <h2 class="display-font mt-2 text-4xl leading-tight sm:text-4xl">
       Less time gathering information.
       <span class="text-paper/70">
         More time improving the response.
@@ -1451,7 +1889,7 @@ From blank brief to
     <p class="text-sm font-semibold text-red">
       Reflection
     </p>
-    <h2 class="display-font mt-3 text-4xl leading-tight">
+    <h2 class="display-font mt-2 text-4xl leading-tight sm:text-4xl">
       The most important decision was not adding AI.
     </h2>
   </div>
@@ -1477,7 +1915,7 @@ From blank brief to
   <p class="text-sm font-semibold text-redSoft">
     Next project
   </p>
-  <h2 class="display-font mt-3 text-4xl leading-tight">
+  <h2 class="display-font mt-2 text-4xl leading-tight sm:text-4xl">
     Designing AI workflows that help legal teams review with confidence.
   </h2>
 </div>
